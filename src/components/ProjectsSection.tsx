@@ -1,0 +1,350 @@
+"use client";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useCallback, useRef } from "react";
+import React from "react";
+import { RoadmapSection } from "./RoadmapSection";
+
+interface Project {
+  title: string;
+  summary: string;
+  description: string;
+  longDescription?: string;
+  stack: string[];
+  status?: string;
+  size: 'half' | 'full' | 'threeQuarter' | 'halfTall';
+  links?: { label: string; href: string }[];
+}
+
+const projects: Project[] = [
+  {
+    title: 'NeuroDocs RAG Platform',
+    summary: 'Hybrid RAG pipeline: semantic + keyword routing, adaptive chunking, schema extraction & eval harness.',
+    description: 'A research-grade Retrieval Augmented Generation platform blending hybrid retrieval and adaptive chunking.',
+    longDescription: 'NeuroDocs is a production-focused Retrieval Augmented Generation (RAG) platform engineered for high-recall technical document search and auditable answer synthesis. It combines:\n\n• Hybrid Retrieval: Weighted dense (pgvector / OpenAI) + sparse BM25 routing with dynamic re-ranking (MMR).\n• Adaptive Chunking: Entropy & lexical boundary scoring to produce coherent segments (reduces token waste 18–25%).\n• Structured Extraction: Citation + section lineage tracking and optional JSON schema constrained outputs.\n• Evaluation Harness: Synthetic query generator, grounding scorer, hallucination classifier & regression suite.\n• Observability: Embedding drift metrics, retrieval latency histograms, cache hit rate, prompt lineage.\n• Hardening: Guardrails for PII leakage, context budgeting, safe-answer fallbacks.\n\nOutcome: Faster iteration on retrieval quality with measurable answer faithfulness.',
+    stack: ['Next.js', 'TypeScript', 'Postgres', 'pgvector', 'OpenAI'],
+    status: 'In Progress',
+    size: 'half'
+  },
+  {
+    title: 'Realtime Collab Canvas',
+    summary: 'Multiplayer whiteboard with OT core, CRDT fallback, cursor presence & time-travel playback UI.',
+    description: 'High-fidelity collaborative canvas with OT + CRDT resilience and time-travel playback.',
+    longDescription: 'A low-latency collaborative drawing & object surface:\n\n• OT Engine with intention preservation for shapes & text.\n• CRDT fallback when offline; semantic merge on reconnect.\n• Presence: Batched cursor + selection diffusion to reduce chatter.\n• Playback: Time-indexed op ledger enabling scrub & variable speed.\n• Transport: Multiplexed WebSocket channels (presence, ops, playback).\n• Security: Capability tokens + server reconciliation for privileged transforms.\nPerformance target: <120ms global round-trip (p95).',
+    stack: ['Next.js', 'WebSockets', 'Redis', 'CRDT'],
+    size: 'half'
+  },
+  {
+    title: 'Release Changelog AI Agent',
+    summary: 'LLM agent clusters merged PRs + diff metadata to craft segmented, tone-aware release notes.',
+    description: 'Agent that ingests PR metadata & diffs to generate audience-partitioned release notes.',
+    longDescription: 'Pipeline:\n1. Ingest PR titles, labels, commit bodies, diff stats & embeddings.\n2. Cluster changes (hierarchical + silhouette scoring).\n3. Partition content by audience (dev/product/exec) adjusting tone & density.\n4. Guardrails: Grounding verification & risky phrase downgrade.\n5. Style memory ensures tone consistency over time.\nExports multi-section notes (Markdown / HTML) with confidence scores.',
+    stack: ['Next.js', 'OpenAI', 'Pinecone', 'LangChain'],
+    size: 'full'
+  },
+  {
+    title: 'Edge Image Optimization Suite',
+    summary: 'Edge runtime transformations: AVIF/WebP multi-target, perceptual scoring & signed URL gating.',
+    description: 'Edge image pipeline with adaptive format + perceptual quality scoring.',
+    longDescription: 'Features:\n• Format negotiation via client hints → AVIF/WebP/JPEG ladder.\n• Transform graph: resize, saliency crop, blur hash, progressive streaming.\n• Quality scoring: Fast SSIM proxy guides adaptive compression.\n• Security: HMAC-signed param envelopes prevent abuse.\n• Caching: Layered memory/KV/CDN with deterministic variant keys.\n• Metrics: Edge latency p95, cold vs warm ratio, format distribution.',
+    stack: ['Next.js', 'Edge Runtime', 'Cloudflare', 'Sharp'],
+    size: 'half'
+  },
+  {
+    title: 'Multitenant SaaS Starter',
+    summary: 'Row-level security, tenant isolation, billing, event bus, workspace settings & audit trails.',
+    description: 'Hardened multitenant SaaS foundation with billing & audit.',
+    longDescription: 'Capabilities:\n• Data isolation via RLS policies & schema scoping.\n• Billing: Stripe subscription lifecycle + usage metering.\n• Event bus: Outbox → dispatcher with idempotent consumers.\n• Feature flags: Typed evaluation contexts & targeting.\n• Audit ledger: Append-only diff trail + export pipeline.\n• Security: Scoped API tokens with rotation & introspection.',
+    stack: ['Next.js', 'Postgres', 'Prisma', 'Stripe'],
+    size: 'half'
+  },
+  {
+    title: 'AI Support Orchestrator',
+    summary: 'Routing layer combining FAQ embeddings, tool invocation & fallback escalation with sentiment.',
+    description: 'AI triage engine orchestrating retrieval, tools & escalation heuristics.',
+    longDescription: 'Flow:\n• Ingestion into conversation state graph.\n• Routing: FAQ embedding match, tool schema invocation, or generative fallback.\n• Tool layer: JSON schema validated actions (order lookup, plan change).\n• Sentiment & risk classifiers trigger escalation or throttling.\n• Human handoff: Bundled transcript + rationale + confidence.\n• Analytics: Resolution time, deflection %, satisfaction proxy.',
+    stack: ['Next.js', 'OpenAI', 'Redis', 'tRPC'],
+    size: 'full'
+  }
+];
+
+// Distinct animation variant sets to cycle through for visual variety
+const cardVariants = [
+  {
+    hidden: { opacity: 0, y: 90, scale: 0.88, rotateX: 18, rotateY: -10, filter: 'blur(14px) saturate(0.6)' },
+    show:   { opacity: 1, y: 0,  scale: 1,    rotateX: 0,  rotateY: 0,   filter: 'blur(0px) saturate(1)' }
+  },
+  {
+    hidden: { opacity: 0, y: 70, scale: 0.94, rotateZ: -6, skewY: 4, filter: 'blur(10px) brightness(0.9)' },
+    show:   { opacity: 1, y: 0,  scale: 1,    rotateZ: 0,  skewY: 0, filter: 'blur(0px) brightness(1)' }
+  },
+  {
+    hidden: { opacity: 0, y: 110, scale: 0.9, rotateX: -14, rotateY: 12, filter: 'blur(16px) contrast(0.8)' },
+    show:   { opacity: 1, y: 0,   scale: 1,   rotateX: 0,  rotateY: 0,  filter: 'blur(0px) contrast(1)' }
+  },
+  {
+    hidden: { opacity: 0, y: 80, scale: 0.92, rotateZ: 8, skewX: -5, filter: 'blur(12px) saturate(0.7)' },
+    show:   { opacity: 1, y: 0,  scale: 1,    rotateZ: 0,  skewX: 0, filter: 'blur(0px) saturate(1)' }
+  }
+];
+
+function spanClasses(size: Project['size']) {
+  switch (size) {
+    case 'full': return 'md:col-span-12';
+    case 'threeQuarter': return 'md:col-span-9';
+    case 'halfTall': return 'md:col-span-6 md:row-span-2';
+    case 'half':
+    default: return 'md:col-span-6';
+  }
+}
+
+function cardMinHeight(size: Project['size']) {
+  switch (size) {
+    case 'full': return 'min-h-[300px]';
+    case 'threeQuarter': return 'min-h-[300px]';
+    case 'halfTall': return 'min-h-[460px]';
+    case 'half': return 'min-h-[300px]';
+  }
+}
+
+export function ProjectsSection() {
+  const [active, setActive] = useState<Project | null>(null);
+  const dialogRef = useRef<HTMLDivElement | null>(null);
+  const lastFocusRef = useRef<HTMLElement | null>(null);
+  const closeTimer = useRef<number | null>(null);
+
+  const onKey = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      setActive(null);
+      return;
+    }
+    if (active && e.key === 'Tab') {
+      const dialog = dialogRef.current;
+      if (!dialog) return;
+      const focusable = Array.from(dialog.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+      )).filter(el => !el.hasAttribute('disabled') && !el.getAttribute('aria-hidden'));
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const current = document.activeElement as HTMLElement;
+      if (e.shiftKey) {
+        if (current === first || current === dialog) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (current === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+  }, [active]);
+
+  const closeModal = useCallback(() => setActive(null), []);
+
+  const openProject = useCallback((p: Project) => {
+    if (closeTimer.current) {
+      window.clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+    setActive(p);
+  }, []);
+
+  const scheduleClose = useCallback(() => {
+    if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    closeTimer.current = window.setTimeout(() => setActive(prev => (prev ? null : prev)), 180);
+  }, []);
+
+  useEffect(() => {
+    if (active) {
+      lastFocusRef.current = document.activeElement as HTMLElement;
+      document.addEventListener('keydown', onKey);
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(() => {
+        const dialog = dialogRef.current;
+        if (!dialog) return;
+        (dialog.querySelector<HTMLElement>('button, a, [tabindex]:not([tabindex="-1"])') || dialog).focus();
+      });
+      return () => {
+        document.removeEventListener('keydown', onKey);
+        document.body.style.overflow = prev;
+        lastFocusRef.current?.focus();
+      };
+    }
+  }, [active, onKey]);
+
+
+  return (
+  <section id="projects" className="relative max-w-6xl mx-auto px-6 pt-32 pb-40">
+      <motion.div
+  initial={{ opacity: 0, y: 60 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        className="space-y-12"
+      >
+        <div className="flex items-end justify-between gap-6 flex-wrap">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">Selected Projects</h2>
+          <div className="text-xs sm:text-sm font-mono text-neutral-500"><span className="text-neutral-400" aria-hidden="true">▸</span> engineered for scale &amp; clarity</div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-[300px] gap-6 md:gap-8 perspective-[1600px]">
+          {projects.map((p, i) => {
+            const span = spanClasses(p.size);
+            const hClass = cardMinHeight(p.size);
+            const even = i % 2 === 0;
+            const variants = cardVariants[i % cardVariants.length];
+            return (
+              <motion.article
+                key={p.title}
+                variants={variants}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: false, amount: 0.5 }}
+                whileHover={{ y: -10, scale: 1.018, rotateX: 0, rotateY: 0, rotateZ: 0 }}
+                whileTap={{ scale: 0.985 }}
+                transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1], delay: (i % cardVariants.length) * 0.06 }}
+                className={`group relative glass border-gradient rounded-2xl p-0 overflow-hidden flex flex-col shadow-sm hover:shadow-xl transition-all duration-[900ms] will-change-transform ${span} ${hClass}`}
+              >
+                <div className={`flex flex-col md:flex-row ${even ? '' : 'md:flex-row-reverse'} h-full`}>
+                  <div className="relative w-full md:w-1/2 h-48 md:h-full overflow-hidden">
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-br from-neutral-200 via-neutral-300 to-neutral-100"
+                      initial={{ scale: 1.15, rotate: -4, opacity: 0 }}
+                      whileInView={{ scale: 1, rotate: 0, opacity: 1 }}
+                      viewport={{ once: true, amount: 0.4 }}
+                      transition={{ duration: 0.9, ease: [0.22,1,0.36,1] }}
+                    />
+                    <motion.div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.55),transparent_70%)]"
+                      transition={{ duration: 0.9, ease: 'easeOut' }}
+                      style={{ mixBlendMode: 'overlay' }}
+                    />
+                    <motion.div
+                      aria-hidden
+                      className="absolute inset-0 pointer-events-none"
+                      initial={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+                      whileInView={{ opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
+                      viewport={{ once: true, amount: 0.5 }}
+                      transition={{ duration: 1.15, ease: [0.65,0,0.35,1] }}
+                      style={{ background: 'linear-gradient(115deg, rgba(255,255,255,0.38), rgba(255,255,255,0) 60%)', mixBlendMode: 'soft-light' }}
+                    />
+                    {p.status && (
+                      <span className="absolute top-3 left-3 text-[10px] uppercase tracking-wider px-2 py-1 rounded-full bg-black/80 text-white backdrop-blur-sm shadow">{p.status}</span>
+                    )}
+                    <span className="absolute bottom-2 right-3 text-[10px] font-mono tracking-wider text-neutral-600/70 group-hover:text-neutral-800 transition-colors">IMG</span>
+                  </div>
+                  <div className="flex flex-col flex-1 p-5 md:p-6">
+                    <div className="flex items-start justify-between gap-4 mb-3 md:mb-4">
+                      <h3 className="text-base md:text-lg font-semibold tracking-tight leading-snug pr-4 break-words">{p.title}</h3>
+                    </div>
+                    <p className="text-[13px] md:text-sm text-neutral-600 leading-relaxed mb-6 flex-1 break-words">{p.summary}</p>
+                    <div className="flex items-center gap-4 mt-auto">
+                      <button
+                        type="button"
+                        onMouseEnter={() => openProject(p)}
+                        onMouseLeave={scheduleClose}
+                        onFocus={() => openProject(p)}
+                        onBlur={scheduleClose}
+                        className="text-[11px] md:text-xs font-medium tracking-wide text-neutral-700 hover:text-black focus-ring relative cursor-pointer after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-neutral-800 after:transition-all hover:after:w-full"
+                        aria-haspopup="dialog"
+                        aria-controls="project-dialog"
+                      >
+                        View Details
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <motion.div
+                  className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.35),transparent_70%)]"
+                  transition={{ duration: 0.8 }}
+                />
+                <motion.div
+                  className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 bg-gradient-to-tr from-white/10 via-transparent to-white/30 mix-blend-overlay"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 1.2, ease: 'easeOut' }}
+                />
+              </motion.article>
+            );
+          })}
+        </div>
+  {/* Connect button removed per request */}
+      </motion.div>
+      <AnimatePresence>
+        {active && (
+          <motion.div
+            className="fixed inset-0 z-[60] flex items-start justify-center p-4 md:p-8 pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <div className="absolute inset-0 bg-black/20 backdrop-blur-[2px]" aria-hidden="true" />
+            <motion.div
+              role="dialog"
+              id="project-dialog"
+              aria-modal="true"
+              aria-labelledby="project-dialog-title"
+              aria-describedby="project-dialog-desc"
+              initial={{ opacity: 0, y: 20, scale: 0.9, rotateX: 8, filter: 'blur(4px)' }}
+              animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0, filter: 'blur(0px)' }}
+              exit={{ opacity: 0, y: 12, scale: 0.94, rotateX: 4, filter: 'blur(3px)' }}
+              transition={{ type: 'spring', stiffness: 280, damping: 26, mass: 0.8 }}
+              className="pointer-events-auto relative w-full max-w-4xl bg-white rounded-xl shadow-[0_8px_40px_-4px_rgba(0,0,0,0.25),0_0_0_1px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col focus:outline-none border border-neutral-200"
+              ref={dialogRef}
+              tabIndex={-1}
+              onMouseEnter={() => { if (closeTimer.current) { window.clearTimeout(closeTimer.current); closeTimer.current = null; } }}
+              onMouseLeave={scheduleClose}
+            >
+              <div className="absolute top-3 right-3 flex gap-2 z-10">
+                <button
+                  onClick={closeModal}
+                  className="h-8 w-8 rounded-full bg-neutral-200 hover:bg-neutral-300 text-neutral-700 flex items-center justify-center text-sm font-semibold shadow focus-ring"
+                >×</button>
+              </div>
+              <div className="relative w-full h-52 md:h-56 bg-gradient-to-br from-neutral-200 via-neutral-300 to-neutral-100 overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.65),transparent_70%)]" />
+                {active.status && (
+                  <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-black/80 text-white text-[10px] uppercase tracking-wider shadow">{active.status}</span>
+                )}
+                <span className="absolute bottom-3 right-4 text-[10px] font-mono tracking-wider text-neutral-600/80">IMAGE</span>
+              </div>
+              <div className="p-6 md:p-8 space-y-5 md:space-y-7 overflow-y-auto max-h-[64vh]">
+                <div className="flex flex-wrap items-center gap-3">
+                  <h3 id="project-dialog-title" className="text-xl md:text-2xl font-semibold tracking-tight pr-6">{active.title}</h3>
+                </div>
+                <p id="project-dialog-desc" className="text-sm md:text-[15px] text-neutral-700 leading-relaxed whitespace-pre-line">{active.longDescription || active.description}</p>
+                <div>
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-2">Stack</h4>
+                  <ul className="flex flex-wrap gap-2">
+                    {active.stack.map(s => (
+                      <li key={s} className="px-2 py-1 rounded-md bg-neutral-200 text-[11px] font-medium tracking-wide text-neutral-800 shadow-inner">{s}</li>
+                    ))}
+                  </ul>
+                </div>
+                {active.links && active.links.length > 0 && (
+                  <div>
+                    <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-2">Links</h4>
+                    <ul className="flex flex-wrap gap-3 text-sm">
+                      {active.links.map(l => (
+                        <li key={l.href}>
+                          <a href={l.href} target="_blank" rel="noopener noreferrer" className="text-neutral-700 hover:text-black underline decoration-neutral-400/70 hover:decoration-neutral-800 transition-colors">{l.label}</a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                <div className="pt-2 flex justify-end">
+                  <button onClick={closeModal} className="px-4 cursor-pointer py-2 rounded-lg bg-neutral-900 text-white text-xs font-medium tracking-wide hover:bg-black focus-ring transition-colors">Close</button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <RoadmapSection />
+    </section>
+  );
+}
