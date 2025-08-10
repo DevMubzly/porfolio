@@ -189,7 +189,7 @@ export const RoadmapSection: React.FC = () => {
                 <motion.div
                   aria-hidden
                   className="pointer-events-none absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-                  style={{ background: 'radial-gradient(circle at 65% 35%, rgba(255,255,255,0.55), transparent 70%)', mixBlendMode: 'overlay', opacity: glowOpacity as any }}
+                  style={{ background: 'radial-gradient(circle at 65% 35%, rgba(255,255,255,0.55), transparent 70%)', mixBlendMode: 'overlay', opacity: glowOpacity }}
                 />
               </motion.div>
             );

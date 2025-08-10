@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
 interface LinePath {
@@ -18,7 +18,7 @@ export const SkillNetwork: React.FC<{ containerId: string }> = ({ containerId })
   const [lines, setLines] = useState<LinePath[]>([]);
   const raf = useRef<number | undefined>(undefined);
 
-  const build = () => {
+  const build = useCallback(() => {
     const container = document.getElementById(containerId);
     if (!container) return;
     const cards = Array.from(container.querySelectorAll<HTMLElement>('[data-skill-cat]'));
@@ -46,7 +46,7 @@ export const SkillNetwork: React.FC<{ containerId: string }> = ({ containerId })
       newLines.push({ d, id: `skill-line-${i}`, delay: i * 0.35, length: 0 });
     }
     setLines(newLines);
-  };
+  }, [containerId]);
 
   useEffect(() => {
     build();
@@ -62,7 +62,7 @@ export const SkillNetwork: React.FC<{ containerId: string }> = ({ containerId })
       ro.disconnect();
       if (raf.current) cancelAnimationFrame(raf.current);
     };
-  }, [containerId]);
+  }, [containerId, build]);
 
   return (
     <div className="pointer-events-none absolute inset-0 -z-10">
