@@ -208,6 +208,9 @@ const HoverPanelModal: React.FC<HoverPanelModalProps> = ({ active, setActive, sc
 
   const content = active === 'skills' ? <SkillsPanel /> : active === 'education' ? <EducationPanel /> : <ExperiencePanel />;
 
+  // Guard SSR: don't attempt to render portal on server (prevents explicit any fallback)
+  if (typeof window === 'undefined' || typeof document === 'undefined') return null;
+
   return createPortal(
     <div
       className="fixed inset-0 z-40 flex items-start justify-center pt-40 md:pt-48 pointer-events-none"
@@ -238,7 +241,7 @@ const HoverPanelModal: React.FC<HoverPanelModalProps> = ({ active, setActive, sc
         exit={{ opacity: 0 }}
         className="pointer-events-none fixed inset-0 bg-gradient-to-b from-white/60 via-white/30 to-white/60 backdrop-blur-sm -z-10" />
     </div>,
-    typeof window !== 'undefined' ? document.body : ({} as any)
+    document.body
   );
 };
 
