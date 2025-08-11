@@ -50,7 +50,6 @@ const skillCategories: SkillCategory[] = [
       'Smart Contract Basics (Solidity)',
       'Ethers.js',
       'Wallet Integration',
-      'Token Gating UX'
     ]
   }
 ];
@@ -248,25 +247,43 @@ const HoverPanelModal: React.FC<HoverPanelModalProps> = ({ active, setActive, sc
 const education: TimelineItem[] = [
   {
     title: 'BSc Computer Science',
-    org: 'University',
-    period: '2021 – 2025 (Final Year)',
-    detail: 'Focus: Distributed systems, Applied AI, Human‑centered product engineering.'
+    org: 'Mbarara University of Science and Technology',
+    period: '2023 – 2026 (Final Year)',
+    detail: 'Focus: Data Structures and Algorithms, Applied AI, Web and Mobile Application Development.'
+  },
+  {
+    title: 'UACE (Advanced Level Certificate)',
+    org: "St. Henry's College Kitovu",
+    period: '2020 – 2022',
+    detail: 'Concentrated on Mathematics, Chemistry, and ICT—foundation for software engineering discipline & problem solving.'
+  },
+  {
+    title: 'UCE (O‑Level Certificate)',
+    org: "St. Henry's College Kitovu",
+    period: '2016 – 2019',
+    detail: 'Built strong grounding in sciences & analytical thinking; kick‑started interest in computing.'
   },
 ];
 
 const experience: TimelineItem[] = [
   {
-    title: 'Full‑Stack / AI Integrations (Freelance)',
-    org: 'Client projects',
-    period: '2023 – Present',
-    detail: 'Built data‑driven web apps, integrated LLM features (RAG, function calling), performance tuning.'
+    title: 'Lead Frontend & Backend Engineer (MFC Ordering App)',
+    org: 'Altech Company',
+    period: 'June 2025 – Present',
+    detail: 'Leading full-stack development of Metro Fried Chicken (MFC) Ordering App: architected React Native (Expo) frontend, TypeScript API layer, state & data flows, and backend services; driving performance, code quality, and feature delivery across ordering, tracking, auth & branch logic.'
   },
-  {
-    title: 'Open Source Contributions',
-    org: 'GitHub',
-    period: 'Ongoing',
-    detail: 'Libraries / experiments around prompt tooling, vector indexing & dev productivity.'
-  },
+  // {
+  //   title: 'Full‑Stack / AI Integrations (Freelance)',
+  //   org: 'Client projects',
+  //   period: '2023 – Present',
+  //   detail: 'Built data‑driven web apps, integrated LLM features (RAG, function calling), performance tuning.'
+  // },
+  // {
+  //   title: 'Open Source Contributions',
+  //   org: 'GitHub',
+  //   period: 'Ongoing',
+  //   detail: 'Libraries / experiments around prompt tooling, vector indexing & dev productivity.'
+  // },
 ];
 
 export function InfoSection() {

@@ -1,8 +1,11 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { useState, useEffect, useCallback, useRef } from "react";
 import React from "react";
 import { RoadmapSection } from "./RoadmapSection";
+import { ConnectWhorly } from "./ConnectWhorly";
+import { SocialRail } from "./SocialRail";
 
 interface Project {
   title: string;
@@ -13,58 +16,65 @@ interface Project {
   status?: string;
   size: 'half' | 'full' | 'threeQuarter' | 'halfTall';
   links?: { label: string; href: string }[];
+  image?: string; // relative path under /public
+  github?: string; // optional GitHub repository URL
 }
 
 const projects: Project[] = [
   {
-    title: 'NeuroDocs RAG Platform',
-    summary: 'Hybrid RAG pipeline: semantic + keyword routing, adaptive chunking, schema extraction & eval harness.',
-    description: 'A research-grade Retrieval Augmented Generation platform blending hybrid retrieval and adaptive chunking.',
-    longDescription: 'NeuroDocs is a production-focused Retrieval Augmented Generation (RAG) platform engineered for high-recall technical document search and auditable answer synthesis. It combines:\n\n• Hybrid Retrieval: Weighted dense (pgvector / OpenAI) + sparse BM25 routing with dynamic re-ranking (MMR).\n• Adaptive Chunking: Entropy & lexical boundary scoring to produce coherent segments (reduces token waste 18–25%).\n• Structured Extraction: Citation + section lineage tracking and optional JSON schema constrained outputs.\n• Evaluation Harness: Synthetic query generator, grounding scorer, hallucination classifier & regression suite.\n• Observability: Embedding drift metrics, retrieval latency histograms, cache hit rate, prompt lineage.\n• Hardening: Guardrails for PII leakage, context budgeting, safe-answer fallbacks.\n\nOutcome: Faster iteration on retrieval quality with measurable answer faithfulness.',
-    stack: ['Next.js', 'TypeScript', 'Postgres', 'pgvector', 'OpenAI'],
+    title: 'Telegram SME AI Assistant',
+    summary: 'AI-powered Telegram assistant for small businesses: inventory management, invoicing, receipts, and analytics.',
+    description: 'A SaaS product that integrates with Telegram to help SMEs manage inventory, automate invoicing, generate receipts, and provide reporting analysis.',
+    longDescription: 'This Telegram-based AI assistant empowers small businesses to efficiently manage their inventory, automate invoicing and receipts, and gain actionable insights through reporting analysis. Features include:\n\n• Inventory Management: Track stock levels, receive low-stock alerts, and manage product catalogs directly from Telegram.\n• Invoicing & Receipts: Generate and send invoices/receipts to customers, with PDF export and payment tracking.\n• Reporting & Analytics: Visualize sales, expenses, and inventory trends with AI-driven insights and recommendations.\n• SaaS Platform: Multi-tenant architecture, secure data storage, and subscription management.\n• Integration: Seamless Telegram bot interface for real-time business operations.\n\nOutcome: Streamlined business operations, reduced manual workload, and improved decision-making for SMEs.',
+    stack: ['Next.js', 'TypeScript', 'Postgres', 'Telegram Bot API', 'OpenAI'],
     status: 'In Progress',
-    size: 'half'
+    size: 'half',
+    image: '/telegram bot.jpg'
+  ,github: 'https://github.com/DevMubzly/telegram-sme-ai-assistant'
   },
   {
-    title: 'Realtime Collab Canvas',
-    summary: 'Multiplayer whiteboard with OT core, CRDT fallback, cursor presence & time-travel playback UI.',
-    description: 'High-fidelity collaborative canvas with OT + CRDT resilience and time-travel playback.',
-    longDescription: 'A low-latency collaborative drawing & object surface:\n\n• OT Engine with intention preservation for shapes & text.\n• CRDT fallback when offline; semantic merge on reconnect.\n• Presence: Batched cursor + selection diffusion to reduce chatter.\n• Playback: Time-indexed op ledger enabling scrub & variable speed.\n• Transport: Multiplexed WebSocket channels (presence, ops, playback).\n• Security: Capability tokens + server reconciliation for privileged transforms.\nPerformance target: <120ms global round-trip (p95).',
-    stack: ['Next.js', 'WebSockets', 'Redis', 'CRDT'],
-    size: 'half'
+    title: 'Metro Fried Chicken (MFC) Ordering App',
+    summary: 'Cross-platform mobile app for food ordering, menu browsing, cart, address management, order tracking, and more across 3 branches.',
+    description: 'A React Native, Expo, and TypeScript-based mobile application for Metro Fried Chicken (by Chello), offering a seamless food ordering experience with advanced features.',
+    longDescription: 'The MFC Ordering App is a cross-platform mobile solution designed for Metro Fried Chicken customers. Key features include:\n\n• Menu Browsing: Explore menu categories and items with detailed descriptions.\n• Shopping Cart: Add items to cart, select quantities, and checkout.\n• Address Management: Add, edit, and delete delivery addresses.\n• Order Tracking: Real-time order tracking and order history.\n• User Reviews: Leave and edit reviews for menu items.\n• Favorites: Mark and manage favorite menu items.\n• Branch Selection: Choose restaurant branches with location detection.\n• Authentication: Secure login via Google, phone number, and OTP verification.\n• Notifications: In-app notifications for order updates.\n• Customer Support: Built-in support and help system.\n• Profile Management: Edit user profile and preferences.\n\nOutcome: Enhanced customer experience, streamlined ordering, and robust feature set for Metro Fried Chicken for the branches of Mbarara, Nsambya and Mbuya.',
+    stack: ['React Native', 'Expo', 'TypeScript', 'Expo Router', 'Zustand', 'React Native Maps', 'Lucide React Native', 'AsyncStorage', 'Expo Location'],
+    status: 'Backend in progress',
+    size: 'half', 
+    image: '/chicken.jpg'
+  ,github: 'https://github.com/DevMubzly/mfc-ordering-app'
   },
-  {
-    title: 'Release Changelog AI Agent',
-    summary: 'LLM agent clusters merged PRs + diff metadata to craft segmented, tone-aware release notes.',
-    description: 'Agent that ingests PR metadata & diffs to generate audience-partitioned release notes.',
-    longDescription: 'Pipeline:\n1. Ingest PR titles, labels, commit bodies, diff stats & embeddings.\n2. Cluster changes (hierarchical + silhouette scoring).\n3. Partition content by audience (dev/product/exec) adjusting tone & density.\n4. Guardrails: Grounding verification & risky phrase downgrade.\n5. Style memory ensures tone consistency over time.\nExports multi-section notes (Markdown / HTML) with confidence scores.',
-    stack: ['Next.js', 'OpenAI', 'Pinecone', 'LangChain'],
-    size: 'full'
-  },
-  {
-    title: 'Edge Image Optimization Suite',
-    summary: 'Edge runtime transformations: AVIF/WebP multi-target, perceptual scoring & signed URL gating.',
-    description: 'Edge image pipeline with adaptive format + perceptual quality scoring.',
-    longDescription: 'Features:\n• Format negotiation via client hints → AVIF/WebP/JPEG ladder.\n• Transform graph: resize, saliency crop, blur hash, progressive streaming.\n• Quality scoring: Fast SSIM proxy guides adaptive compression.\n• Security: HMAC-signed param envelopes prevent abuse.\n• Caching: Layered memory/KV/CDN with deterministic variant keys.\n• Metrics: Edge latency p95, cold vs warm ratio, format distribution.',
-    stack: ['Next.js', 'Edge Runtime', 'Cloudflare', 'Sharp'],
-    size: 'half'
-  },
-  {
-    title: 'Multitenant SaaS Starter',
-    summary: 'Row-level security, tenant isolation, billing, event bus, workspace settings & audit trails.',
-    description: 'Hardened multitenant SaaS foundation with billing & audit.',
-    longDescription: 'Capabilities:\n• Data isolation via RLS policies & schema scoping.\n• Billing: Stripe subscription lifecycle + usage metering.\n• Event bus: Outbox → dispatcher with idempotent consumers.\n• Feature flags: Typed evaluation contexts & targeting.\n• Audit ledger: Append-only diff trail + export pipeline.\n• Security: Scoped API tokens with rotation & introspection.',
-    stack: ['Next.js', 'Postgres', 'Prisma', 'Stripe'],
-    size: 'half'
-  },
-  {
-    title: 'AI Support Orchestrator',
-    summary: 'Routing layer combining FAQ embeddings, tool invocation & fallback escalation with sentiment.',
-    description: 'AI triage engine orchestrating retrieval, tools & escalation heuristics.',
-    longDescription: 'Flow:\n• Ingestion into conversation state graph.\n• Routing: FAQ embedding match, tool schema invocation, or generative fallback.\n• Tool layer: JSON schema validated actions (order lookup, plan change).\n• Sentiment & risk classifiers trigger escalation or throttling.\n• Human handoff: Bundled transcript + rationale + confidence.\n• Analytics: Resolution time, deflection %, satisfaction proxy.',
-    stack: ['Next.js', 'OpenAI', 'Redis', 'tRPC'],
-    size: 'full'
-  }
+//   {
+//     title: 'Release Changelog AI Agent',
+//     summary: 'LLM agent clusters merged PRs + diff metadata to craft segmented, tone-aware release notes.',
+//     description: 'Agent that ingests PR metadata & diffs to generate audience-partitioned release notes.',
+//     longDescription: 'Pipeline:\n1. Ingest PR titles, labels, commit bodies, diff stats & embeddings.\n2. Cluster changes (hierarchical + silhouette scoring).\n3. Partition content by audience (dev/product/exec) adjusting tone & density.\n4. Guardrails: Grounding verification & risky phrase downgrade.\n5. Style memory ensures tone consistency over time.\nExports multi-section notes (Markdown / HTML) with confidence scores.',
+//     stack: ['Next.js', 'OpenAI', 'Pinecone', 'LangChain'],
+//     size: 'full'
+//   },
+//   {
+//     title: 'Edge Image Optimization Suite',
+//     summary: 'Edge runtime transformations: AVIF/WebP multi-target, perceptual scoring & signed URL gating.',
+//     description: 'Edge image pipeline with adaptive format + perceptual quality scoring.',
+//     longDescription: 'Features:\n• Format negotiation via client hints → AVIF/WebP/JPEG ladder.\n• Transform graph: resize, saliency crop, blur hash, progressive streaming.\n• Quality scoring: Fast SSIM proxy guides adaptive compression.\n• Security: HMAC-signed param envelopes prevent abuse.\n• Caching: Layered memory/KV/CDN with deterministic variant keys.\n• Metrics: Edge latency p95, cold vs warm ratio, format distribution.',
+//     stack: ['Next.js', 'Edge Runtime', 'Cloudflare', 'Sharp'],
+//     size: 'half'
+//   },
+//   {
+//     title: 'Multitenant SaaS Starter',
+//     summary: 'Row-level security, tenant isolation, billing, event bus, workspace settings & audit trails.',
+//     description: 'Hardened multitenant SaaS foundation with billing & audit.',
+//     longDescription: 'Capabilities:\n• Data isolation via RLS policies & schema scoping.\n• Billing: Stripe subscription lifecycle + usage metering.\n• Event bus: Outbox → dispatcher with idempotent consumers.\n• Feature flags: Typed evaluation contexts & targeting.\n• Audit ledger: Append-only diff trail + export pipeline.\n• Security: Scoped API tokens with rotation & introspection.',
+//     stack: ['Next.js', 'Postgres', 'Prisma', 'Stripe'],
+//     size: 'half'
+//   },
+//   {
+//     title: 'AI Support Orchestrator',
+//     summary: 'Routing layer combining FAQ embeddings, tool invocation & fallback escalation with sentiment.',
+//     description: 'AI triage engine orchestrating retrieval, tools & escalation heuristics.',
+//     longDescription: 'Flow:\n• Ingestion into conversation state graph.\n• Routing: FAQ embedding match, tool schema invocation, or generative fallback.\n• Tool layer: JSON schema validated actions (order lookup, plan change).\n• Sentiment & risk classifiers trigger escalation or throttling.\n• Human handoff: Bundled transcript + rationale + confidence.\n• Analytics: Resolution time, deflection %, satisfaction proxy.',
+//     stack: ['Next.js', 'OpenAI', 'Redis', 'tRPC'],
+//     size: 'full'
+//   }
 ];
 
 // Distinct animation variant sets to cycle through for visual variety
@@ -209,13 +219,27 @@ export function ProjectsSection() {
               >
                 <div className={`flex flex-col md:flex-row ${even ? '' : 'md:flex-row-reverse'} h-full`}>
                   <div className="relative w-full md:w-1/2 h-48 md:h-full overflow-hidden">
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-neutral-200 via-neutral-300 to-neutral-100"
-                      initial={{ scale: 1.15, rotate: -4, opacity: 0 }}
-                      whileInView={{ scale: 1, rotate: 0, opacity: 1 }}
-                      viewport={{ once: true, amount: 0.4 }}
-                      transition={{ duration: 0.9, ease: [0.22,1,0.36,1] }}
-                    />
+                    {p.image ? (
+                      <motion.div className="absolute inset-0" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6, ease: [0.22,1,0.36,1] }}>
+                        <Image
+                          src={p.image}
+                          alt={p.title + ' preview'}
+                          fill
+                          sizes="(max-width:768px) 100vw, 50vw"
+                          priority={i === 0}
+                          className="object-cover object-center select-none"
+                        />
+                        <span className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.25),rgba(255,255,255,0)_60%)] mix-blend-overlay pointer-events-none" />
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-br from-neutral-200 via-neutral-300 to-neutral-100"
+                        initial={{ scale: 1.15, rotate: -4, opacity: 0 }}
+                        whileInView={{ scale: 1, rotate: 0, opacity: 1 }}
+                        viewport={{ once: true, amount: 0.4 }}
+                        transition={{ duration: 0.9, ease: [0.22,1,0.36,1] }}
+                      />
+                    )}
                     <motion.div
                       className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.55),transparent_70%)]"
                       transition={{ duration: 0.9, ease: 'easeOut' }}
@@ -240,7 +264,7 @@ export function ProjectsSection() {
                       <h3 className="text-base md:text-lg font-semibold tracking-tight leading-snug pr-4 break-words">{p.title}</h3>
                     </div>
                     <p className="text-[13px] md:text-sm text-neutral-600 leading-relaxed mb-6 flex-1 break-words">{p.summary}</p>
-                    <div className="flex items-center gap-4 mt-auto">
+                    <div className="flex items-center justify-between gap-4 mt-auto w-full">
                       <button
                         type="button"
                         onMouseEnter={() => openProject(p)}
@@ -253,6 +277,17 @@ export function ProjectsSection() {
                       >
                         View Details
                       </button>
+                      {p.github && (
+                        <a
+                          href={p.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[11px] md:text-xs font-medium tracking-wide text-neutral-600 hover:text-black focus-ring relative cursor-pointer after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-neutral-800 after:transition-all hover:after:w-full"
+                          aria-label={`View ${p.title} on GitHub`}
+                        >
+                          View on GitHub
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -306,10 +341,22 @@ export function ProjectsSection() {
               </div>
               <div className="relative w-full h-52 md:h-56 bg-gradient-to-br from-neutral-200 via-neutral-300 to-neutral-100 overflow-hidden">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.65),transparent_70%)]" />
+                {active.image && (
+                  <motion.img
+                    src={active.image}
+                    alt={active.title + ' detailed preview'}
+                    className="absolute inset-0 h-full w-full object-cover object-center"
+                    initial={{ opacity: 0, scale: 1.04 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1.1, ease: [0.22,1,0.36,1] }}
+                  />
+                )}
                 {active.status && (
                   <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-black/80 text-white text-[10px] uppercase tracking-wider shadow">{active.status}</span>
                 )}
-                <span className="absolute bottom-3 right-4 text-[10px] font-mono tracking-wider text-neutral-600/80">IMAGE</span>
+                {!active.image && (
+                  <span className="absolute bottom-3 right-4 text-[10px] font-mono tracking-wider text-neutral-600/80">IMAGE</span>
+                )}
               </div>
               <div className="p-6 md:p-8 space-y-5 md:space-y-7 overflow-y-auto max-h-[64vh]">
                 <div className="flex flex-wrap items-center gap-3">
@@ -345,6 +392,15 @@ export function ProjectsSection() {
         )}
       </AnimatePresence>
       <RoadmapSection />
+      {/* Bottom connect + socials row */}
+      <div className="mt-28">
+        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-10 sm:gap-8">
+          <ConnectWhorly label="Let's Connect" className="flex-shrink-0" />
+          <div className="flex justify-center sm:justify-start">
+            <SocialRail />
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

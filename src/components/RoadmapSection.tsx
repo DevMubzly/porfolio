@@ -6,68 +6,68 @@ interface RoadmapPhase { id: number; title: string; blurb: string; items: string
 const roadmap: RoadmapPhase[] = [
   {
     id: 1,
-    title: 'Opportunity Framing',
-    blurb: 'I surface real user friction, sharp success signals & constraints before touching the editor.',
+    title: 'Ideation & Research',
+    blurb: 'Understand the problem and who we are building for before coding anything.',
     items: [
-      'Problem & jobs narrative',
-      'Value / success metrics draft',
-      'Assumption & risk map',
-      'Scope cut to a thin win'
+      'Talk to potential users',
+      'List real pains & goals',
+      'Check similar products',
+      'Write simple success goals'
     ]
   },
   {
     id: 2,
-    title: 'Experience Architecture',
-    blurb: 'Shape flows → data → APIs → boundaries so pieces are composable & cheap to evolve.',
+    title: 'Design & Prototyping',
+    blurb: 'Sketch screens and test a quick prototype to see if it makes sense.',
     items: [
-      'User journey slices',
-      'Interface state model',
-      'Domain & schema graph',
-      'Service / module seams'
+      'Basic wireframes',
+      'Clickable demo',
+      'Tidy user flow',
+      'Add basic accessibility'
     ]
   },
   {
     id: 3,
-    title: 'Focused Build Loops',
-    blurb: 'Ship vertical slices end‑to‑end with instrumentation—small, reviewable, reversible.',
+    title: 'Development',
+    blurb: 'Build a small first version that actually works end to end.',
     items: [
-      'Vertical slice tickets',
-      'Typed contracts first',
-      'Branch discipline & CI',
-      'Feature flags & fallbacks'
+      'Set up project basics',
+      'Code core features',
+      'Write key tests',
+      'Add simple tracking'
     ]
   },
   {
     id: 4,
-    title: 'Resilience & Proof',
-    blurb: 'I automate correctness + perf safety nets so iteration speed stays high.',
+    title: 'Testing & Feedback',
+    blurb: 'Try it, fix bugs, and ask a few users what feels rough.',
     items: [
-      'Unit & integration nets',
-      'Edge & failure scenarios',
-      'Perf / budget baselines',
-      'Security & access guards'
+      'Manual & automated tests',
+      'Fix obvious bugs',
+      'Collect user comments',
+      'Tidy rough edges'
     ]
   },
   {
     id: 5,
-    title: 'Progressive Release',
-    blurb: 'Controlled exposure with live telemetry: adoption, quality, latency, spend.',
+    title: 'Launch',
+    blurb: 'Put it live and help new users understand it quickly.',
     items: [
-      'Canary & ramp checklist',
-      'Real‑time trace & logs',
-      'Dashboards & burn charts',
-      'Rollback & kill switch'
+      'Deploy to production',
+      'Simple landing page',
+      'Basic onboarding',
+      'Watch errors & usage'
     ]
   },
   {
     id: 6,
-    title: 'Evolution Stewardship',
-    blurb: 'Close feedback loops, prune debt, sharpen signals & expand capability intentionally.',
+    title: 'Iteration & Growth',
+    blurb: 'Improve what matters, add what’s missing, and tidy what slows us down.',
     items: [
-      'User signal synthesis',
-      'Backlog value pruning',
-      'Debt / risk paydown slots',
-      'Next bets & experiment plan'
+      'Check key metrics',
+      'Improve popular features',
+      'Remove friction & debt',
+      'Plan the next steps'
     ]
   }
 ];
@@ -105,8 +105,8 @@ export const RoadmapSection: React.FC = () => {
     <section ref={sectionRef} aria-labelledby="roadmap-heading" className="relative mt-32">
       <div className="relative z-10 grid gap-12 lg:grid-cols-[220px_minmax(0,1fr)] max-w-[900px] mx-auto">
         <div className="space-y-5 lg:sticky lg:top-32 self-start">
-          <h2 id="roadmap-heading" className="text-2xl font-semibold tracking-tight leading-tight">Product Shipping Roadmap</h2>
-          <p className="text-sm leading-relaxed text-neutral-600 max-w-[32ch]">Frame → architect → slice → harden → observe → evolve. My opinionated loop for sustainable product velocity.</p>
+          <h2 id="roadmap-heading" className="text-2xl font-semibold tracking-tight leading-tight">Product Execution Roadmap</h2>
+          <p className="text-sm leading-relaxed text-neutral-600 max-w-[32ch]">Clear, simple steps: learn → design → build → test → launch → improve.</p>
           <motion.div
             aria-hidden
             className="mt-6 h-px w-16 origin-left bg-gradient-to-r from-neutral-800 via-neutral-500 to-transparent"
