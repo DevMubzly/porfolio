@@ -105,7 +105,7 @@ export const RoadmapSection: React.FC = () => {
     <section ref={sectionRef} aria-labelledby="roadmap-heading" className="relative mt-32">
       <div className="relative z-10 grid gap-12 lg:grid-cols-[220px_minmax(0,1fr)] max-w-[900px] mx-auto">
         <div className="space-y-5 lg:sticky lg:top-32 self-start">
-          <h2 id="roadmap-heading" className="text-2xl font-semibold tracking-tight leading-tight">Product Execution Roadmap</h2>
+          <h2 id="roadmap-heading" className="text-2xl font-semibold tracking-tight leading-tight">My Execution Roadmap</h2>
           <p className="text-sm leading-relaxed text-neutral-600 max-w-[32ch]">Clear, simple steps: learn → design → build → test → launch → improve.</p>
           <motion.div
             aria-hidden
