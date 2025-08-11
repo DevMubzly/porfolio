@@ -46,8 +46,8 @@ export default function Home() {
           <footer className="max-w-6xl mx-auto px-6 pb-16 text-xs text-neutral-500 flex flex-col sm:flex-row gap-4 sm:items-center justify-between">
             <div>© {new Date().getFullYear()} Balinda Mubarak</div>
             <div className="flex gap-5 font-medium">
-              <a href="https://github.com/" className="hover:underline">GitHub</a>
-              <a href="https://www.linkedin.com/" className="hover:underline">LinkedIn</a>
+              <a href="https://github.com/DevMubzly" className="hover:underline">GitHub</a>
+              <a href="https://www.X.com/TtnlxMubz/" className="hover:underline">Twitter</a>
               <a href="mailto:bmubs15@gmail.com" className="hover:underline">Email</a>
             </div>
           </footer>

@@ -17,7 +17,7 @@ interface Project {
   size: 'half' | 'full' | 'threeQuarter' | 'halfTall';
   links?: { label: string; href: string }[];
   image?: string; // relative path under /public
-  github?: string; // optional GitHub repository URL
+  projectURL?: string; // optional GitHub repository URL
 }
 
 const projects: Project[] = [
@@ -29,8 +29,8 @@ const projects: Project[] = [
     stack: ['Next.js', 'TypeScript', 'Postgres', 'Telegram Bot API', 'OpenAI'],
     status: 'In Progress',
     size: 'half',
-    image: '/telegram bot.jpg'
-  ,github: 'https://github.com/DevMubzly/taviflow-telegram'
+    image: '/telegram bot.jpg',
+    projectURL: 'https://github.com/DevMubzly/taviflow-telegram'
   },
   {
     title: 'Metro Fried Chicken (MFC) Ordering App',
@@ -39,9 +39,9 @@ const projects: Project[] = [
     longDescription: 'The MFC Ordering App is a cross-platform mobile solution designed for Metro Fried Chicken customers. Key features include:\n\n• Menu Browsing: Explore menu categories and items with detailed descriptions.\n• Shopping Cart: Add items to cart, select quantities, and checkout.\n• Address Management: Add, edit, and delete delivery addresses.\n• Order Tracking: Real-time order tracking and order history.\n• User Reviews: Leave and edit reviews for menu items.\n• Favorites: Mark and manage favorite menu items.\n• Branch Selection: Choose restaurant branches with location detection.\n• Authentication: Secure login via Google, phone number, and OTP verification.\n• Notifications: In-app notifications for order updates.\n• Customer Support: Built-in support and help system.\n• Profile Management: Edit user profile and preferences.\n\nOutcome: Enhanced customer experience, streamlined ordering, and robust feature set for Metro Fried Chicken for the branches of Mbarara, Nsambya and Mbuya.',
     stack: ['React Native', 'Expo', 'TypeScript', 'Expo Router', 'Zustand', 'React Native Maps', 'Lucide React Native', 'AsyncStorage', 'Expo Location'],
     status: 'Backend in progress',
-    size: 'half', 
-    image: '/chicken.jpg'
-  ,github: 'https://github.com/DevMubzly/mfc-ordering-app'
+    size: 'half',
+    image: '/chicken.jpg',
+    projectURL: 'https://github.com/DevMubzly/mfc-ordering-app'
   },
 //   {
 //     title: 'Release Changelog AI Agent',
@@ -277,15 +277,15 @@ export function ProjectsSection() {
                       >
                         View Details
                       </button>
-                      {p.github && (
+                      {p.projectURL && (
                         <a
-                          href={p.github}
+                          href={p.projectURL}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-[11px] md:text-xs font-medium tracking-wide text-neutral-600 hover:text-black focus-ring relative cursor-pointer after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-neutral-800 after:transition-all hover:after:w-full"
                           aria-label={`View ${p.title} on GitHub`}
                         >
-                          View on GitHub
+                          Project URL/Repo
                         </a>
                       )}
                     </div>
