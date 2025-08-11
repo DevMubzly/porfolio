@@ -172,19 +172,45 @@ const HoverPanels: React.FC = () => {
         {(['skills','education','experience'] as const).map(k => {
           const activeState = active === k;
           return (
-            <button
+            <motion.button
               key={k}
               onMouseEnter={() => { if (active !== k) setActive(k); }}
               onFocus={() => { if (active !== k) setActive(k); }}
               onClick={() => { if (active !== k) setActive(k); }}
-              className={baseBtn + ' ' + (activeState ? 'glass shadow-lg text-neutral-900' : 'glass text-neutral-500 hover:text-neutral-800')}
+              initial="rest"
+              whileHover="hover"
+              whileFocus="hover"
+              animate={activeState ? 'hover' : 'rest'}
+              variants={{ rest: {}, hover: {} }}
+              className={baseBtn + ' group overflow-hidden ' + (activeState ? 'glass shadow-lg text-neutral-900' : 'glass text-neutral-500 hover:text-neutral-800')}
             >
-              <span className="relative z-10">{k}</span>
-              {activeState && <span className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(0,0,0,0.08),transparent_70%)]" />}
-            </button>
+              <span className="relative z-10 capitalize tracking-wider">{k}</span>
+              <motion.span
+                aria-hidden
+                className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(0,0,0,0.08),transparent_70%)]"
+                initial={{ opacity: 0, scale: 0.4 }}
+                variants={{ hover: { opacity: 1, scale: 1 }, rest: { opacity: activeState ? 1 : 0, scale: activeState ? 1 : 0.4 } }}
+                transition={{ duration: 0.55, ease: [0.22,1,0.36,1] }}
+              />
+              <motion.span
+                aria-hidden
+                className="absolute left-0 bottom-0 h-[2px] bg-neutral-900/80"
+                style={{ width: '100%' }}
+                initial={{ scaleX: 0 }}
+                variants={{ hover: { scaleX: 1 }, rest: { scaleX: activeState ? 1 : 0 } }}
+                transition={{ duration: 0.5, ease: [0.22,1,0.36,1] }}
+              />
+              <motion.span
+                aria-hidden
+                className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.4),transparent_70%)] opacity-0"
+                initial={{ opacity: 0, y: '30%' }}
+                variants={{ hover: { opacity: 1, y: '0%' }, rest: { opacity: 0, y: '30%' } }}
+                transition={{ duration: 0.5, ease: [0.22,1,0.36,1] }}
+              />
+            </motion.button>
           );
-  })}
-  <ConnectWhorly className="flex-shrink-0" label="Let's Connect" />
+        })}
+  <ConnectWhorly className="flex-shrink-0 hidden md:inline-flex" label="Let's Connect" />
       </div>
       {active && <HoverPanelModal active={active} setActive={setActive} scheduleClose={scheduleClose} cancelClose={cancelClose} />}
     </div>

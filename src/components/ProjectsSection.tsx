@@ -265,18 +265,38 @@ export function ProjectsSection() {
                     </div>
                     <p className="text-[13px] md:text-sm text-neutral-600 leading-relaxed mb-6 flex-1 break-words">{p.summary}</p>
                     <div className="flex items-center justify-between gap-4 mt-auto w-full">
-                      <button
+                      <motion.button
                         type="button"
                         onMouseEnter={() => openProject(p)}
                         onMouseLeave={scheduleClose}
                         onFocus={() => openProject(p)}
                         onBlur={scheduleClose}
-                        className="text-[11px] md:text-xs font-medium tracking-wide text-neutral-700 hover:text-black focus-ring relative cursor-pointer after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-neutral-800 after:transition-all hover:after:w-full"
+                        initial="rest"
+                        whileHover="hover"
+                        whileFocus="hover"
+                        animate="rest"
+                        variants={{ rest: { }, hover: { } }}
+                        className="group text-[11px] md:text-xs font-medium tracking-wide text-neutral-700 hover:text-black focus-ring relative cursor-pointer"
                         aria-haspopup="dialog"
                         aria-controls="project-dialog"
                       >
-                        View Details
-                      </button>
+                        <span className="relative z-10">View Details</span>
+                        <motion.span
+                          aria-hidden
+                          className="absolute left-0 -bottom-1 h-px bg-neutral-800/90 origin-left"
+                          style={{ width: '100%' }}
+                          initial={{ scaleX: 0 }}
+                          variants={{ hover: { scaleX: 1 }, rest: { scaleX: 0 } }}
+                          transition={{ duration: 0.5, ease: [0.22,1,0.36,1] }}
+                        />
+                        <motion.span
+                          aria-hidden
+                          className="pointer-events-none absolute inset-0 rounded-md bg-[radial-gradient(circle_at_50%_100%,rgba(0,0,0,0.10),transparent_70%)] opacity-0 group-hover:opacity-100"
+                          initial={{ clipPath: 'inset(100% 0 0 0)', opacity: 0 }}
+                          variants={{ hover: { clipPath: 'inset(0% 0 0 0)', opacity: 1 }, rest: { clipPath: 'inset(100% 0 0 0)', opacity: 0 } }}
+                          transition={{ duration: 0.55, ease: [0.22,1,0.36,1] }}
+                        />
+                      </motion.button>
                       {p.projectURL && (
                         <a
                           href={p.projectURL}
@@ -395,7 +415,7 @@ export function ProjectsSection() {
       {/* Bottom connect + socials row */}
       <div className="mt-28">
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-10 sm:gap-8">
-          <ConnectWhorly label="Let's Connect" className="flex-shrink-0" />
+          <ConnectWhorly label="Let's Connect" className="flex-shrink-0 hidden md:inline-flex" />
           <div className="flex justify-center sm:justify-start">
             <SocialRail />
           </div>

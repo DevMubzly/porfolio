@@ -135,7 +135,7 @@ export function ConnectWhorly({ label = "Let's Connect", className = "" }: Conne
               ref={pathRef}
               d={pathD}
               animate={{ d: pathD }}
-              transition={{ duration: 0.9, ease: [0.22,1,0.36,1] }}
+              transition={{ duration: 1.6, ease: [0.22,1,0.36,1] }}
               stroke="url(#whorlStroke)"
               strokeWidth={3}
               fill="none"
@@ -153,20 +153,20 @@ export function ConnectWhorly({ label = "Let's Connect", className = "" }: Conne
               stroke="#fff"
               strokeWidth={2}
             >
-              <animateMotion dur="6.2s" repeatCount="indefinite" rotate="auto" path={pathD} />
+              <animateMotion dur="10s" repeatCount="indefinite" rotate="auto" path={pathD} />
             </motion.circle>
           </svg>
         </div>
       )}
       <style jsx>{`
-        .whorl-path { stroke-dasharray: 1800; stroke-dashoffset: 1800; animation: dashDraw 3.4s cubic-bezier(.22,1,.36,1) forwards, dashPulse 9s linear 3.4s infinite; filter: url(#glow); }
+  .whorl-path { stroke-dasharray: 1800; stroke-dashoffset: 1800; animation: dashDraw 5.2s cubic-bezier(.22,1,.36,1) forwards, dashPulse 11s linear 5.2s infinite; filter: url(#glow); }
         @keyframes dashDraw { to { stroke-dashoffset: 0; } }
         @keyframes dashPulse { 0% { stroke-dashoffset: 0; } 50% { stroke-dashoffset: -1800; } 100% { stroke-dashoffset: -3600; } }
   /* Lightning animations */
-  .whorl-lightning-base { stroke-dasharray: 1400; stroke-dashoffset: 1400; opacity:0.08; filter:url(#boltSoft); animation: baseReveal 2.2s ease forwards, basePulse 6s ease-in-out 2.2s infinite; }
+  .whorl-lightning-base { stroke-dasharray: 1400; stroke-dashoffset: 1400; opacity:0.08; filter:url(#boltSoft); animation: baseReveal 3.3s ease forwards, basePulse 8s ease-in-out 3.3s infinite; }
   @keyframes baseReveal { to { stroke-dashoffset:0; opacity:0.1; } }
   @keyframes basePulse { 0%,100% { opacity:0.06; } 50% { opacity:0.14; } }
-  .whorl-lightning-core { stroke-dasharray: 120 1200; stroke-dashoffset:0; filter:drop-shadow(0 0 6px rgba(255,255,255,0.85)); animation: coreTravel 2.1s linear infinite, coreFlicker 1.3s steps(10) infinite; }
+  .whorl-lightning-core { stroke-dasharray: 120 1200; stroke-dashoffset:0; filter:drop-shadow(0 0 6px rgba(255,255,255,0.85)); animation: coreTravel 3.2s linear infinite, coreFlicker 1.6s steps(10) infinite; }
   @keyframes coreTravel { 0% { stroke-dashoffset:0; } 100% { stroke-dashoffset:-1320; } }
   @keyframes coreFlicker { 0%,18%,42%,67%,89% { opacity:1; } 9%,30%,55%,76% { opacity:0.35; } }
   .whorl-lightning-sparks { stroke-dasharray: 10 18; stroke-dashoffset:0; opacity:0.55; mix-blend-mode:plus-lighter; animation: sparksDrift 3.4s linear infinite; }
