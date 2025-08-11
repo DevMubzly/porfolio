@@ -30,7 +30,7 @@ const projects: Project[] = [
     status: 'In Progress',
     size: 'half',
     image: '/telegram bot.jpg'
-  ,github: 'https://github.com/DevMubzly/telegram-sme-ai-assistant'
+  ,github: 'https://github.com/DevMubzly/taviflow-telegram'
   },
   {
     title: 'Metro Fried Chicken (MFC) Ordering App',
