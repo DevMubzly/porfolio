@@ -354,7 +354,7 @@ export function InfoSection() {
             transition={{ duration: 0.7, ease: EASE, delay: shouldReduce ? 0.15 : words.length * 0.045 * 0.6 }}
             className="text-neutral-600/90 text-base sm:text-lg leading-relaxed max-w-3xl"
           >
-            I&apos;m a final year Computer Science student specialising in modern web development and applied AI. I engineer elegant frontends, resilient backends, and integrate AI systems that feel seamless—not stitched on. I love performance budgets, design systems, and solving real product problems with code.
+            I&apos;m a final year Computer Science student specialising in modern web development and applied AI. I craft elegant frontends, resilient backends, and integrate LLMs/AI systems that feel seamless, not stitched on. I love performance budgets, design systems, and solving real product problems with code.
           </motion.p>
 
           <div className="pt-2 flex gap-4 flex-wrap items-center">
@@ -383,7 +383,7 @@ export function InfoSection() {
                 <div className="absolute inset-0 rounded-[2.2rem] overflow-hidden [backface-visibility:hidden]">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.55),transparent_65%)] pointer-events-none z-10" />
                   <Image
-                    src="/profile.svg"
+                    src="/profile.jpg"
                     alt="Portrait of Balinda Mubarak"
                     fill
                     priority
