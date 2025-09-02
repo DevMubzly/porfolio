@@ -29,8 +29,8 @@ const projects: Project[] = [
     stack: ['Next.js', 'TypeScript', 'Postgres', 'Telegram Bot API', 'OpenAI'],
     status: 'In Progress',
     size: 'half',
-    image: '/telegram bot.jpg',
-    projectURL: 'https://github.com/DevMubzly/taviflow-telegram'
+    image: '/telegram bot.png',
+    projectURL: 'https://t.me/taviflow_bot'
   },
   {
     title: 'Metro Fried Chicken (MFC) Ordering App',
