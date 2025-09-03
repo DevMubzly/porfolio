@@ -314,6 +314,21 @@ const experience: TimelineItem[] = [
 
 export function InfoSection() {
   const shouldReduce = useReducedMotion();
+  const [photoHovered, setPhotoHovered] = React.useState(false);
+  // Debounced hover to prevent corner flicker
+  const hoverTimeout = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+  const handleHover = (on: boolean) => {
+    if (hoverTimeout.current) {
+      clearTimeout(hoverTimeout.current);
+      hoverTimeout.current = null;
+    }
+    if (on) {
+      setPhotoHovered(true);
+    } else {
+      hoverTimeout.current = setTimeout(() => setPhotoHovered(false), 85);
+    }
+  };
+  React.useEffect(() => () => { if (hoverTimeout.current) clearTimeout(hoverTimeout.current); }, []);
 
   const heading = "Crafting high-performance web experiences & intelligent AI integrations.";
   const words = heading.split(/\s+/);
@@ -413,17 +428,31 @@ export function InfoSection() {
           {/* Photo Column with theme toggle above */}
           <div className="order-1 lg:order-2 relative mx-auto lg:mx-0 w-[260px] sm:w-[300px] lg:w-full max-w-[420px] flex flex-col items-stretch">
             {/* Theme toggle removed */}
-            <div className="relative w-full aspect-[4/5] [perspective:1600px]">
+            <motion.div
+              className="relative w-full aspect-[4/5] [perspective:1600px] isolate"
+              onHoverStart={() => handleHover(true)}
+              onHoverEnd={() => handleHover(false)}
+            >
               <motion.div
                 initial={{ opacity: 0, y: 40, scale: 0.9, rotate: 2 }}
-                animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
-                whileHover={{ rotateY: 180 }}
-                whileTap={{ rotateY: 180 }}
-                transition={{ duration: 0.95, ease: EASE }}
-                className="relative h-full w-full rounded-[2.2rem] shadow-[0_12px_40px_-8px_rgba(0,0,0,0.25),0_0_0_1px_rgba(0,0,0,0.05)] [transform-style:preserve-3d] cursor-pointer"
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  rotate: 0,
+                  // Smooth flip only when not reduced-motion
+                  rotateY: shouldReduce ? 0 : (photoHovered ? 176 : 0),
+                }}
+                transition={{
+                  duration: 0.6,
+                  ease: EASE,
+                  rotateY: { type: 'spring', stiffness: 120, damping: 22, mass: 0.9 },
+                }}
+                className="relative h-full w-full rounded-[2.2rem] shadow-[0_12px_40px_-8px_rgba(0,0,0,0.25),0_0_0_1px_rgba(0,0,0,0.05)] [transform-style:preserve-3d] cursor-pointer will-change-transform origin-center"
+                style={{ willChange: 'transform', transformStyle: 'preserve-3d' as any }}
               >
                 {/* Front Face */}
-                <div className="absolute inset-0 rounded-[2.2rem] overflow-hidden [backface-visibility:hidden]">
+                <div className="absolute inset-0 rounded-[2.2rem] overflow-hidden [backface-visibility:hidden] pointer-events-none will-change-transform" style={{ transform: 'translateZ(0.1px)' }}>
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.55),transparent_65%)] pointer-events-none z-10" />
                   <Image
                     src="/profile.jpg"
@@ -435,7 +464,7 @@ export function InfoSection() {
                   <span className="pointer-events-none absolute inset-0 rounded-[2.2rem] ring-1 ring-black/10 bg-gradient-to-br from-white/20 via-transparent to-white/10 mix-blend-overlay" />
                 </div>
                 {/* Back Face */}
-                <div className="absolute inset-0 rounded-[2.2rem] overflow-hidden flex items-center justify-center bg-[radial-gradient(circle_at_30%_20%,rgba(0,0,0,0.08),transparent_70%)] [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                <div className="absolute inset-0 rounded-[2.2rem] overflow-hidden flex items-center justify-center bg-[radial-gradient(circle_at_30%_20%,rgba(0,0,0,0.08),transparent_70%)] [transform:rotateY(180deg)] [backface-visibility:hidden] pointer-events-none will-change-transform" style={{ transform: 'rotateY(180deg) translateZ(0.1px)' }}>
                   <div className="absolute inset-0 bg-gradient-to-br from-neutral-200 via-neutral-300 to-neutral-100" />
                   <div className="relative z-10 flex flex-col items-center gap-4 text-center px-6">
                     <span className="text-xs tracking-widest font-semibold uppercase text-neutral-600">Balinda Mubarak</span>
@@ -444,7 +473,7 @@ export function InfoSection() {
                   <span className="pointer-events-none absolute inset-0 rounded-[2.2rem] ring-1 ring-black/10 bg-gradient-to-br from-white/50 via-transparent to-white/20 mix-blend-overlay" />
                 </div>
               </motion.div>
-            </div>
+            </motion.div>
             {/* Floating tag */}
             {/* <motion.span
               initial={{ opacity: 0, y: 12 }}
