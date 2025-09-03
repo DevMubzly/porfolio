@@ -401,7 +401,7 @@ export function InfoSection() {
           </motion.p>
 
           <div className="pt-2 flex gap-4 flex-wrap items-center">
-            <a href="/cv.pdf" download className="group glass hover-card-transition rounded-full px-8 py-4 text-sm font-medium tracking-wide text-neutral-900 focus-ring relative overflow-hidden">
+            <a href="/myCV.pdf" download className="group glass hover-card-transition rounded-full px-8 py-4 text-sm font-medium tracking-wide text-neutral-900 focus-ring relative overflow-hidden">
               <span className="relative z-10 flex items-center gap-2">Download CV <span className="group-hover:translate-x-1 transition-transform">→</span></span>
               <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-[linear-gradient(120deg,rgba(0,0,0,0.05),rgba(0,0,0,0.15))]" />
             </a>
