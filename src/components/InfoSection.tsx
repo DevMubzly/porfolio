@@ -325,7 +325,7 @@ export function InfoSection() {
     if (on) {
       setPhotoHovered(true);
     } else {
-      hoverTimeout.current = setTimeout(() => setPhotoHovered(false), 85);
+      hoverTimeout.current = setTimeout(() => setPhotoHovered(false), 120);
     }
   };
   React.useEffect(() => () => { if (hoverTimeout.current) clearTimeout(hoverTimeout.current); }, []);
@@ -427,8 +427,8 @@ export function InfoSection() {
             {/* Theme toggle removed */}
             <motion.div
               className="relative w-full aspect-[4/5] [perspective:1600px] isolate"
-              onHoverStart={() => handleHover(true)}
-              onHoverEnd={() => handleHover(false)}
+              onPointerEnter={() => handleHover(true)}
+              onPointerLeave={() => handleHover(false)}
             >
               <motion.div
                 initial={{ opacity: 0, y: 40, scale: 0.9, rotate: 2 }}
@@ -438,18 +438,18 @@ export function InfoSection() {
                   scale: 1,
                   rotate: 0,
                   // Smooth flip only when not reduced-motion
-                  rotateY: shouldReduce ? 0 : (photoHovered ? 176 : 0),
+                  rotateY: shouldReduce ? 0 : (photoHovered ? 160 : 0),
                 }}
                 transition={{
                   duration: 0.6,
                   ease: EASE,
-                  rotateY: { type: 'spring', stiffness: 120, damping: 22, mass: 0.9 },
+                  rotateY: { type: 'spring', stiffness: 120, damping: 22, mass: 0.9, restDelta: 0.01, restSpeed: 0.01 },
                 }}
-                className="relative h-full w-full rounded-[2.2rem] shadow-[0_12px_40px_-8px_rgba(0,0,0,0.25),0_0_0_1px_rgba(0,0,0,0.05)] [transform-style:preserve-3d] cursor-pointer will-change-transform origin-center"
+                className="relative h-full w-full rounded-[2.2rem] shadow-[0_12px_40px_-8px_rgba(0,0,0,0.25),0_0_0_1px_rgba(0,0,0,0.05)] [transform-style:preserve-3d] cursor-pointer will-change-transform origin-center transform-gpu [contain:paint]"
                 style={{ willChange: 'transform' }}
               >
                 {/* Front Face */}
-                <div className="absolute inset-0 rounded-[2.2rem] overflow-hidden [backface-visibility:hidden] pointer-events-none will-change-transform" style={{ transform: 'translateZ(0.1px)' }}>
+                <div className="absolute inset-0 rounded-[2.2rem] overflow-hidden [backface-visibility:hidden] pointer-events-none will-change-transform" style={{ transform: 'translateZ(0.2px)' }}>
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.55),transparent_65%)] pointer-events-none z-10" />
                   <Image
                     src="/profile.jpg"
@@ -461,7 +461,7 @@ export function InfoSection() {
                   <span className="pointer-events-none absolute inset-0 rounded-[2.2rem] ring-1 ring-black/10 bg-gradient-to-br from-white/20 via-transparent to-white/10 mix-blend-overlay" />
                 </div>
                 {/* Back Face */}
-                <div className="absolute inset-0 rounded-[2.2rem] overflow-hidden flex items-center justify-center bg-[radial-gradient(circle_at_30%_20%,rgba(0,0,0,0.08),transparent_70%)] [transform:rotateY(180deg)] [backface-visibility:hidden] pointer-events-none will-change-transform" style={{ transform: 'rotateY(180deg) translateZ(0.1px)' }}>
+                <div className="absolute inset-0 rounded-[2.2rem] overflow-hidden flex items-center justify-center bg-[radial-gradient(circle_at_30%_20%,rgba(0,0,0,0.08),transparent_70%)] [transform:rotateY(180deg)] [backface-visibility:hidden] pointer-events-none will-change-transform" style={{ transform: 'rotateY(180deg) translateZ(0.2px)' }}>
                   <div className="absolute inset-0 bg-gradient-to-br from-neutral-200 via-neutral-300 to-neutral-100" />
                   <div className="relative z-10 flex flex-col items-center gap-4 text-center px-6">
                     <span className="text-xs tracking-widest font-semibold uppercase text-neutral-600">Balinda Mubarak</span>
