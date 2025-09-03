@@ -80,20 +80,20 @@ const projects: Project[] = [
 // Distinct animation variant sets to cycle through for visual variety
 const cardVariants = [
   {
-    hidden: { opacity: 0, y: 90, scale: 0.88, rotateX: 18, rotateY: -10, filter: 'blur(14px) saturate(0.6)' },
-    show:   { opacity: 1, y: 0,  scale: 1,    rotateX: 0,  rotateY: 0,   filter: 'blur(0px) saturate(1)' }
+    hidden: { opacity: 0, y: 56, scale: 0.97, rotateX: 8, rotateY: -6 },
+    show:   { opacity: 1, y: 0,  scale: 1,    rotateX: 0,  rotateY: 0 }
   },
   {
-    hidden: { opacity: 0, y: 70, scale: 0.94, rotateZ: -6, skewY: 4, filter: 'blur(10px) brightness(0.9)' },
-    show:   { opacity: 1, y: 0,  scale: 1,    rotateZ: 0,  skewY: 0, filter: 'blur(0px) brightness(1)' }
+    hidden: { opacity: 0, y: 50, scale: 0.985, rotateZ: -4, skewY: 2 },
+    show:   { opacity: 1, y: 0,  scale: 1,    rotateZ: 0,  skewY: 0 }
   },
   {
-    hidden: { opacity: 0, y: 110, scale: 0.9, rotateX: -14, rotateY: 12, filter: 'blur(16px) contrast(0.8)' },
-    show:   { opacity: 1, y: 0,   scale: 1,   rotateX: 0,  rotateY: 0,  filter: 'blur(0px) contrast(1)' }
+    hidden: { opacity: 0, y: 62, scale: 0.975, rotateX: -7, rotateY: 7 },
+    show:   { opacity: 1, y: 0,  scale: 1,    rotateX: 0,  rotateY: 0 }
   },
   {
-    hidden: { opacity: 0, y: 80, scale: 0.92, rotateZ: 8, skewX: -5, filter: 'blur(12px) saturate(0.7)' },
-    show:   { opacity: 1, y: 0,  scale: 1,    rotateZ: 0,  skewX: 0, filter: 'blur(0px) saturate(1)' }
+    hidden: { opacity: 0, y: 52, scale: 0.985, rotateZ: 4, skewX: -3 },
+    show:   { opacity: 1, y: 0,  scale: 1,    rotateZ: 0,  skewX: 0 }
   }
 ];
 
@@ -199,7 +199,7 @@ export function ProjectsSection() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">Selected Projects</h2>
           <div className="text-xs sm:text-sm font-mono text-neutral-500"><span className="text-neutral-400" aria-hidden="true">▸</span> engineered for scale &amp; clarity</div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-[300px] gap-6 md:gap-8 perspective-[1600px]">
+  <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-[minmax(300px,_auto)] gap-6 md:gap-8 perspective-[1600px]">
           {projects.map((p, i) => {
             const span = spanClasses(p.size);
             const hClass = cardMinHeight(p.size);
@@ -211,11 +211,11 @@ export function ProjectsSection() {
                 variants={variants}
                 initial="hidden"
                 whileInView="show"
-                viewport={{ once: false, amount: 0.5 }}
-                whileHover={{ y: -10, scale: 1.018, rotateX: 0, rotateY: 0, rotateZ: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                whileHover={{ y: -6, scale: 1.012, rotateX: 0, rotateY: 0, rotateZ: 0 }}
                 whileTap={{ scale: 0.985 }}
-                transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1], delay: (i % cardVariants.length) * 0.06 }}
-                className={`group relative glass border-gradient rounded-2xl p-0 overflow-hidden flex flex-col shadow-sm hover:shadow-xl transition-all duration-[900ms] will-change-transform ${span} ${hClass}`}
+                transition={{ type: 'spring', stiffness: 230, damping: 26, mass: 0.9, delay: (i % cardVariants.length) * 0.05 }}
+                className={`group relative glass border-gradient rounded-2xl p-0 overflow-hidden flex flex-col shadow-sm hover:shadow-xl transition-all duration-700 will-change-transform transform-gpu [backface-visibility:hidden] [contain:paint] [transform-origin:center_60%] ${span} ${hClass}`}
               >
                 <div className={`flex flex-col md:flex-row ${even ? '' : 'md:flex-row-reverse'} h-full`}>
                   <div className="relative w-full md:w-1/2 h-48 md:h-full overflow-hidden">

@@ -350,10 +350,7 @@ export function InfoSection() {
     show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE } }
   };
 
-  const inView = {
-    hidden: { opacity: 0, y: 32 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } }
-  };
+  // removed unused inView variant (was not referenced)
 
   return (
   <section className="relative max-w-6xl mx-auto px-6 pt-36 pb-40">
@@ -449,7 +446,7 @@ export function InfoSection() {
                   rotateY: { type: 'spring', stiffness: 120, damping: 22, mass: 0.9 },
                 }}
                 className="relative h-full w-full rounded-[2.2rem] shadow-[0_12px_40px_-8px_rgba(0,0,0,0.25),0_0_0_1px_rgba(0,0,0,0.05)] [transform-style:preserve-3d] cursor-pointer will-change-transform origin-center"
-                style={{ willChange: 'transform', transformStyle: 'preserve-3d' as any }}
+                style={{ willChange: 'transform' }}
               >
                 {/* Front Face */}
                 <div className="absolute inset-0 rounded-[2.2rem] overflow-hidden [backface-visibility:hidden] pointer-events-none will-change-transform" style={{ transform: 'translateZ(0.1px)' }}>
