@@ -22,35 +22,46 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: 'Telegram SME AI Assistant',
-    summary: 'AI-powered Telegram assistant for small businesses: inventory management, invoicing, receipts, and analytics.',
-    description: 'A SaaS product that integrates with Telegram to help SMEs manage inventory, automate invoicing, generate receipts, and provide reporting analysis.',
-    longDescription: 'This Telegram-based AI assistant empowers small businesses to efficiently manage their inventory, automate invoicing and receipts, and gain actionable insights through reporting analysis. Features include:\n\n• Inventory Management: Track stock levels, receive low-stock alerts, and manage product catalogs directly from Telegram.\n• Invoicing & Receipts: Generate and send invoices/receipts to customers, with PDF export and payment tracking.\n• Reporting & Analytics: Visualize sales, expenses, and inventory trends with AI-driven insights and recommendations.\n• SaaS Platform: Multi-tenant architecture, secure data storage, and subscription management.\n• Integration: Seamless Telegram bot interface for real-time business operations.\n\nOutcome: Streamlined business operations, reduced manual workload, and improved decision-making for SMEs.',
-    stack: ['Next.js', 'TypeScript', 'Postgres', 'Telegram Bot API', 'OpenAI'],
-    status: 'In Progress',
+    title: 'Telegram SME AI Assistant 🤖',
+    summary: 'AI-powered Telegram assistant for small businesses: inventory management 📦, invoicing, receipts, and analytics.',
+    description: 'A SaaS product that integrates with Telegram to help SMEs manage inventory 📦, automate invoicing 🧾, generate receipts 🧾, and provide reporting analysis 📊.',
+    longDescription: 'This Telegram-based AI assistant empowers small businesses to efficiently manage their inventory 📦, automate invoicing 🧾 and receipts 🧾, and gain actionable insights 📊 through reporting analysis. Features include:\n\n• 📦 Inventory Management: Track stock levels, receive low-stock alerts, and manage product catalogs directly from Telegram.\n• 🧾 Invoicing & Receipts: Generate and send invoices/receipts to customers, with PDF export and payment tracking.\n• 📊 Reporting & Analytics: Visualize sales, expenses, and inventory trends with AI-driven insights and recommendations.\n• 🛡️ SaaS Platform: Multi-tenant architecture, secure data storage, and subscription management.\n• 🤝 Integration: Seamless Telegram bot interface for real-time business operations.\n\nOutcome: 🚀 Streamlined business operations, reduced manual workload, and improved decision-making for SMEs.',
+    stack: ['Express.js', 'TypeScript', 'Supabase', 'Telegram Bot API', 'OpenAI'],
+    status: 'Deployed',
     size: 'half',
     image: '/telegram bot.png',
     projectURL: 'https://t.me/taviflow_bot'
   },
   {
-    title: 'Metro Fried Chicken (MFC) Ordering App',
-    summary: 'Cross-platform mobile app for food ordering, menu browsing, cart, address management, order tracking, and more across 3 branches.',
-    description: 'A React Native, Expo, and TypeScript-based mobile application for Metro Fried Chicken (by Chello), offering a seamless food ordering experience with advanced features.',
-    longDescription: 'The MFC Ordering App is a cross-platform mobile solution designed for Metro Fried Chicken customers. Key features include:\n\n• Menu Browsing: Explore menu categories and items with detailed descriptions.\n• Shopping Cart: Add items to cart, select quantities, and checkout.\n• Address Management: Add, edit, and delete delivery addresses.\n• Order Tracking: Real-time order tracking and order history.\n• User Reviews: Leave and edit reviews for menu items.\n• Favorites: Mark and manage favorite menu items.\n• Branch Selection: Choose restaurant branches with location detection.\n• Authentication: Secure login via Google, phone number, and OTP verification.\n• Notifications: In-app notifications for order updates.\n• Customer Support: Built-in support and help system.\n• Profile Management: Edit user profile and preferences.\n\nOutcome: Enhanced customer experience, streamlined ordering, and robust feature set for Metro Fried Chicken for the branches of Mbarara, Nsambya and Mbuya.',
-    stack: ['React Native', 'Expo', 'TypeScript', 'Expo Router', 'Zustand', 'React Native Maps', 'Lucide React Native', 'AsyncStorage', 'Expo Location'],
+    title: 'Metro Fried Chicken (MFC) Ordering App 🍗',
+    summary: 'Cross-platform mobile app for food ordering 🍔, menu browsing, cart 🛒, address management, order tracking, and more across 3 branches.',
+    description: 'A React Native, Expo, and TypeScript-based mobile application for Metro Fried Chicken (by Chello), offering a seamless food ordering experience 🍗 with advanced features.',
+    longDescription: 'The MFC Ordering App is a cross-platform mobile solution designed for Metro Fried Chicken customers. Key features include:\n\n• 📖 Menu Browsing: Explore menu categories and items with detailed descriptions.\n• 🛒 Shopping Cart: Add items to cart, select quantities, and checkout.\n• 🏠 Address Management: Add, edit, and delete delivery addresses.\n• 🚚 Order Tracking: Real-time order tracking and order history.\n• ⭐ User Reviews: Leave and edit reviews for menu items.\n• ❤️ Favorites: Mark and manage favorite menu items.\n• 🏢 Branch Selection: Choose restaurant branches with location detection.\n• 🔐 Authentication: Secure login via Google, phone number, and OTP verification.\n• 🔔 Notifications: In-app notifications for order updates.\n• 🆘 Customer Support: Built-in support and help system.\n• 👤 Profile Management: Edit user profile and preferences.\n\nOutcome: 🍽️ Enhanced customer experience, streamlined ordering, and robust feature set for Metro Fried Chicken for the branches of Mbarara, Nsambya and Mbuya.',
+    stack: ['React Native', 'Expo', 'TypeScript', 'Zustand', 'AsyncStorage', 'Express.js'],
     status: 'Backend in progress',
     size: 'half',
     image: '/chicken.jpg',
     projectURL: 'https://github.com/DevMubzly/mfc-ordering-app'
   },
-//   {
-//     title: 'Release Changelog AI Agent',
-//     summary: 'LLM agent clusters merged PRs + diff metadata to craft segmented, tone-aware release notes.',
-//     description: 'Agent that ingests PR metadata & diffs to generate audience-partitioned release notes.',
-//     longDescription: 'Pipeline:\n1. Ingest PR titles, labels, commit bodies, diff stats & embeddings.\n2. Cluster changes (hierarchical + silhouette scoring).\n3. Partition content by audience (dev/product/exec) adjusting tone & density.\n4. Guardrails: Grounding verification & risky phrase downgrade.\n5. Style memory ensures tone consistency over time.\nExports multi-section notes (Markdown / HTML) with confidence scores.',
-//     stack: ['Next.js', 'OpenAI', 'Pinecone', 'LangChain'],
-//     size: 'full'
-//   },
+  {
+  title: 'Fortress: Enterprise-Grade Open-Source LLM Platform',
+  summary: 'Deploy, manage, and scale large language models (LLMs) securely within your own infrastructure, no sensitive data leaves your organization.',
+  description: 'Fortress is the first open-source platform for enterprises to run LLMs on-premises or in sovereign cloud, ensuring data privacy, compliance, and control.',
+  longDescription: `Fortress enables banks, telcos, and governments to adopt AI without sending data to external cloud APIs. Key features:\n
+🔑 Authentication & Role Management – secure access for admins, developers, and analysts.\n
+📦 Model Hub & Registry – manage, download, and version LLMs (Gemma, LLaMA, TinyLlama).\n
+⚙️ Deployment Engine – run inference and fine-tuning jobs on local CPUs/GPUs or sovereign cloud.\n
+📊 Usage Monitoring & Analytics – track tokens, costs, and project-specific usage.\n
+🔐 Governance & Compliance – logging, quotas, and auditing for GDPR, HIPAA, and Uganda’s Data Protection Act.\n
+🌐 Open APIs – integrate Fortress into apps, workflows, and enterprise systems.\n`,
+  stack: [
+    'FastAPI', 'SQLAlchemy', 'SQLite', 'Transformers', 'Docker', 'Prometheus', 'Grafana',
+    'Next.js', 'Vercel'
+  ],
+  size: 'full',
+  image: '/fortress.png', 
+  projectURL: 'https://fortress-landing-page.vercel.app'
+},
 //   {
 //     title: 'Edge Image Optimization Suite',
 //     summary: 'Edge runtime transformations: AVIF/WebP multi-target, perceptual scoring & signed URL gating.',
