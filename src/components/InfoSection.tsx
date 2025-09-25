@@ -19,37 +19,40 @@ const skillCategories: SkillCategory[] = [
     label: 'Frontend',
     items: [
       'React',
-      'Tailwind CSS',
       'Next.js',
       'TypeScript',
-      'Performance Optimisation'
+      'TailwindCSS',
+      'Expo',
+      'React Native'
     ]
   },
   {
     label: 'Backend',
     items: [
       'Node.js',
-      'REST APIs',
-      'PostgreSQL & SQL',
       'Express.js',
-      'Hono.js',
-      'Next.js'
+      'FastAPI',
+      'PostgreSQL & SQL',
+      'OpenAI API'
     ]
   },
   {
-    label: 'AI / ML',
+    label: 'DevOps & Infra',
     items: [
-      'LLM Integrations',
-      'Prompt Engineering',
-      'LangChain'
+      'Docker',
+      'Nginx',
+      'Kubernetes (K8s)',
+      'GitHub Actions',
+      'Kong'
     ]
   },
   {
-    label: 'Blockchain',
+    label: 'Other',
     items: [
-      'Smart Contract Basics (Solidity)',
-      'Ethers.js',
-      'Wallet Integration',
+      'Figma',
+      'Jest',
+      'Grafana',
+      'Prometheus'
     ]
   }
 ];
@@ -409,7 +412,7 @@ export function InfoSection() {
             transition={{ duration: 0.7, ease: EASE, delay: shouldReduce ? 0.15 : words.length * 0.045 * 0.6 }}
             className="text-neutral-600/90 text-base sm:text-lg leading-relaxed max-w-3xl"
           >
-            I&apos;m a final year Computer Science student specialising in modern web development and applied AI. I craft elegant frontends, resilient backends, and integrate LLMs/AI systems that feel seamless, not stitched on. I love performance budgets, design systems, and solving real product problems with code.
+            I&apos;m a <span className="font-bold">Final Year Computer Science Student</span>  specialising in modern web development and applied AI. I craft elegant frontends, resilient backends, and integrate <span className="font-bold">LLMs/AI systems</span> that feel seamless, not stitched on. I love performance budgets, design systems, and solving real product problems with code.
           </motion.p>
 
           <div className="pt-2 flex gap-4 flex-wrap items-center">
@@ -418,7 +421,7 @@ export function InfoSection() {
               <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-[linear-gradient(120deg,rgba(0,0,0,0.05),rgba(0,0,0,0.15))]" />
             </a>
             <span className="text-[11px] uppercase tracking-widest text-neutral-500 font-medium flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-neutral-400 animate-pulse" /> Currently Available
+              <span className="h-1.5 w-1.5 rounded-full bg-neutral-400 animate-pulse" /> To be revised in October,2026
             </span>
           </div>
           </header>
