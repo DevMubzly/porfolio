@@ -88,7 +88,7 @@ export default function Home() {
         </nav>
         <motion.svg
           viewBox="0 0 160 80"
-          className="hidden md:block absolute -left-40 top-12 h-16 w-40 text-neutral-500 dark:text-neutral-300 pointer-events-none"
+          className="hidden md:block absolute -left-40 top-12 h-16 w-40 text-neutral-500 pointer-events-none"
           initial={{ opacity: 0, pathLength: 0 }}
           animate={{ opacity: 1, pathLength: 1 }}
           transition={{ duration: 1.2, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}

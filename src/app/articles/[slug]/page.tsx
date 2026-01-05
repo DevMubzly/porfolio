@@ -33,7 +33,7 @@ function ArticleBody({ slug }: { slug: string }) {
       return (
         <>
           <p className="mt-6 text-neutral-700 leading-relaxed">
-            Tailwind CSS is often dismissed as "just utility classes", but in real projects it becomes a
+            Tailwind CSS is often dismissed as &quot;just utility classes&quot;, but in real projects it becomes a
             powerful way to encode a design system directly into the codebase. The goal is not to memorize
             every class but to design a small, opinionated vocabulary that your future self and teammates can
             use consistently.
@@ -48,7 +48,7 @@ function ArticleBody({ slug }: { slug: string }) {
           <h2 className="mt-8 text-xl font-semibold tracking-tight">Build layout primitives</h2>
           <p className="mt-3 text-neutral-700 leading-relaxed">
             I try to avoid repeating the same complex class strings across the app. Instead, I create small
-            layout primitives like "card", "pill button", or "section shell" using Tailwind utilities and
+            layout primitives like &quot;card&quot;, &quot;pill button&quot;, or &quot;section shell&quot; using Tailwind utilities and
             extract them into components. This keeps the speed of utilities while still giving me semantic
             building blocks.
           </p>
@@ -74,7 +74,7 @@ function ArticleBody({ slug }: { slug: string }) {
           <p className="mt-3 text-neutral-700 leading-relaxed">
             I start by writing down the exact steps an ideal human expert would follow to answer a request.
             Then I encode those steps as a chain: retrieve context, call tools, format intermediate state, and
-            only then call the model. This approach avoids the "single giant prompt" anti-pattern.
+            only then call the model. This approach avoids the &quot;single giant prompt&quot; anti-pattern.
           </p>
           <h2 className="mt-8 text-xl font-semibold tracking-tight">Tools and guards</h2>
           <p className="mt-3 text-neutral-700 leading-relaxed">
@@ -157,7 +157,7 @@ function ArticleBody({ slug }: { slug: string }) {
       return (
         <>
           <p className="mt-6 text-neutral-700 leading-relaxed">
-            The difference between a "demo" LLM feature and a real product is reliability. Users should not feel
+            The difference between a &quot;demo&quot; LLM feature and a real product is reliability. Users should not feel
             like they are talking to a random model bolted on at the last minute.
           </p>
           <h2 className="mt-10 text-xl font-semibold tracking-tight">Define where AI is allowed to fail</h2>
@@ -212,8 +212,8 @@ function ArticleBody({ slug }: { slug: string }) {
           </p>
           <h2 className="mt-8 text-xl font-semibold tracking-tight">A portfolio that tells a story</h2>
           <p className="mt-3 text-neutral-700 leading-relaxed">
-            When each project has a README, deployment URL, and a short post-mortem, it stops being "just a school
-            assignment" and becomes a case study. That is exactly what I want my portfolio to feel like.
+            When each project has a README, deployment URL, and a short post-mortem, it stops being &quot;just a school
+            assignment&quot; and becomes a case study. That is exactly what I want my portfolio to feel like.
           </p>
         </>
       );

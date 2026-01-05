@@ -3,7 +3,6 @@ import Image from "next/image";
 import { createPortal } from "react-dom";
 import { NetworkLines } from "./NetworkLines";
 import { AnimatedName } from "./AnimatedName";
-import { Sun, Moon } from "lucide-react";
 // Shared custom cubic-bezier easing (typed so Framer's TS accepts it)
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 import React from "react";
@@ -316,7 +315,6 @@ const experience: TimelineItem[] = [
 export function InfoSection() {
   const shouldReduce = useReducedMotion();
   const [photoHovered, setPhotoHovered] = React.useState(false);
-  const [theme, setTheme] = React.useState<"light" | "dark">("light");
   // Debounced hover to prevent corner flicker
   const hoverTimeout = React.useRef<ReturnType<typeof setTimeout> | null>(null);
   const handleHover = (on: boolean) => {
@@ -331,41 +329,6 @@ export function InfoSection() {
     }
   };
   React.useEffect(() => () => { if (hoverTimeout.current) clearTimeout(hoverTimeout.current); }, []);
-
-  // Hydrate theme from system preference / localStorage
-  React.useEffect(() => {
-    if (typeof window === "undefined") return;
-    try {
-      const stored = window.localStorage.getItem("theme");
-      if (stored === "light" || stored === "dark") {
-        setTheme(stored);
-        return;
-      }
-      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-      setTheme(prefersDark ? "dark" : "light");
-    } catch {
-      // ignore
-    }
-  }, []);
-
-  // Apply theme to <html> class so tailwind "dark:" styles and CSS vars respond
-  React.useEffect(() => {
-    if (typeof document === "undefined") return;
-    const root = document.documentElement;
-    root.classList.remove("light", "dark");
-    root.classList.add(theme);
-    try {
-      if (typeof window !== "undefined") {
-        window.localStorage.setItem("theme", theme);
-      }
-    } catch {
-      // ignore
-    }
-  }, [theme]);
-
-  const toggleTheme = React.useCallback(() => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
-  }, []);
 
   const heading = "Crafting high-performance web experiences & intelligent AI integrations.";
   const words = heading.split(/\s+/);
@@ -444,7 +407,7 @@ export function InfoSection() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: EASE, delay: shouldReduce ? 0.15 : words.length * 0.045 * 0.6 }}
-            className="text-neutral-600/90 dark:text-neutral-300 text-base sm:text-lg leading-relaxed max-w-3xl"
+            className="text-neutral-600/90 text-base sm:text-lg leading-relaxed max-w-3xl"
           >
             I&apos;m a <span className="font-bold">Final Year Computer Science Student</span> from Uganda specialising in modern web development and applied AI. I craft elegant frontends, resilient backends, and integrate <span className="font-bold">LLMs/AI systems</span> that feel seamless, not stitched on. I love performance budgets, design systems, and solving real product problems with code.
           </motion.p>
@@ -459,38 +422,8 @@ export function InfoSection() {
             </span>
           </div>
           </header>
-          {/* Photo Column with theme toggle above and chips below */}
+          {/* Photo Column with chips below */}
           <div className="order-1 lg:order-2 relative mx-auto lg:mx-0 w-[260px] sm:w-[300px] lg:w-full max-w-[420px] flex flex-col items-stretch gap-4">
-            <div className="flex justify-end pr-1">
-              <div className="relative inline-flex items-center">
-                <ThemeToggle theme={theme} onToggle={toggleTheme} />
-                <motion.svg
-                  viewBox="0 0 150 60"
-                  className="hidden md:block absolute -left-32 bottom-0 h-10 w-32 text-neutral-500 dark:text-neutral-300 pointer-events-none"
-                  initial={{ opacity: 0, pathLength: 0 }}
-                  animate={{ opacity: 1, pathLength: 1 }}
-                  transition={{ duration: 1.1, delay: 0.7, ease: EASE }}
-                  aria-hidden="true"
-                >
-                  <motion.path
-                    d="M10 50 C 25 30, 40 25, 60 30 S 110 25, 135 10"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <motion.path
-                    d="M125 14 L 135 10 L 130 19"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </motion.svg>
-              </div>
-            </div>
             <motion.div
               className="relative w-full aspect-[4/5] [perspective:1600px] isolate"
               onPointerEnter={() => handleHover(true)}
@@ -639,35 +572,3 @@ const ExperiencePanel: React.FC = () => (
   </div>
 );
 
-interface ThemeToggleProps {
-  theme: "light" | "dark";
-  onToggle: () => void;
-}
-
-const ThemeToggle: React.FC<ThemeToggleProps> = ({ theme, onToggle }) => {
-  const isDark = theme === "dark";
-  return (
-    <button
-      type="button"
-      onClick={onToggle}
-      className="group relative inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-medium tracking-wide bg-white/80 dark:bg-neutral-900/85 border border-black/5 dark:border-white/10 shadow-sm focus-ring"
-      aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
-    >
-      <span className="inline-flex items-center gap-1.5">
-        <span
-          className={`h-5 w-5 rounded-full flex items-center justify-center transition-colors ${
-            isDark ? "bg-neutral-800 text-amber-300" : "bg-amber-300/90 text-amber-900"
-          }`}
-        >
-          {isDark ? <Moon className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
-        </span>
-        <span className="hidden sm:inline text-neutral-700 dark:text-neutral-100">
-          {isDark ? "Dark" : "Light"} mode
-        </span>
-      </span>
-      <span className="hidden md:inline text-[9px] uppercase tracking-[0.22em] text-neutral-400 dark:text-neutral-500">
-        Toggle
-      </span>
-    </button>
-  );
-};

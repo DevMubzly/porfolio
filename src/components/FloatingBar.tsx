@@ -30,7 +30,7 @@ export function FloatingBar({ active, onChange }: FloatingBarProps) {
   }, []);
   return (
     <div
-      className="fixed inset-y-0 left-6 sm:left-10 lg:left-24 z-40 flex items-center pointer-events-none"
+      className="fixed inset-y-0 left-8 sm:left-10 lg:left-14 z-40 flex items-center pointer-events-none"
       ref={containerRef}
     >
       <div className="flex flex-col gap-3 px-1 py-2 rounded-3xl items-stretch text-[11px] sm:text-xs font-medium tracking-wide select-none pointer-events-auto bg-transparent">
@@ -42,9 +42,7 @@ export function FloatingBar({ active, onChange }: FloatingBarProps) {
                 key={t.key}
                 onClick={() => onChange(t.key)}
                 className={`relative px-4 py-2 rounded-full text-left focus-ring transition-colors ${
-                  selected
-                    ? "text-black dark:text-white"
-                    : "text-black/60 dark:text-neutral-300 hover:text-black dark:hover:text-white"
+                  selected ? "text-black" : "text-black/60 hover:text-black"
                 }`}
               >
                 {selected && (

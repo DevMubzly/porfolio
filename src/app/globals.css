@@ -16,21 +16,6 @@
   --app-bg: radial-gradient(circle at 30% 20%, #ffffff, #ebedef 60%);
 }
 
-html.dark {
-  color-scheme: dark;
-}
-
-html.dark body {
-  --background: #020617;
-  --foreground: #e5e7eb;
-  --bg-alt: #020617;
-  --accent: #f9fafb;
-  --accent-glow: 215 20% 72%;
-  --ring: 210 20% 72%;
-  --noise-opacity: 0.06;
-  --app-bg: radial-gradient(circle at 20% 0%, #0b1120, #020617 55%);
-}
-
 /* Removed unsupported @theme at-rule (was for experimental theming) */
 
 html,
@@ -64,14 +49,6 @@ body:before {
   z-index: -2;
 }
 
-html.dark body:before {
-  background:
-    linear-gradient(var(--foreground)/8%, var(--foreground)/8%) 50% 50% / 100% 1px no-repeat,
-    repeating-linear-gradient(90deg, transparent 0 calc(var(--grid-size)-1px), rgba(255, 255, 255, 0.09) calc(var(--grid-size)-1px) var(--grid-size)),
-    repeating-linear-gradient(0deg, transparent 0 calc(var(--grid-size)-1px), rgba(255, 255, 255, 0.09) calc(var(--grid-size)-1px) var(--grid-size));
-  mask: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.85), transparent 70%);
-}
-
 /* Noise overlay */
 body:after {
   content: "";
@@ -94,15 +71,6 @@ body:after {
     0 0 0 1px rgba(255, 255, 255, 0.5) inset,
     0 4px 12px -2px rgba(0, 0, 0, 0.12),
     0 2px 4px -1px rgba(0, 0, 0, 0.08);
-}
-
-.dark .glass {
-  background: linear-gradient(145deg, rgba(15, 23, 42, 0.94), rgba(15, 23, 42, 0.88));
-  border-color: rgba(148, 163, 184, 0.55);
-  box-shadow:
-    0 0 0 1px rgba(15, 23, 42, 0.9) inset,
-    0 14px 40px -18px rgba(15, 23, 42, 0.9),
-    0 8px 20px -14px rgba(15, 23, 42, 0.9);
 }
 
 
