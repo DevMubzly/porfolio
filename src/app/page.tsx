@@ -88,7 +88,7 @@ export default function Home() {
         </nav>
         <motion.svg
           viewBox="0 0 160 80"
-          className="hidden md:block absolute -left-40 top-12 h-16 w-40 text-neutral-500 pointer-events-none"
+          className="hidden md:block absolute -left-32 top-12 h-16 w-40 text-neutral-500 pointer-events-none"
           initial={{ opacity: 0, pathLength: 0 }}
           animate={{ opacity: 1, pathLength: 1 }}
           transition={{ duration: 1.2, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -126,7 +126,7 @@ export default function Home() {
         <div id="articles" className="snap-start">
           <ArticlesSection />
         </div>
-        <footer className="max-w-6xl mx-auto px-6 pb-16 text-xs text-neutral-500 flex flex-col sm:flex-row gap-4 sm:items-center justify-between">
+        <footer className="snap-start max-w-6xl mx-auto px-6 pb-16 text-xs text-neutral-500 flex flex-col sm:flex-row gap-4 sm:items-center justify-between">
           <div>&copy; {new Date().getFullYear()} Balinda Mubarak</div>
           <div className="flex gap-5 font-medium">
             <a href="https://github.com/DevMubzly" className="hover:underline">GitHub</a>

@@ -508,7 +508,7 @@ const SkillsPanel: React.FC = () => {
                 return (
                   <li
                     key={item}
-                    className="relative rounded-md px-2.5 py-1.5 font-medium text-neutral-800 glass hover-card-transition bg-[linear-gradient(145deg,#ffffff_0%,#f1f1f1_40%,#e0e0e0_100%)]"
+                    className="relative px-2.5 py-1.5 font-medium text-neutral-800 glass hover-card-transition bg-[linear-gradient(145deg,#ffffff_0%,#f1f1f1_40%,#e0e0e0_100%)]"
                   >
                     <span className="relative z-10 flex items-center gap-2">
                       {icons.length > 0 ? (
@@ -518,7 +518,7 @@ const SkillsPanel: React.FC = () => {
                       )}
                       <span>{item}</span>
                     </span>
-                    <span className="pointer-events-none absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition-opacity bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.35),transparent_70%)]" />
+                    <span className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.35),transparent_70%)]" />
                   </li>
                 );
               })}
@@ -537,7 +537,7 @@ const EducationPanel: React.FC = () => (
     <h2 className="sr-only">Education</h2>
     <ul id="education-lines" className="grid md:grid-cols-2 gap-6 relative">
       {education.map(e => (
-  <li key={e.title} data-net className="glass rounded-xl p-5 hover-card-transition relative bg-[linear-gradient(140deg,#ffffff_0%,#eeeeee_50%,#dcdcdc_100%)] shadow-sm">
+  <li key={e.title} data-net className="glass p-5 hover-card-transition relative bg-[linear-gradient(140deg,#ffffff_0%,#eeeeee_50%,#dcdcdc_100%)] shadow-sm">
           <div className="flex items-center justify-between gap-4 mb-2">
             <h3 className="font-semibold text-neutral-900 leading-snug">{e.title}</h3>
             <span className="text-[10px] uppercase tracking-wider bg-black text-white rounded-full px-2 py-1 shadow">Student</span>
@@ -557,7 +557,7 @@ const ExperiencePanel: React.FC = () => (
     <h2 className="sr-only">Experience</h2>
   <ul id="experience-lines" className="relative grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {experience.map(x => (
-  <li key={x.title} data-net className="glass rounded-xl p-5 hover-card-transition relative bg-[linear-gradient(140deg,#ffffff_0%,#f0f0f0_50%,#dadada_100%)] shadow-sm">
+  <li key={x.title} data-net className="glass p-5 hover-card-transition relative bg-[linear-gradient(140deg,#ffffff_0%,#f0f0f0_50%,#dadada_100%)] shadow-sm">
           <div className="flex items-center justify-between gap-4 mb-2">
             <h3 className="font-semibold text-neutral-900 leading-snug">{x.title}</h3>
             <span className="text-[10px] uppercase tracking-wider bg-black text-white rounded-full px-2 py-1 shadow">Intern</span>

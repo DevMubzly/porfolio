@@ -77,7 +77,7 @@ const projects: Project[] = [
 //   },
 //   {
 //     title: 'AI Support Orchestrator',
-//     summary: 'Routing layer combining FAQ embeddings, tool invocation & fallback escalation with sentiment.',
+//     summary: 'Routing layer FAQ embeddings, tool invocation & fallback escalation with sentiment.',
 //     description: 'AI triage engine orchestrating retrieval, tools & escalation heuristics.',
 //     longDescription: 'Flow:\n• Ingestion into conversation state graph.\n• Routing: FAQ embedding match, tool schema invocation, or generative fallback.\n• Tool layer: JSON schema validated actions (order lookup, plan change).\n• Sentiment & risk classifiers trigger escalation or throttling.\n• Human handoff: Bundled transcript + rationale + confidence.\n• Analytics: Resolution time, deflection %, satisfaction proxy.',
 //     stack: ['Next.js', 'OpenAI', 'Redis', 'tRPC'],
@@ -203,7 +203,7 @@ export function ProjectsSection() {
         className="space-y-12"
       >
         <div className="flex items-end justify-between gap-6 flex-wrap">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">Projects &amp; Case Studies</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">Projects</h2>
           <div className="text-xs sm:text-sm font-mono text-neutral-500"><span className="text-neutral-400" aria-hidden="true">▸</span> real-world apps, SaaS, and AI work</div>
         </div>
   <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-[minmax(300px,_auto)] gap-6 md:gap-8 perspective-[1600px]">
