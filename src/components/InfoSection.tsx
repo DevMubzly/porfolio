@@ -19,40 +19,47 @@ const skillCategories: SkillCategory[] = [
       'React',
       'Next.js',
       'TypeScript',
-      'TailwindCSS',
-      'Expo',
-      'React Native'
+      'Expo React Native',
+      'Tailwind CSS'
     ]
   },
   {
     label: 'Backend',
     items: [
-      'Node.js',
-      'Express.js',
-      'FastAPI',
-      'PostgreSQL & SQL',
-      'OpenAI API'
+      'Python FastAPI',
+      'Hono.js',
+      'Express.js & Node.js',
+      'Golang',
+      'PostgreSQL & SQL'
     ]
   },
   {
-    label: 'DevOps & Infra',
+    label: 'DevOps & infrastructure',
     items: [
       'Docker',
-      'Nginx',
-      'Kubernetes (K8s)',
-      'GitHub Actions',
-      'Kong'
+      'Kubernetes (still learning)',
+      'Git & GitHub Actions',
+      'Prometheus & Grafana',
+      'Nginx'
     ]
   },
   {
-    label: 'Other',
+    label: 'AI & MLOps',
     items: [
-      'Figma',
-      'Jest',
-      'Grafana',
-      'Prometheus'
+      'Hugging Face Transformers',
+      'LangChain',
+      'Scikit-learn',
     ]
-  }
+  },
+  // {
+  //   label: 'Other',
+  //   items: [
+  //     'System Design',
+  //     'Figma',
+  //     'Jest',
+  //     'Git'
+  //   ]
+  // }
 ];
 
 // Inline monochrome SVG icons (minimal, high‑tech style)
