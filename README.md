@@ -1,8 +1,8 @@
-# Dev Mubzly's Portfolio
+# My portfolio
 
 Live at: **[www.bmubarak.tech](https://www.bmubarak.tech)**
 
-## ✨ Features
+## Features
 
 - **Responsive Design**: Optimized for desktop, tablet, and mobile devices
 - **Smooth Scrolling**: Snap-to-section navigation with proximity scrolling
@@ -10,7 +10,7 @@ Live at: **[www.bmubarak.tech](https://www.bmubarak.tech)**
 - **Modern Tech Stack**: Next.js 15, React 19, TypeScript, Tailwind CSS
 - **Clean Design**: Light mode with careful attention to contrast and readability
 
-## ️ Tech Stack
+## ️Tech Stack
 
 - **Framework**: Next.js 15
 - **Language**: TypeScript
@@ -18,7 +18,7 @@ Live at: **[www.bmubarak.tech](https://www.bmubarak.tech)**
 - **Animations**: Framer Motion
 - **Deployment**: Vercel
 
-## 📱 Sections
+## Sections
 
 - **Profile**: About section with skills, education, and experience
 - **Projects**: Showcase of personal and client projects
@@ -34,7 +34,7 @@ The site uses a carefully crafted design system with:
 - Responsive grid layouts
 - Modern color palette
 
-## 📧 Key Files
+## Key Files
 
 - `src/app/page.tsx` - Main layout and sections
 - `src/components/InfoSection.tsx` - Profile content and skills
