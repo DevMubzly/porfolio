@@ -42,7 +42,9 @@ export function FloatingBar({ active, onChange }: FloatingBarProps) {
                 key={t.key}
                 onClick={() => onChange(t.key)}
                 className={`relative px-4 py-2 rounded-full text-left focus-ring transition-colors ${
-                  selected ? "text-black" : "text-black/60 hover:text-black"
+                  selected
+                    ? "text-black dark:text-white"
+                    : "text-black/60 dark:text-neutral-300 hover:text-black dark:hover:text-white"
                 }`}
               >
                 {selected && (

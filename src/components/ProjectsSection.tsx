@@ -194,7 +194,6 @@ export function ProjectsSection() {
     }
   }, [active, onKey]);
 
-
   return (
   <section className="relative max-w-6xl mx-auto px-6 pt-32 pb-40 min-h-dvh flex flex-col justify-center">
       <motion.div
@@ -204,8 +203,8 @@ export function ProjectsSection() {
         className="space-y-12"
       >
         <div className="flex items-end justify-between gap-6 flex-wrap">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">Selected Projects</h2>
-          <div className="text-xs sm:text-sm font-mono text-neutral-500"><span className="text-neutral-400" aria-hidden="true">▸</span> engineered for scale &amp; clarity</div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">Projects &amp; Case Studies</h2>
+          <div className="text-xs sm:text-sm font-mono text-neutral-500 dark:text-neutral-400"><span className="text-neutral-400 dark:text-neutral-500" aria-hidden="true">▸</span> real-world apps, SaaS, and AI work</div>
         </div>
   <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-[minmax(300px,_auto)] gap-6 md:gap-8 perspective-[1600px]">
           {projects.map((p, i) => {
@@ -271,20 +270,17 @@ export function ProjectsSection() {
                     <div className="flex items-start justify-between gap-4 mb-3 md:mb-4">
                       <h3 className="text-base md:text-lg font-semibold tracking-tight leading-snug pr-4 break-words">{p.title}</h3>
                     </div>
-                    <p className="text-[13px] md:text-sm text-neutral-600 leading-relaxed mb-6 flex-1 break-words">{p.summary}</p>
+                    <p className="text-[13px] md:text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed mb-6 flex-1 break-words">{p.summary}</p>
                     <div className="flex items-center justify-between gap-4 mt-auto w-full">
                       <motion.button
                         type="button"
-                        onMouseEnter={() => openProject(p)}
-                        onMouseLeave={scheduleClose}
-                        onFocus={() => openProject(p)}
-                        onBlur={scheduleClose}
+                        onClick={() => openProject(p)}
                         initial="rest"
                         whileHover="hover"
                         whileFocus="hover"
                         animate="rest"
                         variants={{ rest: { }, hover: { } }}
-                        className="group text-[11px] md:text-xs font-medium tracking-wide text-neutral-700 hover:text-black focus-ring relative cursor-pointer"
+                        className="group text-[11px] md:text-xs font-medium tracking-wide text-neutral-700 dark:text-neutral-100 hover:text-black dark:hover:text-white focus-ring relative cursor-pointer"
                         aria-haspopup="dialog"
                         aria-controls="project-dialog"
                       >
@@ -310,7 +306,7 @@ export function ProjectsSection() {
                           href={p.projectURL}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[11px] md:text-xs font-medium tracking-wide text-neutral-600 hover:text-black focus-ring relative cursor-pointer after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-neutral-800 after:transition-all hover:after:w-full"
+                          className="text-[11px] md:text-xs font-medium tracking-wide text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white focus-ring relative cursor-pointer after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-neutral-800 dark:after:bg-neutral-200 after:transition-all hover:after:w-full"
                           aria-label={`View ${p.title} on GitHub`}
                         >
                           Project URL/Repo
@@ -344,7 +340,7 @@ export function ProjectsSection() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <div className="absolute inset-0 bg-black/20 backdrop-blur-[2px]" aria-hidden="true" />
+            <div className="absolute inset-0 bg-black/25 dark:bg-black/60 backdrop-blur-[2px]" aria-hidden="true" />
             <motion.div
               role="dialog"
               id="project-dialog"
@@ -355,7 +351,7 @@ export function ProjectsSection() {
               animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0, filter: 'blur(0px)' }}
               exit={{ opacity: 0, y: 12, scale: 0.94, rotateX: 4, filter: 'blur(3px)' }}
               transition={{ type: 'spring', stiffness: 280, damping: 26, mass: 0.8 }}
-              className="pointer-events-auto relative w-full max-w-4xl bg-white rounded-xl shadow-[0_8px_40px_-4px_rgba(0,0,0,0.25),0_0_0_1px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col focus:outline-none border border-neutral-200"
+              className="pointer-events-auto relative w-full max-w-4xl bg-white dark:bg-neutral-950 rounded-2xl shadow-[0_18px_60px_-18px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col focus:outline-none border border-neutral-200 dark:border-neutral-800/80"
               ref={dialogRef}
               tabIndex={-1}
               onMouseEnter={() => { if (closeTimer.current) { window.clearTimeout(closeTimer.current); closeTimer.current = null; } }}
@@ -364,11 +360,11 @@ export function ProjectsSection() {
               <div className="absolute top-3 right-3 flex gap-2 z-10">
                 <button
                   onClick={closeModal}
-                  className="h-8 w-8 rounded-full bg-neutral-200 hover:bg-neutral-300 text-neutral-700 flex items-center justify-center text-sm font-semibold shadow focus-ring"
+                  className="h-8 w-8 rounded-full bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700 text-neutral-700 dark:text-neutral-100 flex items-center justify-center text-sm font-semibold shadow focus-ring"
                 >×</button>
               </div>
-              <div className="relative w-full h-52 md:h-56 bg-gradient-to-br from-neutral-200 via-neutral-300 to-neutral-100 overflow-hidden">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.65),transparent_70%)]" />
+              <div className="relative w-full h-52 md:h-56 bg-gradient-to-br from-neutral-200 via-neutral-300 to-neutral-100 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-800 overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.65),transparent_70%)] dark:bg-[radial-gradient(circle_at_30%_10%,rgba(255,255,255,0.2),transparent_70%)]" />
                 {active.image && (
                   <motion.img
                     src={active.image}
@@ -386,33 +382,74 @@ export function ProjectsSection() {
                   <span className="absolute bottom-3 right-4 text-[10px] font-mono tracking-wider text-neutral-600/80">IMAGE</span>
                 )}
               </div>
-              <div className="p-6 md:p-8 space-y-5 md:space-y-7 overflow-y-auto max-h-[64vh]">
-                <div className="flex flex-wrap items-center gap-3">
-                  <h3 id="project-dialog-title" className="text-xl md:text-2xl font-semibold tracking-tight pr-6">{active.title}</h3>
-                </div>
-                <p id="project-dialog-desc" className="text-sm md:text-[15px] text-neutral-700 leading-relaxed whitespace-pre-line">{active.longDescription || active.description}</p>
-                <div>
-                  <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-2">Stack</h4>
-                  <ul className="flex flex-wrap gap-2">
-                    {active.stack.map(s => (
-                      <li key={s} className="px-2 py-1 rounded-md bg-neutral-200 text-[11px] font-medium tracking-wide text-neutral-800 shadow-inner">{s}</li>
-                    ))}
-                  </ul>
-                </div>
-                {active.links && active.links.length > 0 && (
+              <div className="p-6 md:p-8 space-y-6 md:space-y-8 overflow-y-auto max-h-[64vh]">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-6">
                   <div>
-                    <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-2">Links</h4>
-                    <ul className="flex flex-wrap gap-3 text-sm">
-                      {active.links.map(l => (
-                        <li key={l.href}>
-                          <a href={l.href} target="_blank" rel="noopener noreferrer" className="text-neutral-700 hover:text-black underline decoration-neutral-400/70 hover:decoration-neutral-800 transition-colors">{l.label}</a>
-                        </li>
-                      ))}
-                    </ul>
+                    <h3 id="project-dialog-title" className="text-xl md:text-2xl font-semibold tracking-tight pr-6 text-neutral-900 dark:text-neutral-50">{active.title}</h3>
+                    {active.status && (
+                      <p className="mt-1 text-[11px] uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">{active.status}</p>
+                    )}
                   </div>
-                )}
+                  {active.projectURL && (
+                    <a
+                      href={active.projectURL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center rounded-full px-4 py-2 text-xs font-medium tracking-wide bg-neutral-900 text-white hover:bg-black dark:bg-neutral-100 dark:text-neutral-950 dark:hover:bg-white focus-ring cursor-pointer"
+                    >
+                      View live / repo
+                    </a>
+                  )}
+                </div>
+                <div className="grid md:grid-cols-[minmax(0,2.2fr)_minmax(0,1fr)] gap-6 md:gap-8 items-start">
+                  <p
+                    id="project-dialog-desc"
+                    className="text-sm md:text-[15px] text-neutral-700 dark:text-neutral-200 leading-relaxed whitespace-pre-line"
+                  >
+                    {active.longDescription || active.description}
+                  </p>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-2">Stack</h4>
+                      <ul className="flex flex-wrap gap-2">
+                        {active.stack.map(s => (
+                          <li
+                            key={s}
+                            className="px-2.5 py-1.5 rounded-md bg-neutral-200 dark:bg-neutral-800/80 text-[11px] font-medium tracking-wide text-neutral-800 dark:text-neutral-100 shadow-inner"
+                          >
+                            {s}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    {active.links && active.links.length > 0 && (
+                      <div>
+                        <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-2">Links</h4>
+                        <ul className="flex flex-wrap gap-3 text-sm">
+                          {active.links.map(l => (
+                            <li key={l.href}>
+                              <a
+                                href={l.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-neutral-700 dark:text-neutral-200 hover:text-black dark:hover:text-white underline decoration-neutral-400/70 hover:decoration-neutral-800 dark:decoration-neutral-500 dark:hover:decoration-neutral-100 transition-colors"
+                              >
+                                {l.label}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </div>
                 <div className="pt-2 flex justify-end">
-                  <button onClick={closeModal} className="px-4 cursor-pointer py-2 rounded-lg bg-neutral-900 text-white text-xs font-medium tracking-wide hover:bg-black focus-ring transition-colors">Close</button>
+                  <button
+                    onClick={closeModal}
+                    className="px-4 cursor-pointer py-2 rounded-lg bg-neutral-900 text-white text-xs font-medium tracking-wide hover:bg-black dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-white focus-ring transition-colors"
+                  >
+                    Close
+                  </button>
                 </div>
               </div>
             </motion.div>

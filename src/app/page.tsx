@@ -86,13 +86,37 @@ export default function Home() {
             <Mail className="w-4 h-4" />
           </a>
         </nav>
+        <motion.svg
+          viewBox="0 0 160 80"
+          className="hidden md:block absolute -left-40 top-12 h-16 w-40 text-neutral-500 dark:text-neutral-300 pointer-events-none"
+          initial={{ opacity: 0, pathLength: 0 }}
+          animate={{ opacity: 1, pathLength: 1 }}
+          transition={{ duration: 1.2, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          aria-hidden="true"
+        >
+          <motion.path
+            d="M10 70 C 35 45, 55 40, 80 40 S 130 30, 150 10"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round" />
+          <motion.path
+            d="M142 14 L 150 10 L 146 18"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round" />
+        </motion.svg>
       </div>
-      <motion.div
-        key="sections"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      >
+    {/* </div> */}
+    <motion.div
+      key="sections"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+    >
         <div id="profile" className="snap-start">
           <InfoSection />
         </div>
