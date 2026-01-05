@@ -444,11 +444,11 @@ export function InfoSection() {
                   ease: EASE,
                   rotateY: { type: 'spring', stiffness: 120, damping: 22, mass: 0.9, restDelta: 0.01, restSpeed: 0.01 },
                 }}
-                className="relative h-full w-full rounded-[2.2rem] shadow-[0_12px_40px_-8px_rgba(0,0,0,0.25),0_0_0_1px_rgba(0,0,0,0.05)] [transform-style:preserve-3d] cursor-pointer will-change-transform origin-center transform-gpu [contain:paint]"
+                className="relative h-full w-full rounded-xl shadow-[0_12px_40px_-8px_rgba(0,0,0,0.25),0_0_0_1px_rgba(0,0,0,0.05)] [transform-style:preserve-3d] cursor-pointer will-change-transform origin-center transform-gpu [contain:paint]"
                 style={{ willChange: 'transform' }}
               >
                 {/* Front Face */}
-                <div className="absolute inset-0 rounded-[2.2rem] overflow-hidden [backface-visibility:hidden] pointer-events-none will-change-transform" style={{ transform: 'translateZ(0.2px)' }}>
+                <div className="absolute inset-0 rounded-xl overflow-hidden [backface-visibility:hidden] pointer-events-none will-change-transform" style={{ transform: 'translateZ(0.2px)' }}>
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.55),transparent_65%)] pointer-events-none z-10" />
                   <Image
                     src="/profile.jpg"
@@ -457,16 +457,16 @@ export function InfoSection() {
                     priority
                     className="object-cover select-none"
                   />
-                  <span className="pointer-events-none absolute inset-0 rounded-[2.2rem] ring-1 ring-black/10 bg-gradient-to-br from-white/20 via-transparent to-white/10 mix-blend-overlay" />
+                  <span className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-black/10 bg-gradient-to-br from-white/20 via-transparent to-white/10 mix-blend-overlay" />
                 </div>
                 {/* Back Face */}
-                <div className="absolute inset-0 rounded-[2.2rem] overflow-hidden flex items-center justify-center bg-[radial-gradient(circle_at_30%_20%,rgba(0,0,0,0.08),transparent_70%)] [transform:rotateY(180deg)] [backface-visibility:hidden] pointer-events-none will-change-transform" style={{ transform: 'rotateY(180deg) translateZ(0.2px)' }}>
+                <div className="absolute inset-0 rounded-xl overflow-hidden flex items-center justify-center bg-[radial-gradient(circle_at_30%_20%,rgba(0,0,0,0.08),transparent_70%)] [transform:rotateY(180deg)] [backface-visibility:hidden] pointer-events-none will-change-transform" style={{ transform: 'rotateY(180deg) translateZ(0.2px)' }}>
                   <div className="absolute inset-0 bg-gradient-to-br from-neutral-200 via-neutral-300 to-neutral-100" />
                   <div className="relative z-10 flex flex-col items-center gap-4 text-center px-6">
                     <span className="text-xs tracking-widest font-semibold uppercase text-neutral-600">Balinda Mubarak</span>
                     <span className="text-[10px] font-medium tracking-wide text-neutral-500">Full‑Stack & AI Engineering</span>
                   </div>
-                  <span className="pointer-events-none absolute inset-0 rounded-[2.2rem] ring-1 ring-black/10 bg-gradient-to-br from-white/50 via-transparent to-white/20 mix-blend-overlay" />
+                  <span className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-black/10 bg-gradient-to-br from-white/50 via-transparent to-white/20 mix-blend-overlay" />
                 </div>
               </motion.div>
             </motion.div>
@@ -477,7 +477,7 @@ export function InfoSection() {
               transition={{ delay: 0.5, duration: 0.6, ease: EASE }}
               className="absolute -bottom-5 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full text-[10px] tracking-wider font-semibold uppercase bg-white/70 backdrop-blur-md shadow border border-black/5 text-neutral-700"
             >Building the Future</motion.span> */}
-            <div className="mt-1">
+            <div className="flex justify-center mt-1">
               <HoverPanels />
             </div>
           </div>
