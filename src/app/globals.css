@@ -23,6 +23,10 @@ body {
   height: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--app-bg) fixed;
   color: var(--foreground);

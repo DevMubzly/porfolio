@@ -1,17 +1,19 @@
 "use client";
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
+import { SocialRail } from "./SocialRail";
 
-type Tab = "info" | "projects";
+export type Tab = "profile" | "articles" | "projects";
 
 interface FloatingBarProps {
   active: Tab;
   onChange: (t: Tab) => void;
 }
 
-const tabs: { key: Tab; label: string; }[] = [
-  { key: "info", label: "Info" },
+const tabs: { key: Tab; label: string }[] = [
+  { key: "profile", label: "Profile" },
   { key: "projects", label: "Projects" },
+  { key: "articles", label: "Articles" },
 ];
 
 export function FloatingBar({ active, onChange }: FloatingBarProps) {
@@ -28,32 +30,44 @@ export function FloatingBar({ active, onChange }: FloatingBarProps) {
     return () => window.removeEventListener("resize", setVar);
   }, []);
   return (
-    <div className="fixed top-6 right-6 z-40" ref={containerRef}>
-  <div className="glass border-gradient flex gap-2 px-3 py-2 rounded-full items-center text-[11px] sm:text-sm font-medium tracking-wide shadow-lg select-none">
-        {tabs.map(t => {
-          const selected = t.key === active;
-          return (
-            <button
-              key={t.key}
-              onClick={() => onChange(t.key)}
-              className={`relative px-4 py-2 rounded-full focus-ring transition-colors ${selected ? "text-black" : "text-black/60 hover:text-black"}`}
-            >
-              {selected && (
-                <motion.span
-                  layoutId="floating-bar-pill"
-                  className="absolute inset-0 rounded-full -z-10"
-                  transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
-                  style={{
-                    background: "linear-gradient(120deg,#fff,#d9d9d9)",
-                    boxShadow: "0 4px 18px -6px rgba(0,0,0,0.18), 0 1px 0 0 rgba(255,255,255,0.8) inset",
-                    filter: "var(--floating-bar-selected-filter, none)"
-                  }}
-                />
-              )}
-              {t.label}
-            </button>
-          );
-        })}
+    <div
+      className="fixed inset-y-0 left-4 sm:left-6 lg:left-10 z-40 flex items-center pointer-events-none"
+      ref={containerRef}
+    >
+      <div className="glass border-gradient flex flex-col gap-4 px-3 py-4 rounded-3xl items-stretch text-[11px] sm:text-xs font-medium tracking-wide shadow-lg select-none pointer-events-auto">
+        <div className="flex flex-col gap-1">
+          {tabs.map((t) => {
+            const selected = t.key === active;
+            return (
+              <button
+                key={t.key}
+                onClick={() => onChange(t.key)}
+                className={`relative px-4 py-2 rounded-full text-left focus-ring transition-colors ${
+                  selected ? "text-black" : "text-black/60 hover:text-black"
+                }`}
+              >
+                {selected && (
+                  <motion.span
+                    layoutId="floating-bar-pill"
+                    className="absolute inset-0 rounded-full -z-10"
+                    transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
+                    style={{
+                      background: "linear-gradient(120deg,#fff,#d9d9d9)",
+                      boxShadow:
+                        "0 4px 18px -6px rgba(0,0,0,0.18), 0 1px 0 0 rgba(255,255,255,0.8) inset",
+                      filter: "var(--floating-bar-selected-filter, none)",
+                    }}
+                  />
+                )}
+                <span className="relative z-10">{t.label}</span>
+              </button>
+            );
+          })}
+        </div>
+        <div className="h-px bg-black/10 mx-1" />
+        <div className="flex justify-center">
+          <SocialRail />
+        </div>
       </div>
       <style jsx>{`
         :global(html.dark [layoutid='floating-bar-pill']), :global(html.dark span[layoutid='floating-bar-pill']) {

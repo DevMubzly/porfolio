@@ -25,7 +25,7 @@ export function SocialRail() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: EASE }}
       data-social-rail
-      className="flex gap-5 flex-wrap"
+      className="flex flex-col items-center gap-3"
       aria-label="Social links"
     >
       {socials.map((s, i) => (

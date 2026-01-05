@@ -2,9 +2,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { createPortal } from "react-dom";
 import { NetworkLines } from "./NetworkLines";
-import { ConnectWhorly } from "./ConnectWhorly";
 import { AnimatedName } from "./AnimatedName";
-import { SocialRail } from "./SocialRail";
 // Shared custom cubic-bezier easing (typed so Framer's TS accepts it)
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 import React from "react";
@@ -171,7 +169,7 @@ const HoverPanels: React.FC = () => {
       onMouseLeave={scheduleClose}
       onMouseEnter={cancelClose}
     >
-  <div className="flex flex-wrap gap-3 items-center">
+      <div className="flex flex-wrap gap-3 items-center">
         {(['skills','education','experience'] as const).map(k => {
           const activeState = active === k;
           return (
@@ -213,7 +211,6 @@ const HoverPanels: React.FC = () => {
             </motion.button>
           );
         })}
-  <ConnectWhorly className="flex-shrink-0 hidden md:inline-flex" label="Let's Connect" />
       </div>
       {active && <HoverPanelModal active={active} setActive={setActive} scheduleClose={scheduleClose} cancelClose={cancelClose} />}
     </div>
@@ -356,7 +353,7 @@ export function InfoSection() {
   // removed unused inView variant (was not referenced)
 
   return (
-  <section className="relative max-w-6xl mx-auto px-6 pt-36 pb-40">
+  <section className="relative max-w-6xl mx-auto px-6 pt-36 pb-40 min-h-dvh flex items-center">
       {/* background flourishes */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         {/* Decorative top-left stripes restored */}
@@ -412,7 +409,7 @@ export function InfoSection() {
             transition={{ duration: 0.7, ease: EASE, delay: shouldReduce ? 0.15 : words.length * 0.045 * 0.6 }}
             className="text-neutral-600/90 text-base sm:text-lg leading-relaxed max-w-3xl"
           >
-            I&apos;m a <span className="font-bold">Final Year Computer Science Student</span>  specialising in modern web development and applied AI. I craft elegant frontends, resilient backends, and integrate <span className="font-bold">LLMs/AI systems</span> that feel seamless, not stitched on. I love performance budgets, design systems, and solving real product problems with code.
+            I&apos;m a <span className="font-bold">Final Year Computer Science Student</span> from Uganda specialising in modern web development and applied AI. I craft elegant frontends, resilient backends, and integrate <span className="font-bold">LLMs/AI systems</span> that feel seamless, not stitched on. I love performance budgets, design systems, and solving real product problems with code.
           </motion.p>
 
           <div className="pt-2 flex gap-4 flex-wrap items-center">
@@ -481,9 +478,6 @@ export function InfoSection() {
               transition={{ delay: 0.5, duration: 0.6, ease: EASE }}
               className="absolute -bottom-5 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full text-[10px] tracking-wider font-semibold uppercase bg-white/70 backdrop-blur-md shadow border border-black/5 text-neutral-700"
             >Building the Future</motion.span> */}
-            <div className="pt-10 flex justify-center">
-              <SocialRail />
-            </div>
           </div>
         </div>{/* end grid */}
         <div className="mt-8">
@@ -579,4 +573,4 @@ const ExperiencePanel: React.FC = () => (
   </div>
 );
 
-// Roadmap moved to ProjectsSection; removed here.
+

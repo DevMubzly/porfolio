@@ -4,8 +4,6 @@ import Image from "next/image";
 import { useState, useEffect, useCallback, useRef } from "react";
 import React from "react";
 import { RoadmapSection } from "./RoadmapSection";
-import { ConnectWhorly } from "./ConnectWhorly";
-import { SocialRail } from "./SocialRail";
 
 interface Project {
   title: string;
@@ -199,7 +197,7 @@ export function ProjectsSection() {
 
 
   return (
-  <section id="projects" className="relative max-w-6xl mx-auto px-6 pt-32 pb-40">
+  <section id="projects" className="relative max-w-6xl mx-auto px-6 pt-32 pb-40 min-h-dvh flex flex-col justify-center">
       <motion.div
   initial={{ opacity: 0, y: 60 }}
   animate={{ opacity: 1, y: 0 }}
@@ -423,15 +421,6 @@ export function ProjectsSection() {
         )}
       </AnimatePresence>
       <RoadmapSection />
-      {/* Bottom connect + socials row */}
-      <div className="mt-28">
-        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-10 sm:gap-8">
-          <ConnectWhorly label="Let's Connect" className="flex-shrink-0 hidden md:inline-flex" />
-          <div className="flex justify-center sm:justify-start">
-            <SocialRail />
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
