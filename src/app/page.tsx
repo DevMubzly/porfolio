@@ -83,7 +83,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Email"
-            className="hidden sm:inline-flex p-1.5 rounded-full text-neutral-700 hover:text-black hover:bg-neutral-100 transition-colors focus-ring"
+            className="p-1.5 rounded-full text-neutral-700 hover:text-black hover:bg-neutral-100 transition-colors focus-ring"
           >
             <Mail className="w-4 h-4" />
           </a>
