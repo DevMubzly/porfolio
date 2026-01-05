@@ -53,7 +53,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="relative h-dvh overflow-y-auto snap-y snap-mandatory">
+    <main className="relative h-dvh overflow-y-auto snap-y snap-proximity">
       <FloatingBar active={active} onChange={scrollToTab} />
       <div className="fixed top-4 right-4 sm:right-6 lg:right-10 z-40 pointer-events-none">
         <nav
@@ -79,7 +79,9 @@ export default function Home() {
             <Twitter className="w-4 h-4" />
           </a>
           <a
-            href="mailto:bmubs15@gmail.com"
+            href="https://mail.google.com/mail/?view=cm&to=bmubs15@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="Email"
             className="hidden sm:inline-flex p-1.5 rounded-full text-neutral-700 hover:text-black hover:bg-neutral-100 transition-colors focus-ring"
           >
@@ -126,12 +128,12 @@ export default function Home() {
         <div id="articles" className="snap-start">
           <ArticlesSection />
         </div>
-        <footer className="snap-start max-w-6xl mx-auto px-6 pb-16 text-xs text-neutral-500 flex flex-col sm:flex-row gap-4 sm:items-center justify-between">
+        <footer className="max-w-6xl mx-auto px-6 pb-32 text-xs text-neutral-500 flex flex-col sm:flex-row gap-4 sm:items-center justify-between">
           <div>&copy; {new Date().getFullYear()} Balinda Mubarak</div>
           <div className="flex gap-5 font-medium">
             <a href="https://github.com/DevMubzly" className="hover:underline">GitHub</a>
             <a href="https://www.X.com/TtnlxMubz/" className="hover:underline">Twitter</a>
-            <a href="mailto:bmubs15@gmail.com" className="hover:underline">Email</a>
+            <a href="https://mail.google.com/mail/?view=cm&to=bmubs15@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:underline">Email</a>
           </div>
         </footer>
       </motion.div>
