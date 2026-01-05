@@ -4,7 +4,8 @@ import { FloatingBar, Tab } from "@/components/FloatingBar";
 import { InfoSection } from "@/components/InfoSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { ArticlesSection } from "@/components/ArticlesSection";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
+import { Github, Twitter, Mail } from "lucide-react";
 
 export default function Home() {
   const [active, setActive] = useState<Tab>("profile");
@@ -54,6 +55,38 @@ export default function Home() {
   return (
     <main className="relative h-dvh overflow-y-auto snap-y snap-mandatory">
       <FloatingBar active={active} onChange={scrollToTab} />
+      <div className="fixed top-4 right-4 sm:right-6 lg:right-10 z-40 pointer-events-none">
+        <nav
+          aria-label="Social links"
+          className="pointer-events-auto flex items-center gap-2 sm:gap-3 rounded-full bg-white/80 backdrop-blur-md border border-black/5 px-2.5 py-1.5 shadow-sm"
+        >
+          <a
+            href="https://github.com/DevMubzly"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="p-1.5 rounded-full text-neutral-700 hover:text-black hover:bg-neutral-100 transition-colors focus-ring"
+          >
+            <Github className="w-4 h-4" />
+          </a>
+          <a
+            href="https://x.com/TtnlxMubz"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Twitter / X"
+            className="p-1.5 rounded-full text-neutral-700 hover:text-black hover:bg-neutral-100 transition-colors focus-ring"
+          >
+            <Twitter className="w-4 h-4" />
+          </a>
+          <a
+            href="mailto:bmubs15@gmail.com"
+            aria-label="Email"
+            className="hidden sm:inline-flex p-1.5 rounded-full text-neutral-700 hover:text-black hover:bg-neutral-100 transition-colors focus-ring"
+          >
+            <Mail className="w-4 h-4" />
+          </a>
+        </nav>
+      </div>
       <motion.div
         key="sections"
         initial={{ opacity: 0 }}

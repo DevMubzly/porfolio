@@ -1,9 +1,8 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 import { useState, useEffect, useCallback, useRef } from "react";
 import React from "react";
-import { RoadmapSection } from "./RoadmapSection";
 
 interface Project {
   title: string;
@@ -197,7 +196,7 @@ export function ProjectsSection() {
 
 
   return (
-  <section id="projects" className="relative max-w-6xl mx-auto px-6 pt-32 pb-40 min-h-dvh flex flex-col justify-center">
+  <section className="relative max-w-6xl mx-auto px-6 pt-32 pb-40 min-h-dvh flex flex-col justify-center">
       <motion.div
   initial={{ opacity: 0, y: 60 }}
   animate={{ opacity: 1, y: 0 }}
@@ -420,7 +419,6 @@ export function ProjectsSection() {
           </motion.div>
         )}
       </AnimatePresence>
-      <RoadmapSection />
     </section>
   );
 }

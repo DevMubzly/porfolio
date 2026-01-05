@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import { createPortal } from "react-dom";
 import { NetworkLines } from "./NetworkLines";

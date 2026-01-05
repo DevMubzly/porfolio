@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import React from "react";
 import { Github, Send, Phone, Twitter } from "lucide-react";
 import Link from "next/link";

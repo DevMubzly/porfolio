@@ -1,7 +1,6 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { useEffect, useRef } from "react";
-import { SocialRail } from "./SocialRail";
 
 export type Tab = "profile" | "articles" | "projects";
 
@@ -31,11 +30,11 @@ export function FloatingBar({ active, onChange }: FloatingBarProps) {
   }, []);
   return (
     <div
-      className="fixed inset-y-0 left-4 sm:left-6 lg:left-10 z-40 flex items-center pointer-events-none"
+      className="fixed inset-y-0 left-6 sm:left-10 lg:left-24 z-40 flex items-center pointer-events-none"
       ref={containerRef}
     >
-      <div className="glass border-gradient flex flex-col gap-4 px-3 py-4 rounded-3xl items-stretch text-[11px] sm:text-xs font-medium tracking-wide shadow-lg select-none pointer-events-auto">
-        <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-3 px-1 py-2 rounded-3xl items-stretch text-[11px] sm:text-xs font-medium tracking-wide select-none pointer-events-auto bg-transparent">
+        <div className="flex flex-col gap-1.5">
           {tabs.map((t) => {
             const selected = t.key === active;
             return (
@@ -63,10 +62,6 @@ export function FloatingBar({ active, onChange }: FloatingBarProps) {
               </button>
             );
           })}
-        </div>
-        <div className="h-px bg-black/10 mx-1" />
-        <div className="flex justify-center">
-          <SocialRail />
         </div>
       </div>
       <style jsx>{`
