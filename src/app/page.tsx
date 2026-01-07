@@ -15,7 +15,7 @@ export default function Home() {
     const targetId = tab === "profile" ? "profile" : tab === "projects" ? "projects" : "articles";
     const el = document.getElementById(targetId);
     if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      el.scrollIntoView({ behavior: "auto", block: "start" });
     }
   }, []);
 
@@ -53,58 +53,58 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="relative h-dvh overflow-y-auto snap-y snap-proximity">
+    <main className="relative h-dvh overflow-y-auto scroll-smooth">
       <FloatingBar active={active} onChange={scrollToTab} />
       <div className="fixed top-4 right-4 sm:right-6 lg:right-10 z-40 pointer-events-none">
         <nav
           aria-label="Social links"
-          className="pointer-events-auto flex items-center gap-2 sm:gap-3 rounded-full bg-white/80 backdrop-blur-md border border-black/5 px-2.5 py-1.5 shadow-sm"
+          className="pointer-events-auto flex items-center gap-1.5 sm:gap-2 rounded-full bg-white/80 backdrop-blur-md border border-black/5 px-2 py-1 shadow-sm"
         >
           <a
             href="https://github.com/DevMubzly"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="p-1.5 rounded-full text-neutral-700 hover:text-black hover:bg-neutral-100 transition-colors focus-ring"
+            className="p-1 rounded-full text-neutral-700 hover:text-black hover:bg-neutral-100 transition-colors focus-ring"
           >
-            <Github className="w-4 h-4" />
+            <Github className="w-3.5 h-3.5" />
           </a>
           <a
             href="https://x.com/TtnlxMubz"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Twitter / X"
-            className="p-1.5 rounded-full text-neutral-700 hover:text-black hover:bg-neutral-100 transition-colors focus-ring"
+            className="p-1 rounded-full text-neutral-700 hover:text-black hover:bg-neutral-100 transition-colors focus-ring"
           >
-            <Twitter className="w-4 h-4" />
+            <Twitter className="w-3.5 h-3.5" />
           </a>
           <a
             href="https://mail.google.com/mail/?view=cm&to=bmubs15@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Email"
-            className="p-1.5 rounded-full text-neutral-700 hover:text-black hover:bg-neutral-100 transition-colors focus-ring"
+            className="p-1 rounded-full text-neutral-700 hover:text-black hover:bg-neutral-100 transition-colors focus-ring"
           >
-            <Mail className="w-4 h-4" />
+            <Mail className="w-3.5 h-3.5" />
           </a>
         </nav>
         <motion.svg
           viewBox="0 0 160 80"
-          className="hidden lg:block absolute -left-32 top-12 h-16 w-40 text-neutral-500 pointer-events-none"
+          className="hidden lg:block absolute -left-20 top-10 h-12 w-32 text-neutral-500 pointer-events-none"
           initial={{ opacity: 0, pathLength: 0 }}
           animate={{ opacity: 1, pathLength: 1 }}
           transition={{ duration: 1.2, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
           aria-hidden="true"
         >
           <motion.path
-            d="M10 70 C 35 45, 55 40, 80 40 S 130 30, 150 10"
+            d="M10 56 C 30 36, 45 32, 64 32 S 104 24, 120 8"
             fill="none"
             stroke="currentColor"
             strokeWidth="1.6"
             strokeLinecap="round"
             strokeLinejoin="round" />
           <motion.path
-            d="M142 14 L 150 10 L 146 18"
+            d="M114 11 L 120 8 L 117 14"
             fill="none"
             stroke="currentColor"
             strokeWidth="1.6"
