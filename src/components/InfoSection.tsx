@@ -396,7 +396,7 @@ export function InfoSection() {
             variants={container}
             initial="hidden"
             animate="show"
-            className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight tracking-tight max-w-4xl text-balance"
+            className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-tight tracking-tight max-w-3xl text-balance"
           >
             {words.map((w, i) => (
               <motion.span
