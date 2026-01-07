@@ -533,7 +533,9 @@ const SkillsPanel: React.FC = () => {
             <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/70 via-white/30 to-white/10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity" />
           </div>
         ))}
+        <div className="hidden lg:block">
         <NetworkLines containerId="skill-grid" />
+      </div>
       </div>
     </div>
   );
@@ -554,7 +556,9 @@ const EducationPanel: React.FC = () => (
           <p className="text-sm text-neutral-700 leading-relaxed">{e.detail}</p>
         </li>
       ))}
-      <NetworkLines containerId="education-lines" />
+      <div className="hidden lg:block">
+        <NetworkLines containerId="education-lines" />
+      </div>
     </ul>
   </div>
 );
@@ -574,7 +578,9 @@ const ExperiencePanel: React.FC = () => (
           <p className="text-sm text-neutral-700 leading-relaxed">{x.detail}</p>
         </li>
       ))}
-      <NetworkLines containerId="experience-lines" />
+      <div className="hidden lg:block">
+        <NetworkLines containerId="experience-lines" />
+      </div>
     </ul>
   </div>
 );
