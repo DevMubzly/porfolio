@@ -195,18 +195,18 @@ export function ProjectsSection() {
   }, [active, onKey]);
 
   return (
-  <section className="relative max-w-6xl mx-auto px-6 pt-32 pb-40 min-h-dvh flex flex-col justify-center">
+  <section className="relative max-w-4xl mx-auto px-4 pt-24 pb-32 min-h-dvh flex flex-col justify-center">
       <motion.div
   initial={{ opacity: 0, y: 60 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         className="space-y-12"
       >
-        <div className="flex items-end justify-between gap-6 flex-wrap">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">Projects</h2>
+        <div className="flex items-end justify-between gap-4 flex-wrap">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight">Projects</h2>
           <div className="text-xs sm:text-sm font-mono text-neutral-500"><span className="text-neutral-400" aria-hidden="true">▸</span> real-world apps, SaaS, and AI work</div>
         </div>
-  <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-[minmax(300px,_auto)] gap-6 md:gap-8 perspective-[1600px]">
+  <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-[minmax(250px,_auto)] gap-4 md:gap-6 perspective-[1600px]">
           {projects.map((p, i) => {
             const span = spanClasses(p.size);
             const hClass = cardMinHeight(p.size);

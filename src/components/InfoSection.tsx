@@ -360,7 +360,7 @@ export function InfoSection() {
   // removed unused inView variant (was not referenced)
 
   return (
-  <section className="relative max-w-6xl mx-auto px-6 pt-36 pb-40 min-h-dvh flex items-center">
+  <section className="relative max-w-4xl mx-auto px-4 pt-28 pb-32 min-h-dvh flex items-center">
       {/* background flourishes */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         {/* Decorative top-left stripes restored */}
@@ -396,7 +396,7 @@ export function InfoSection() {
             variants={container}
             initial="hidden"
             animate="show"
-            className="text-4xl sm:text-5xl md:text-6xl font-semibold leading-tight tracking-tight max-w-5xl text-balance"
+            className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight tracking-tight max-w-4xl text-balance"
           >
             {words.map((w, i) => (
               <motion.span
@@ -414,13 +414,13 @@ export function InfoSection() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: EASE, delay: shouldReduce ? 0.15 : words.length * 0.045 * 0.6 }}
-            className="text-neutral-600/90 text-base sm:text-lg leading-relaxed max-w-3xl"
+            className="text-neutral-600/90 text-sm sm:text-base leading-relaxed max-w-2xl"
           >
             I&apos;m a <span className="font-bold">Final Year Computer Science Student</span> from Uganda specialising in modern web development and applied AI. I craft elegant frontends, resilient backends, and integrate <span className="font-bold">LLMs/AI systems</span> that feel seamless, not stitched on. I love performance budgets, design systems, and solving real product problems with code.
           </motion.p>
 
           <div className="pt-2 flex gap-4 flex-wrap items-center">
-            <a href="/myCV.pdf" download className="group glass hover-card-transition rounded-full px-8 py-4 text-sm font-medium tracking-wide text-neutral-900 focus-ring relative overflow-hidden">
+            <a href="/myCV.pdf" download className="group glass hover-card-transition rounded-full px-6 py-3 text-xs font-medium tracking-wide text-neutral-900 focus-ring relative overflow-hidden">
               <span className="relative z-10 flex items-center gap-2">Download CV <span className="group-hover:translate-x-1 transition-transform">→</span></span>
               <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-[linear-gradient(120deg,rgba(0,0,0,0.05),rgba(0,0,0,0.15))]" />
             </a>
@@ -430,7 +430,7 @@ export function InfoSection() {
           </div>
           </header>
           {/* Photo Column with chips below */}
-          <div className="order-1 lg:order-2 relative mx-auto lg:mx-0 w-[260px] sm:w-[300px] lg:w-full max-w-[420px] flex flex-col items-stretch gap-4">
+          <div className="order-1 lg:order-2 relative mx-auto lg:mx-0 w-[220px] sm:w-[260px] lg:w-full max-w-[360px] flex flex-col items-stretch gap-3">
             <motion.div
               className="relative w-full aspect-[4/5] [perspective:1600px] isolate"
               onPointerEnter={() => handleHover(true)}
@@ -498,24 +498,24 @@ const SkillsPanel: React.FC = () => {
   return (
     <div id="skills-panel" className="relative">
       <h2 className="sr-only">Core Skills</h2>
-  <div id="skill-grid" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 relative">
+  <div id="skill-grid" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 relative">
         {skillCategories.map(cat => (
           <div
             key={cat.label}
             data-net
-            className="glass rounded-xl p-4 flex flex-col gap-3 group relative overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-[linear-gradient(140deg,#ffffff_0%,#ededed_50%,#d9d9d9_100%)] text-[13px]"
+            className="glass rounded-lg p-3 flex flex-col gap-2 group relative overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-[linear-gradient(140deg,#ffffff_0%,#ededed_50%,#d9d9d9_100%)] text-[10px]"
           >
             <div className="flex items-center justify-between">
-              <h3 className="text-xs font-semibold tracking-wider uppercase text-neutral-600">{cat.label}</h3>
+              <h3 className="text-[10px] font-semibold tracking-wider uppercase text-neutral-600">{cat.label}</h3>
               <span className="h-2 w-2 rounded-full bg-gradient-to-br from-neutral-400 to-neutral-300 shadow-inner" />
             </div>
-            <ul className="flex flex-col gap-1.5 text-[12px]">
+            <ul className="flex flex-col gap-1 text-[9px]">
               {cat.items.map(item => {
                 const icons = getIconsFor(item);
                 return (
                   <li
                     key={item}
-                    className="relative px-2.5 py-1.5 font-medium text-neutral-800 glass hover-card-transition bg-[linear-gradient(145deg,#ffffff_0%,#f1f1f1_40%,#e0e0e0_100%)]"
+                    className="relative px-2 py-1 font-medium text-neutral-800 glass hover-card-transition bg-[linear-gradient(145deg,#ffffff_0%,#f1f1f1_40%,#e0e0e0_100%)]"
                   >
                     <span className="relative z-10 flex items-center gap-2">
                       {icons.length > 0 ? (
