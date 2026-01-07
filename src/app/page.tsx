@@ -128,9 +128,9 @@ export default function Home() {
         <div id="articles" className="snap-start">
           <ArticlesSection />
         </div>
-        <footer className="max-w-4xl mx-auto px-4 pb-24 text-xs text-neutral-500 flex flex-col sm:flex-row gap-3 sm:items-center justify-between">
+        <footer className="max-w-4xl mx-auto px-4 pb-4 text-[10px] text-neutral-500 flex flex-col sm:flex-row gap-3 sm:items-center justify-between">
           <div>&copy; {new Date().getFullYear()} Balinda Mubarak</div>
-          <div className="flex gap-4 font-medium">
+          <div className="flex gap-4 font-medium text-[10px]">
             <a href="https://github.com/DevMubzly" className="hover:underline">GitHub</a>
             <a href="https://www.X.com/TtnlxMubz/" className="hover:underline">Twitter</a>
             <a href="https://mail.google.com/mail/?view=cm&to=bmubs15@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:underline">Email</a>

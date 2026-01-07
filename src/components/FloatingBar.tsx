@@ -30,7 +30,7 @@ export function FloatingBar({ active, onChange }: FloatingBarProps) {
   }, []);
   return (
     <div
-      className="fixed inset-y-0 left-30 sm:left-10 lg:left-30 hidden lg:flex md:hidden z-40 items-center pointer-events-none"
+      className="fixed pt-30 left-30 sm:left-10 lg:left-30 hidden lg:flex md:hidden z-40 items-center pointer-events-none"
       ref={containerRef}
     >
       <div className="flex flex-col gap-2 px-1 py-1.5 rounded-2xl items-stretch text-[9px] sm:text-[10px] font-medium tracking-wide select-none pointer-events-auto bg-transparent">
