@@ -70,18 +70,21 @@ export function HeroSection() {
             transition={{ duration: 1, delay: 0.2 }}
             className="w-full lg:w-1/2 relative lg:translate-x-12 z-10 pointer-events-none flex justify-center lg:justify-end pb-12 lg:pb-0"
           >
-            <div className="relative w-[280px] h-[360px] sm:w-[360px] sm:h-[440px] lg:w-[460px] lg:h-[560px] mx-auto lg:ml-auto select-none mt-8 md:mt-4 lg:mt-0">
-              {/* Decorative Offset Frame */}
-              <div className="absolute inset-0 rounded-[2rem] lg:rounded-[3rem] border border-[#222222]/30 translate-x-3 translate-y-3 lg:translate-x-5 lg:translate-y-5"></div>
+            <div className="relative w-[260px] h-[320px] sm:w-[320px] sm:h-[400px] lg:w-[420px] lg:h-[500px] mx-auto lg:ml-auto select-none mt-12 md:mt-8 lg:mt-0">
+              {/* Decorative Offset Frame (Starts lower) */}
+              <div className="absolute inset-x-0 bottom-0 top-12 lg:top-20 rounded-[2rem] lg:rounded-[3rem] border border-[#222222]/30 translate-x-3 translate-y-3 lg:translate-x-5 lg:translate-y-5 z-0"></div>
               
-              {/* Inner Image Container */}
-              <div className="relative w-full h-full bg-[#E5E5E5]/20 rounded-[2rem] lg:rounded-[3rem] overflow-hidden backdrop-blur-sm border border-[#E5E5E5]">
+              {/* Inner Frame Background */}
+              <div className="absolute inset-x-0 bottom-0 top-12 lg:top-20 bg-[#E5E5E5]/30 rounded-[2rem] lg:rounded-[3rem] backdrop-blur-sm border border-[#E5E5E5] z-[1]"></div>
+              
+              {/* Protruding Image */}
+              <div className="absolute inset-x-0 bottom-0 top-0 z-[2]">
                 <Image
                   src="/profile.png"
                   alt="Balinda Mubarak"
                   fill
-                  sizes="(max-width: 640px) 280px, (max-width: 768px) 360px, 460px"
-                  className="object-contain object-bottom"
+                  sizes="(max-width: 640px) 260px, (max-width: 768px) 320px, 420px"
+                  className="object-contain object-bottom drop-shadow-xl"
                   priority
                 />
               </div>
