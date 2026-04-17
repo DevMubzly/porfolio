@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export function HeroSection() {
   return (
-    <section className="sticky top-0 z-[1] h-screen w-full bg-[#F8F8F8] text-[#222222] font-sans flex flex-col justify-end pt-24 rounded-b-[3rem] lg:rounded-b-[4rem] shadow-sm overflow-hidden">
+    <section className="sticky top-0 z-[1] min-h-[100dvh] lg:h-screen w-full bg-[#F8F8F8] text-[#222222] font-sans flex flex-col justify-center lg:justify-end pt-28 lg:pt-24 rounded-b-[3rem] lg:rounded-b-[4rem] shadow-sm overflow-hidden">
       {/* Side decorative texts */}
       <div className="absolute left-8 lg:left-16 top-1/2 -translate-y-1/2 -rotate-90 origin-left text-[#7B7B7B] text-xs tracking-widest uppercase hidden lg:block">
         Full-Stack Developer
@@ -22,7 +22,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="w-full lg:w-1/2 flex flex-col justify-center pb-12 sm:pb-20 lg:pb-32 z-20 mt-10 md:mt-16 lg:mt-0"
+            className="w-full lg:w-1/2 flex flex-col justify-center pt-8 sm:pt-12 lg:pt-0 pb-8 sm:pb-12 lg:pb-32 z-20 mt-10 md:mt-16 lg:mt-0"
           >
             {/* Stats */}
             <div className="flex flex-wrap gap-8 lg:gap-12 mb-12 sm:mb-16">
@@ -68,9 +68,9 @@ export function HeroSection() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="w-full lg:w-1/2 absolute bottom-0 right-0 lg:relative lg:translate-x-12 z-10 pointer-events-none flex justify-end items-end"
+            className="w-full lg:w-1/2 relative lg:translate-x-12 z-10 pointer-events-none flex justify-center lg:justify-end items-end mt-auto pt-8 lg:pt-0"
           >
-            <div className="relative w-[280px] h-[350px] sm:w-[400px] sm:h-[500px] lg:w-[600px] lg:h-[700px] mx-auto lg:ml-auto select-none mt-8 lg:mt-0 opacity-80 lg:opacity-100">
+            <div className="relative w-[280px] h-[350px] sm:w-[400px] sm:h-[500px] lg:w-[600px] lg:h-[700px] mx-auto lg:ml-auto select-none opacity-90 lg:opacity-100">
               <Image
                 src="/profile.png"
                 alt="Balinda Mubarak"
