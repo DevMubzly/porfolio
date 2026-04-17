@@ -60,14 +60,14 @@ export function Header() {
         <div className={`flex items-center justify-between text-[#222222] w-full transition-all duration-500 ${!isScrolled && "max-w-7xl"}`}>
         
         {/* Left Side: Logo/Name */}
-        <Link href="/" className="flex items-center gap-3 group">
+        <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-3 group focus:outline-none">
           <div className="w-6 h-6 border-[1.5px] border-[#222222] rounded flex items-center justify-center rotate-45 group-hover:bg-[#222222] transition-colors duration-300">
             <span className="w-2 h-2 bg-[#222222] rounded-full group-hover:bg-[#F8F8F8] transition-colors duration-300"></span>
           </div>
           <span className="text-sm font-medium tracking-wide sr-only md:not-sr-only">
             Balinda Mubarak
           </span>
-        </Link>
+        </button>
 
         {/* Center: Navigation Navigation */}
         <nav className="hidden md:flex flex-1 items-center justify-center gap-8 lg:gap-12">
@@ -124,14 +124,14 @@ export function Header() {
         >
           {/* Top Bar for Mobile Menu */}
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-3 group" onClick={() => setIsMobileMenuOpen(false)}>
+            <button onClick={() => { setIsMobileMenuOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="flex items-center gap-3 group focus:outline-none">
               <div className="w-6 h-6 border-[1.5px] border-[#222222] rounded flex items-center justify-center rotate-45 group-hover:bg-[#222222] transition-colors duration-300">
                 <span className="w-2 h-2 bg-[#222222] rounded-full group-hover:bg-white transition-colors duration-300"></span>
               </div>
               <span className="text-sm font-medium tracking-wide">
                 Balinda Mubarak
               </span>
-            </Link>
+            </button>
             <button
               className="p-2 -mr-2 text-[#222222] hover:text-[#7B7B7B] transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
