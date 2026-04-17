@@ -66,7 +66,7 @@ export function ProjectsSection() {
   }, [selectedProject]);
 
   return (
-    <section id="projects" className="relative z-[3] py-24 lg:py-32 px-6 lg:px-24 bg-[#F8F8F8] text-[#222222] rounded-t-[3rem] lg:rounded-t-[4rem] shadow-[0_-4px_24px_rgba(0,0,0,0.03)] flex flex-col justify-center -mt-8 lg:-mt-12">
+    <section id="projects" className={`relative py-24 lg:py-32 px-6 lg:px-24 bg-[#F8F8F8] text-[#222222] rounded-t-[3rem] lg:rounded-t-[4rem] shadow-[0_-4px_24px_rgba(0,0,0,0.03)] flex flex-col justify-center -mt-8 lg:-mt-12 transition-colors duration-300 ${selectedProject ? "z-[100]" : "z-[3]"}`}>
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -160,26 +160,26 @@ export function ProjectsSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-black/60 backdrop-blur-md overflow-y-auto"
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
-              initial={{ x: "100%", opacity: 0.5 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: "100%", opacity: 0 }}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="absolute top-[80px] lg:top-[90px] right-0 bottom-0 w-full max-w-2xl bg-[#F8F8F8] shadow-[-8px_0_32px_rgba(0,0,0,0.05)] overflow-y-auto flex flex-col rounded-tl-[2rem] border-l border-t border-[#E5E5E5]"
+              className="relative w-full max-w-7xl min-h-[75vh] lg:min-h-[85vh] bg-[#F8F8F8] rounded-[2rem] shadow-2xl overflow-hidden my-auto flex flex-col lg:flex-row"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-6 right-6 z-20 p-2.5 text-[#222222] hover:text-white bg-white hover:bg-[#222222] transition-all rounded-full shadow-md"
+                className="absolute top-6 right-6 z-20 p-3 text-[#222222] hover:text-white bg-white hover:bg-[#222222] transition-all rounded-full shadow-lg"
               >
-                <X className="w-5 h-5" />
+                <X className="w-6 h-6" />
               </button>
 
               {/* Image Section */}
-              <div className="w-full h-64 sm:h-80 lg:h-[350px] relative bg-[#E5E5E5] shrink-0 group">
+              <div className="w-full lg:w-[55%] h-[300px] lg:h-auto relative bg-[#E5E5E5] hidden sm:block group">
                 {selectedProject.image ? (
                   <>
                     <Image
@@ -198,10 +198,10 @@ export function ProjectsSection() {
               </div>
 
               {/* Content Section */}
-              <div className="p-8 md:p-12 space-y-8 flex flex-col bg-white grow relative rounded-tl-[2rem] -mt-6">
+              <div className="w-full lg:w-[45%] p-8 md:p-12 lg:p-16 space-y-8 lg:space-y-12 flex flex-col justify-center bg-white relative">
                 <div className="space-y-6">
                   <div className="flex items-center gap-3">
-                    <h3 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-[#222222]">{selectedProject.title}</h3>
+                    <h3 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-[#222222]">{selectedProject.title}</h3>
                   </div>
                   {selectedProject.status && (
                     <span className="inline-block text-[10px] md:text-xs font-medium text-[#7B7B7B] border border-[#E5E5E5] px-4 py-2 rounded-full uppercase tracking-widest">
@@ -210,11 +210,11 @@ export function ProjectsSection() {
                   )}
                 </div>
 
-                <p className="text-base md:text-lg text-[#7B7B7B] font-light leading-relaxed max-w-xl">
+                <p className="text-lg md:text-xl lg:text-2xl text-[#7B7B7B] font-light leading-relaxed max-w-xl">
                   {selectedProject.longDescription || selectedProject.description}
                 </p>
 
-                <div className="flex flex-wrap gap-2 pt-8 border-t border-[#E5E5E5]">
+                <div className="flex flex-wrap gap-3 pt-8 border-t border-[#E5E5E5]">
                   {selectedProject.stack.map((tech) => (
                     <span key={tech} className="px-4 py-2 text-[10px] sm:text-xs font-medium bg-[#F8F8F8] text-[#222222] tracking-widest uppercase rounded-full">
                       {tech}
@@ -223,7 +223,7 @@ export function ProjectsSection() {
                 </div>
 
                 {selectedProject.projectURL && (
-                  <div className="pt-8">
+                  <div className="pt-8 lg:pt-12">
                     <a
                       href={selectedProject.projectURL}
                       target="_blank"
