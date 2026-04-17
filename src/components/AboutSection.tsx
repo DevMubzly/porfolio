@@ -48,7 +48,7 @@ export function AboutSection() {
           {/* Main About Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between pb-12 lg:pb-16 gap-6 lg:gap-8 border-b border-[#E5E5E5]">
             <h2 className="text-4xl md:text-5xl lg:text-7xl font-light tracking-tight">
-              About
+              About Me
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-[#7B7B7B] font-light max-w-lg md:text-right pb-2 leading-relaxed">
               I'm a developer from Uganda focused on building elegant web applications and intelligent AI-powered systems.
@@ -94,23 +94,23 @@ export function AboutSection() {
                 <h3 className="text-xs font-medium text-[#7B7B7B] uppercase tracking-widest border-b border-[#E5E5E5] pb-4">
                   Recognition
                 </h3>
-                <div className="flex flex-col gap-12">">
+                <div className="flex flex-col gap-12">
                   {achievements.map((item) => (
                     <div key={item.title} className="group">
                       <p className="text-2xl md:text-3xl font-light text-[#222222] mb-3 group-hover:translate-x-2 transition-transform duration-500">
                         {item.title}
                       </p>
-                      <p className="text-base text-[#7B7B7B] font-light leading-relaxed">
-                        {item.desc}{" "}
+                      <div className="text-base text-[#7B7B7B] font-light leading-relaxed flex flex-col gap-2 items-start mt-2">
+                        <p>{item.desc}</p>
                         <a 
                           href="https://www.must.ac.ug/must-students-sweep-top-spots-at-the-national-industry-4-0-hackathon/"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-[#222222] hover:text-[#7B7B7B] transition-colors mt-2"
+                          className="inline-flex items-center gap-1 text-[#222222] hover:text-[#7B7B7B] transition-colors"
                         >
-                          <span className="border-b border-transparent hover:border-[#7B7B7B] pb-0.5 transition-colors">Read official news</span> <span className="text-xs">↗</span>
+                          <span className="border-b border-[#222222] hover:border-[#7B7B7B] pb-0.5 transition-colors">Read official news</span> <span className="text-xs">↗</span>
                         </a>
-                      </p>
+                      </div>
                     </div>
                   ))}
                 </div>
