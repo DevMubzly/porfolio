@@ -56,93 +56,91 @@ export function ProjectsSection() {
           transition={{ duration: 0.8 }}
           className="space-y-16 lg:space-y-24"
         >
-          <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[#E5E5E5] pb-8 lg:pb-12 gap-6 lg:gap-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between pb-12 lg:pb-16 gap-6 lg:gap-8 border-b border-[#E5E5E5]">
             <h2 className="text-4xl md:text-5xl lg:text-7xl font-light tracking-tight">
               Selected Works
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-[#7B7B7B] font-light max-w-sm md:text-right">
-              A collection of projects and experiments.
+            <p className="text-base sm:text-lg md:text-xl text-[#7B7B7B] font-light max-w-sm md:text-right pb-2">
+              A curated collection of projects and experimental systems.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 auto-rows-[400px] lg:auto-rows-[450px]">
-            {projects.map((project, index) => {
-              // Bento dynamic sizing logic
-              const getSpan = () => {
-                if (index === 0) return "lg:col-span-2 lg:row-span-1";
-                if (index === 1) return "lg:col-span-1 lg:row-span-1";
-                if (index === 2) return "lg:col-span-3 lg:row-span-1";
-                return "lg:col-span-1 lg:row-span-1";
-              };
+          <div className="flex flex-col border-t border-[#E5E5E5] pt-4">
+            {projects.map((project, index) => (
+              <motion.div
+                key={project.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <div className="group relative flex flex-col lg:flex-row justify-between lg:items-center py-12 lg:py-16 border-b border-[#E5E5E5] gap-8 transition-colors duration-500 hover:bg-white rounded-2xl md:-mx-6 lg:-mx-10 hover:px-6 lg:hover:px-10">
+                  {/* Left Column: Details */}
+                  <div className="flex flex-col flex-1 max-w-3xl space-y-6 z-10">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <span className="text-[10px] sm:text-xs font-medium uppercase tracking-widest text-[#222222] bg-white border border-[#E5E5E5] px-3 py-1 rounded-full shadow-sm">
+                        {project.status}
+                      </span>
+                      {project.stack.slice(0, 3).map((tech) => (
+                        <span key={tech} className="text-xs uppercase tracking-wider text-[#7B7B7B] font-medium hidden sm:block">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    
+                    <h3 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-[#222222] group-hover:translate-x-2 transition-transform duration-500">
+                      {project.title}
+                    </h3>
+                    
+                    <p className="text-base sm:text-lg text-[#7B7B7B] font-light leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
 
-              return (
-                <motion.div
-                  key={project.title}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className={`group relative overflow-hidden bg-white rounded-3xl ${getSpan()} border border-[#E5E5E5] transition-colors duration-500 flex flex-col`}
-                >
-                  {/* Background Image Area */}
-                  <div className="absolute inset-0 w-full h-full">
-                    {project.image ? (
+                  {/* Right Column: Interaction */}
+                  <div className="flex items-center gap-6 lg:flex-col lg:items-end lg:justify-center z-10 mt-2 lg:mt-0">
+                    {project.projectURL ? (
+                      <a
+                        href={project.projectURL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-4 group/btn"
+                      >
+                        <span className="text-xs uppercase tracking-widest text-[#7B7B7B] group-hover/btn:text-[#222222] transition-colors duration-300">
+                          View Project
+                        </span>
+                        <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-full border border-[#E5E5E5] bg-white flex items-center justify-center group-hover/btn:bg-[#222222] group-hover/btn:text-white group-hover/btn:border-[#222222] shadow-sm transition-all duration-500">
+                          <ExternalLink className="w-5 h-5 lg:w-6 lg:h-6 group-hover/btn:rotate-45 group-hover/btn:scale-110 transition-transform duration-500" />
+                        </div>
+                      </a>
+                    ) : (
+                      <div className="flex items-center gap-4 cursor-not-allowed opacity-50">
+                        <span className="text-xs uppercase tracking-widest text-[#7B7B7B]">
+                          Internal Project
+                        </span>
+                        <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-full border border-[#E5E5E5] bg-[#F8F8F8] flex items-center justify-center">
+                          <span className="w-2 h-2 rounded-full bg-[#E5E5E5]"></span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Subtle Expanding Image Preview Background on Hover (Desktop Only) */}
+                  {project.image && (
+                    <div className="absolute inset-y-4 right-4 w-1/3 rounded-xl overflow-hidden opacity-0 group-hover:opacity-10 scale-95 group-hover:scale-100 hidden lg:block transition-all duration-700 ease-out pointer-events-none z-0">
                       <Image
                         src={project.image}
                         alt={project.title}
                         fill
-                        priority={index === 0}
-                        sizes="(max-width: 1024px) 100vw, 100vw"
-                        className="object-cover opacity-10 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-in-out grayscale group-hover:grayscale-0"
+                        className="object-cover object-center grayscale"
                       />
-                    ) : (
-                      <div className="w-full h-full bg-[#FAFAFA]" />
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/80 to-white/10 group-hover:from-black/80 group-hover:via-black/40 group-hover:to-transparent transition-colors duration-700"></div>
-                  </div>
-
-                  {/* Foreground Content */}
-                  <div className="absolute inset-0 p-8 lg:p-12 flex flex-col justify-end z-10 transition-colors duration-500">
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-4">
-                        <span className="text-[10px] sm:text-xs font-medium uppercase tracking-widest text-[#222222] group-hover:text-white bg-white/50 group-hover:bg-black/30 backdrop-blur-sm px-3 py-1 rounded-full transition-all duration-500">
-                          {project.status}
-                        </span>
-                      </div>
-                      
-                      <h3 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-[#222222] group-hover:text-white transition-colors duration-500">
-                        {project.title}
-                      </h3>
-                      
-                      <p className="text-base sm:text-lg text-[#7B7B7B] group-hover:text-white/80 font-light max-w-xl leading-relaxed transition-colors duration-500">
-                        {project.summary} - {project.description}
-                      </p>
-                      
-                      <div className="flex flex-wrap gap-x-4 gap-y-2 pt-2">
-                        {project.stack.slice(0, 4).map((tech) => (
-                          <span key={tech} className="text-xs uppercase tracking-wider text-[#222222] group-hover:text-white/90 font-medium transition-colors duration-500">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-
-                      {project.projectURL && (
-                        <div className="pt-6 mt-4 border-t border-[#222222] group-hover:border-white/20 transition-colors duration-500 max-w-sm">
-                          <a
-                            href={project.projectURL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-xs font-medium tracking-widest uppercase text-[#222222] bg-white group-hover:bg-[#222222] group-hover:text-white px-6 py-3 rounded-full transition-all group-hover:hover:bg-white/90 group-hover:hover:text-[#222222] shadow-sm"
-                          >
-                            View Live Project <ExternalLink className="w-4 h-4" />
-                          </a>
-                        </div>
-                      )}
+                      <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#F8F8F8]/50 to-[#F8F8F8]"></div>
                     </div>
-                  </div>
-                </motion.div>
-              );
-            })}
+                  )}
+
+                </div>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </div>

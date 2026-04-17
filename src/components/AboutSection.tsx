@@ -43,91 +43,92 @@ export function AboutSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="space-y-20 lg:space-y-32"
+          className="space-y-16 lg:space-y-24"
         >
-          {/* Main About Block */}
-          <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-12 lg:gap-24 relative">
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-light tracking-tight md:w-1/3">
+          {/* Main About Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between pb-12 lg:pb-16 gap-6 lg:gap-8 border-b border-[#E5E5E5]">
+            <h2 className="text-4xl md:text-5xl lg:text-7xl font-light tracking-tight">
               About
             </h2>
-            <div className="md:w-2/3">
-              <p className="text-lg sm:text-xl md:text-3xl text-[#7B7B7B] font-light leading-relaxed max-w-3xl">
-                I&apos;m a developer from Uganda focused on building web applications and AI-powered systems.
-                I enjoy working across the stack, from designing interfaces to building backend infrastructure.
-              </p>
-            </div>
+            <p className="text-base sm:text-lg md:text-xl text-[#7B7B7B] font-light max-w-lg md:text-right pb-2 leading-relaxed">
+              I'm a developer from Uganda focused on building elegant web applications and intelligent AI-powered systems.
+            </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-20 lg:gap-32">
-            {/* Skills */}
-            <div className="space-y-12">
-              <h3 className="text-sm font-medium text-[#222222] uppercase tracking-widest border-b border-[#E5E5E5] pb-4">
-                Skills & Technologies
+          <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 pt-4">
+            
+            {/* Experience list */}
+            <div className="lg:col-span-7 space-y-12">
+              <h3 className="text-xs font-medium text-[#7B7B7B] uppercase tracking-widest mb-8">
+                Experience & Education
               </h3>
-              <div className="grid grid-cols-2 gap-y-10 gap-x-8">
-                {skills.map((group) => (
-                  <div key={group.category}>
-                    <p className="text-sm text-[#222222] uppercase tracking-wider mb-6 font-medium">
-                      {group.category}
-                    </p>
-                    <ul className="space-y-3">
-                      {group.items.map((skill) => (
-                        <li
-                          key={skill}
-                          className="text-base text-[#7B7B7B] font-light"
-                        >
-                          {skill}
-                        </li>
-                      ))}
-                    </ul>
+              <div className="flex flex-col">
+                {experience.map((item, index) => (
+                  <div 
+                    key={item.title} 
+                    className={`group flex flex-col md:flex-row md:items-start justify-between py-8 md:py-10 border-[#E5E5E5] gap-4 transition-all duration-300 ${index !== 0 ? 'border-t' : ''}`}
+                  >
+                    <div className="flex flex-col gap-2 flex-1">
+                      <p className="text-2xl md:text-3xl font-light text-[#222222] group-hover:translate-x-2 transition-transform duration-500">
+                        {item.title}
+                      </p>
+                      <p className="text-base text-[#7B7B7B] font-light">
+                        {item.company}
+                      </p>
+                    </div>
+                    <div className="mt-2 md:mt-1">
+                      <span className="inline-block px-3 py-1 bg-[#F8F8F8] border border-[#E5E5E5] rounded-full text-[10px] sm:text-xs font-medium tracking-widest text-[#222222] uppercase">
+                        {item.period}
+                      </span>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Experience & Education */}
-            <div className="space-y-16">
-              <div className="space-y-12">
-                <h3 className="text-sm font-medium text-[#222222] uppercase tracking-widest border-b border-[#E5E5E5] pb-4">
-                  Experience & Education
-                </h3>
-                <div className="space-y-10">
-                  {experience.map((item) => (
-                    <div key={item.title} className="group flex flex-col gap-2">
-                      <p className="text-sm text-[#7B7B7B] tracking-wide uppercase font-medium">
-                        {item.period}
-                      </p>
-                      <p className="text-2xl lg:text-3xl font-light text-[#222222]">
-                        {item.title}
-                      </p>
-                      <p className="text-lg text-[#7B7B7B] font-light">
-                        {item.company}
-                      </p>
+            {/* Skills block */}
+            <div className="lg:col-span-5 space-y-12">
+              <h3 className="text-xs font-medium text-[#7B7B7B] uppercase tracking-widest mb-8 border-b border-[#E5E5E5] pb-8">
+                Capabilities
+              </h3>
+              <div className="flex flex-col gap-12">
+                {skills.map((group) => (
+                  <div key={group.category} className="group">
+                    <p className="text-sm text-[#222222] uppercase tracking-widest mb-6 font-medium">
+                      {group.category}
+                    </p>
+                    <div className="flex flex-wrap gap-3">
+                      {group.items.map((skill) => (
+                        <span
+                          key={skill}
+                          className="px-4 py-2 bg-white border border-[#E5E5E5] rounded-full text-sm text-[#7B7B7B] font-light group-hover:border-[#222222] group-hover:text-[#222222] transition-colors duration-300"
+                        >
+                          {skill}
+                        </span>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
 
-              {/* Achievements */}
-              <div className="space-y-12 pt-8 border-t border-[#E5E5E5]">
-                <h3 className="text-sm font-medium text-[#222222] uppercase tracking-widest border-b border-[#E5E5E5] pb-4">
-                  Achievements
+              {/* Mini Achievements section */}
+              <div className="pt-12 mt-12 border-t border-[#E5E5E5]">
+                <h3 className="text-xs font-medium text-[#7B7B7B] uppercase tracking-widest mb-8">
+                  Recognition
                 </h3>
-                <div className="space-y-10">
+                <div className="flex flex-col gap-6">
                   {achievements.map((item) => (
-                    <div key={item.title} className="group flex flex-col gap-2">
-                      <p className="text-2xl lg:text-3xl font-light text-[#222222]">
-                        {item.title}
-                      </p>
-                      <p className="text-lg text-[#7B7B7B] font-light">
+                    <div key={item.title} className="group">
+                      <p className="text-xl font-light text-[#222222] mb-2">{item.title}</p>
+                      <p className="text-sm text-[#7B7B7B] font-light leading-relaxed">
                         {item.desc}{" "}
                         <a 
                           href="https://www.must.ac.ug/must-students-sweep-top-spots-at-the-national-industry-4-0-hackathon/"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-[#222222] hover:text-[#7B7B7B] border-b border-[#222222] hover:border-[#7B7B7B] transition-colors ml-1"
+                          className="inline-flex items-center gap-1 text-[#222222] hover:text-[#7B7B7B] transition-colors mt-2"
                         >
-                          Read the Official News <span className="text-xs">↗</span>
+                          <span className="border-b border-[#222222] group-hover:border-[#7B7B7B] pb-0.5">Read passing</span> <span className="text-xs">↗</span>
                         </a>
                       </p>
                     </div>
@@ -135,6 +136,7 @@ export function AboutSection() {
                 </div>
               </div>
             </div>
+
           </div>
         </motion.div>
       </div>
