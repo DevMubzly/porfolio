@@ -17,15 +17,6 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "Telegram SME AI Assistant",
-    summary: "AI-powered Telegram assistant for small businesses",
-    description: "SaaS product integrating with Telegram for inventory management, invoicing, and analytics.",
-    stack: ["Express.js", "TypeScript", "Supabase", "OpenAI"],
-    status: "Deployed",
-    image: "/telegram bot.png",
-    projectURL: "https://t.me/taviflow_bot",
-  },
-  {
     title: "Metro Fried Chicken App",
     summary: "Cross-platform mobile ordering app",
     description: "React Native app for food ordering with menu browsing, cart, and order tracking.",
