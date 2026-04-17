@@ -41,14 +41,14 @@ export function HeroSection() {
               </motion.div>
             </span>
             <br className="hidden sm:block" />
-            Bal<motion.span 
+            <span className="inline-block whitespace-nowrap">Bal<motion.span 
               whileHover={{ y: -15, rotate: 12, color: "#a5a5a5" }} 
               className="inline-block cursor-default transition-colors duration-300"
             >i</motion.span>nda<motion.span 
               whileHover={{ y: [0, -20, 0] }}
               transition={{ repeat: Infinity, duration: 0.6, ease: "easeOut" }}
               className="inline-block cursor-default transition-colors duration-300 hover:text-[#a5a5a5]"
-            >.</motion.span>
+            >.</motion.span></span>
           </h1>
 
           {/* Subtext */}
