@@ -28,7 +28,7 @@ export function HeroSection() {
               <motion.div 
                 whileHover={{ rotate: [-6, 6, -6] }}
                 transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                className="relative w-[50px] h-[50px] sm:w-[70px] sm:h-[70px] md:w-[90px] md:h-[90px] lg:w-[120px] lg:h-[120px] rounded-full overflow-hidden border border-[#E5E5E5] shadow-sm bg-white -rotate-6 cursor-pointer"
+                className="relative w-[50px] h-[50px] sm:w-[70px] sm:h-[70px] md:w-[90px] md:h-[90px] lg:w-[120px] lg:h-[120px] rounded-full overflow-hidden border border-[#E5E5E5] shadow-sm bg-gradient-to-br from-[#E5E5E5] text-transparent via-white to-[#F8F8F8] -rotate-6 cursor-pointer"
               >
                 <Image
                   src="/profile.png"
