@@ -74,7 +74,7 @@ export function ProjectsSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <div className="group relative flex flex-col lg:flex-row justify-between lg:items-center py-12 lg:py-16 border-b border-[#E5E5E5] gap-8 transition-colors duration-500 hover:bg-white rounded-2xl md:-mx-6 lg:-mx-10 hover:px-6 lg:hover:px-10">
+                <div className="group relative flex flex-col lg:flex-row justify-between lg:items-center py-12 lg:py-16 px-4 md:px-6 lg:px-10 border-b border-[#E5E5E5] gap-8 transition-all duration-500 hover:bg-white hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl md:-mx-6 lg:-mx-10">
                   {/* Left Column: Details */}
                   <div className="flex flex-col flex-1 max-w-3xl space-y-6 z-10">
                     <div className="flex flex-wrap items-center gap-3">
