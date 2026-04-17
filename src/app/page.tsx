@@ -1,142 +1,34 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
-import { FloatingBar, Tab } from "@/components/FloatingBar";
-import { InfoSection } from "@/components/InfoSection";
+
+import { motion } from "motion/react";
+import { Header } from "@/components/Header";
+import { HeroSection } from "@/components/HeroSection";
+import { AboutSection } from "@/components/AboutSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { ArticlesSection } from "@/components/ArticlesSection";
-import { motion } from "motion/react";
-import { Github, Twitter, Mail } from "lucide-react";
+import { ContactSection } from "@/components/ContactSection";
+import { Footer } from "@/components/Footer";
 
 export default function Home() {
-  const [active, setActive] = useState<Tab>("profile");
-
-  const scrollToTab = useCallback((tab: Tab) => {
-    setActive(tab);
-    const targetId = tab === "profile" ? "profile" : tab === "projects" ? "projects" : "articles";
-    const el = document.getElementById(targetId);
-    if (el) {
-      el.scrollIntoView({ behavior: "auto", block: "start" });
-    }
-  }, []);
-
-  useEffect(() => {
-    const sections: { tab: Tab; el: HTMLElement | null }[] = [
-      { tab: "profile", el: document.getElementById("profile") },
-      { tab: "projects", el: document.getElementById("projects") },
-      { tab: "articles", el: document.getElementById("articles") },
-    ];
-    const elementToTab = new Map<Element, Tab>();
-    const observer = new IntersectionObserver(
-      (entries) => {
-        let maxEntry: IntersectionObserverEntry | null = null;
-        for (const entry of entries) {
-          if (!maxEntry || entry.intersectionRatio > maxEntry.intersectionRatio) {
-            maxEntry = entry;
-          }
-        }
-        if (maxEntry && maxEntry.isIntersecting) {
-          const tab = elementToTab.get(maxEntry.target);
-          if (tab) {
-            setActive(tab);
-          }
-        }
-      },
-      { threshold: 0.4 }
-    );
-    sections.forEach(({ tab, el }) => {
-      if (el) {
-        elementToTab.set(el, tab);
-        observer.observe(el);
-      }
-    });
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <main className="relative h-dvh overflow-y-auto scroll-smooth">
-      <FloatingBar active={active} onChange={scrollToTab} />
-      <div className="fixed top-4 right-4 sm:right-6 lg:right-10 z-40 pointer-events-none">
-        <nav
-          aria-label="Social links"
-          className="pointer-events-auto flex items-center gap-1.5 sm:gap-2 rounded-full bg-white/80 backdrop-blur-md border border-black/5 px-2 py-1 shadow-sm"
-        >
-          <a
-            href="https://github.com/DevMubzly"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            className="p-1 rounded-full text-neutral-700 hover:text-black hover:bg-neutral-100 transition-colors focus-ring"
-          >
-            <Github className="w-3.5 h-3.5" />
-          </a>
-          <a
-            href="https://x.com/TtnlxMubz"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Twitter / X"
-            className="p-1 rounded-full text-neutral-700 hover:text-black hover:bg-neutral-100 transition-colors focus-ring"
-          >
-            <Twitter className="w-3.5 h-3.5" />
-          </a>
-          <a
-            href="https://mail.google.com/mail/?view=cm&to=bmubs15@gmail.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Email"
-            className="p-1 rounded-full text-neutral-700 hover:text-black hover:bg-neutral-100 transition-colors focus-ring"
-          >
-            <Mail className="w-3.5 h-3.5" />
-          </a>
-        </nav>
-        <motion.svg
-          viewBox="0 0 160 80"
-          className="hidden lg:block absolute -left-20 top-10 h-12 w-32 text-neutral-500 pointer-events-none"
-          initial={{ opacity: 0, pathLength: 0 }}
-          animate={{ opacity: 1, pathLength: 1 }}
-          transition={{ duration: 1.2, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          aria-hidden="true"
-        >
-          <motion.path
-            d="M10 56 C 30 36, 45 32, 64 32 S 104 24, 120 8"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-            strokeLinejoin="round" />
-          <motion.path
-            d="M114 11 L 120 8 L 117 14"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-            strokeLinejoin="round" />
-        </motion.svg>
+    <div className="min-h-screen bg-[#F8F8F8]">
+      <Header />
+
+      <motion.main
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <HeroSection />
+        <AboutSection />
+        <ProjectsSection />
+        <ArticlesSection />
+        <ContactSection />
+      </motion.main>
+
+      <div className="relative z-50">
+        <Footer />
       </div>
-    {/* </div> */}
-    <motion.div
-      key="sections"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-    >
-        <div id="profile" className="snap-start">
-          <InfoSection />
-        </div>
-        <div id="projects" className="snap-start">
-          <ProjectsSection />
-        </div>
-        <div id="articles" className="snap-start">
-          <ArticlesSection />
-        </div>
-        <footer className="max-w-4xl mx-auto px-4 pb-4 text-[10px] text-neutral-500 flex flex-col sm:flex-row gap-3 sm:items-center justify-between">
-          <div>&copy; {new Date().getFullYear()} Balinda Mubarak</div>
-          <div className="flex gap-4 font-medium text-[10px]">
-            <a href="https://github.com/DevMubzly" className="hover:underline">GitHub</a>
-            <a href="https://www.X.com/TtnlxMubz/" className="hover:underline">Twitter</a>
-            <a href="https://mail.google.com/mail/?view=cm&to=bmubs15@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:underline">Email</a>
-          </div>
-        </footer>
-      </motion.div>
-    </main>
+    </div>
   );
 }

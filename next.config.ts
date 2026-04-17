@@ -1,9 +1,9 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
   async redirects() {
     return [
-      // Ensure old link path also works
       { source: "/CV.pdf", destination: "/myCV.pdf", permanent: false },
     ];
   },

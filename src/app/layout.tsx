@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,27 +14,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dev Mubzly's - Portfolio",
-  description: "Balinda Mubarak | Web Developer & AI Integrations Engineer",
+  title: "Balinda Mubarak - Developer",
+  description: "Full-Stack Developer & AI Integration Engineer",
   metadataBase: new URL("https://bmubarak.tech"),
   openGraph: {
-    title: "Dev Mubzly",
-    description: "Web Developer & AI Integrations Engineer",
+    title: "Balinda Mubarak",
+    description: "Full-Stack Developer & AI Integration Engineer",
     type: "website",
-    url: "https://example.com",
+    url: "https://bmubarak.tech",
   },
   icons: { icon: "/favicon.ico" },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <head />
-  <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-dvh selection:bg-black selection:text-white flex flex-col`}>        
+    <html lang="en" data-scroll-behavior="smooth">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#F8F8F8] text-[#222222]`}>
         {children}
         <SpeedInsights />
       </body>
