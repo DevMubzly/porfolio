@@ -45,21 +45,34 @@ export function HeroSection() {
             An AI & software engineer crafting minimal, resilient systems.
           </p>
 
-          {/* Stats Floating Pill Row at Bottom */}
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-12 lg:gap-16 mt-16 sm:mt-24 border border-[#E5E5E5] bg-white rounded-full px-8 sm:px-12 py-4 shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
-            <div className="flex items-center gap-3">
-              <span className="text-2xl sm:text-3xl font-light text-[#222222]">3+</span>
-              <span className="text-[9px] sm:text-[10px] text-[#7B7B7B] uppercase tracking-widest text-left leading-tight">Years<br/>Experience</span>
+          {/* Stats */}
+          <div className="flex flex-wrap justify-center gap-12 sm:gap-24 mt-16 sm:mt-24">
+            <div className="text-center">
+              <div className="text-3xl lg:text-4xl font-light mb-1 text-[#222222]">3+</div>
+              <div className="text-[10px] sm:text-[11px] text-[#7B7B7B] uppercase tracking-wider whitespace-pre-line">
+                Years{"\n"}Experience
+              </div>
             </div>
-            <div className="w-[1px] h-6 bg-[#E5E5E5]"></div>
-            <div className="flex items-center gap-3">
-              <span className="text-2xl sm:text-3xl font-light text-[#222222]">20+</span>
-              <span className="text-[9px] sm:text-[10px] text-[#7B7B7B] uppercase tracking-widest text-left leading-tight">Projects<br/>Built</span>
+            <div className="text-center">
+              <div className="text-3xl lg:text-4xl font-light mb-1 text-[#222222]">20+</div>
+              <div className="text-[10px] sm:text-[11px] text-[#7B7B7B] uppercase tracking-wider whitespace-pre-line">
+                Projects{"\n"}Built
+              </div>
             </div>
-            <div className="hidden sm:block w-[1px] h-6 bg-[#E5E5E5]"></div>
-            <div className="hidden sm:flex items-center gap-3">
-              <span className="text-[10px] text-[#222222] uppercase tracking-widest font-medium">Scroll down</span>
-              <div className="w-8 h-[1px] bg-[#222222]"></div>
+          </div>
+
+          {/* Scroll Down */}
+          <div className="mt-12 sm:mt-16 flex flex-col items-center gap-4 hidden lg:flex">
+            <span className="text-[10px] uppercase tracking-widest font-medium text-[#7B7B7B]">
+              Scroll down
+            </span>
+            <div className="w-[1px] h-16 bg-[#E5E5E5] relative overflow-hidden">
+              <motion.div 
+                initial={{ y: "-100%" }}
+                animate={{ y: "100%" }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+                className="absolute top-0 w-full h-1/2 bg-[#222222]" 
+              />
             </div>
           </div>
         </motion.div>
