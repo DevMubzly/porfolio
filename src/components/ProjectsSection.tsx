@@ -1,9 +1,8 @@
 "use client";
 
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import Image from "next/image";
-import { useState, useEffect } from "react";
-import { X, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 interface Project {
   title: string;
@@ -47,26 +46,8 @@ const projects: Project[] = [
 ];
 
 export function ProjectsSection() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-  // Auto close modal on scroll
-  useEffect(() => {
-    if (!selectedProject) return;
-    
-    const initialScrollY = window.scrollY;
-    const handleScroll = () => {
-      // If user scrolls more than 80px down or up, close the modal
-      if (Math.abs(window.scrollY - initialScrollY) > 80) {
-        setSelectedProject(null);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [selectedProject]);
-
   return (
-    <section id="projects" className={`relative py-24 lg:py-32 px-6 lg:px-24 bg-[#F8F8F8] text-[#222222] rounded-t-[3rem] lg:rounded-t-[4rem] shadow-[0_-4px_24px_rgba(0,0,0,0.03)] flex flex-col justify-center -mt-8 lg:-mt-12 transition-colors duration-300 ${selectedProject ? "z-[100]" : "z-[3]"}`}>
+    <section id="projects" className="relative py-24 lg:py-32 px-6 lg:px-24 bg-[#F8F8F8] text-[#222222] rounded-t-[3rem] lg:rounded-t-[4rem] shadow-[0_-4px_24px_rgba(0,0,0,0.03)] flex flex-col justify-center -mt-8 lg:-mt-12 transition-colors duration-300 z-[3]">
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -101,8 +82,7 @@ export function ProjectsSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className={`group relative overflow-hidden bg-white rounded-3xl cursor-pointer ${getSpan()} border border-[#E5E5E5] hover:border-[#222222] transition-colors duration-500`}
-                  onClick={() => setSelectedProject(project)}
+                  className={`group relative overflow-hidden bg-white rounded-3xl ${getSpan()} border border-[#E5E5E5] hover:border-[#222222] transition-colors duration-500 flex flex-col`}
                 >
                   {/* Background Image Area */}
                   <div className="absolute inset-0 w-full h-full">
@@ -145,6 +125,19 @@ export function ProjectsSection() {
                           </span>
                         ))}
                       </div>
+
+                      {project.projectURL && (
+                        <div className="pt-6 mt-4 border-t border-[#222222] group-hover:border-white/20 transition-colors duration-500 max-w-sm">
+                          <a
+                            href={project.projectURL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-xs font-medium tracking-widest uppercase text-[#222222] bg-white group-hover:bg-[#222222] group-hover:text-white border border-[#222222] group-hover:border-white px-6 py-3 rounded-full transition-all group-hover:hover:bg-white group-hover:hover:text-[#222222] shadow-sm"
+                          >
+                            View Live Project <ExternalLink className="w-4 h-4" />
+                          </a>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </motion.div>
@@ -153,92 +146,6 @@ export function ProjectsSection() {
           </div>
         </motion.div>
       </div>
-
-      <AnimatePresence>
-        {selectedProject && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-black/60 backdrop-blur-md overflow-y-auto"
-            onClick={() => setSelectedProject(null)}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="relative w-full max-w-7xl min-h-[75vh] lg:min-h-[85vh] bg-[#F8F8F8] rounded-[2rem] shadow-2xl overflow-hidden my-auto flex flex-col lg:flex-row"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="absolute top-6 right-6 z-20 p-3 text-[#222222] hover:text-white bg-white hover:bg-[#222222] transition-all rounded-full shadow-lg"
-              >
-                <X className="w-6 h-6" />
-              </button>
-
-              {/* Image Section */}
-              <div className="w-full lg:w-[55%] h-[300px] lg:h-auto relative bg-[#E5E5E5] hidden sm:block group">
-                {selectedProject.image ? (
-                  <>
-                    <Image
-                      src={selectedProject.image}
-                      alt={selectedProject.title}
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500" />
-                  </>
-                ) : (
-                  <div className="w-full h-full bg-[#FAFAFA] flex items-center justify-center">
-                    <span className="text-[#7B7B7B] tracking-widest uppercase text-xs font-medium">No preview available</span>
-                  </div>
-                )}
-              </div>
-
-              {/* Content Section */}
-              <div className="w-full lg:w-[45%] p-8 md:p-12 lg:p-16 space-y-8 lg:space-y-12 flex flex-col justify-center bg-white relative">
-                <div className="space-y-6">
-                  <div className="flex items-center gap-3">
-                    <h3 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-[#222222]">{selectedProject.title}</h3>
-                  </div>
-                  {selectedProject.status && (
-                    <span className="inline-block text-[10px] md:text-xs font-medium text-[#7B7B7B] border border-[#E5E5E5] px-4 py-2 rounded-full uppercase tracking-widest">
-                      {selectedProject.status}
-                    </span>
-                  )}
-                </div>
-
-                <p className="text-lg md:text-xl lg:text-2xl text-[#7B7B7B] font-light leading-relaxed max-w-xl">
-                  {selectedProject.longDescription || selectedProject.description}
-                </p>
-
-                <div className="flex flex-wrap gap-3 pt-8 border-t border-[#E5E5E5]">
-                  {selectedProject.stack.map((tech) => (
-                    <span key={tech} className="px-4 py-2 text-[10px] sm:text-xs font-medium bg-[#F8F8F8] text-[#222222] tracking-widest uppercase rounded-full">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                {selectedProject.projectURL && (
-                  <div className="pt-8 lg:pt-12">
-                    <a
-                      href={selectedProject.projectURL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-3 text-xs md:text-sm text-white bg-[#222222] px-8 py-4 rounded-full hover:bg-[#7B7B7B] transition-all hover:scale-[1.02] tracking-widest uppercase font-medium shadow-md"
-                    >
-                      View Live Project <ExternalLink className="w-4 h-4 md:w-5 md:h-5" />
-                    </a>
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }
