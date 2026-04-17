@@ -51,7 +51,7 @@ export function AboutSection() {
               About Me
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-[#7B7B7B] font-light max-w-lg md:text-right pb-2 leading-relaxed">
-              I'm a developer from Uganda focused on building elegant web applications and intelligent AI-powered systems.
+              I&apos;m a developer from Uganda focused on building elegant web applications and intelligent AI-powered systems.
             </p>
           </div>
 

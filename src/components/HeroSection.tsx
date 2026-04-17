@@ -23,7 +23,7 @@ export function HeroSection() {
         >
           {/* Main Heading with Inline Circular Image */}
           <h1 className="text-[3.5rem] sm:text-[5rem] md:text-[6.5rem] lg:text-[8rem] xl:text-[9rem] leading-[1.1] font-light tracking-tight mb-8">
-            H<motion.span whileHover={{ y: -15, rotate: -12, color: "#a5a5a5" }} className="inline-block cursor-default transition-colors duration-300">e</motion.span>llo, I'<motion.span whileHover={{ y: -15, rotate: 12, color: "#a5a5a5" }} className="inline-block cursor-default transition-colors duration-300">m</motion.span>{" "}
+            H<motion.span whileHover={{ y: -15, rotate: -12, color: "#a5a5a5" }} className="inline-block cursor-default transition-colors duration-300">e</motion.span>llo, I&apos;<motion.span whileHover={{ y: -15, rotate: 12, color: "#a5a5a5" }} className="inline-block cursor-default transition-colors duration-300">m</motion.span>{" "}
             <span className="inline-flex items-center justify-center align-middle mx-1 sm:mx-4 -translate-y-2 lg:-translate-y-4">
               <motion.div 
                 whileHover={{ rotate: [-6, 6, -6] }}
