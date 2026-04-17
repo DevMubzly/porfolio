@@ -70,7 +70,7 @@ export function HeroSection() {
             transition={{ duration: 1, delay: 0.2 }}
             className="w-full lg:w-1/2 relative lg:translate-x-12 z-10 pointer-events-none flex justify-center lg:justify-end pb-12 lg:pb-0"
           >
-            <div className="relative w-[300px] h-[400px] sm:w-[420px] sm:h-[520px] lg:w-[550px] lg:h-[700px] mx-auto lg:ml-auto select-none mt-4 lg:mt-0">
+            <div className="relative w-[280px] h-[360px] sm:w-[360px] sm:h-[440px] lg:w-[460px] lg:h-[560px] mx-auto lg:ml-auto select-none mt-8 md:mt-4 lg:mt-0">
               {/* Decorative Offset Frame */}
               <div className="absolute inset-0 rounded-[2rem] lg:rounded-[3rem] border border-[#222222]/30 translate-x-3 translate-y-3 lg:translate-x-5 lg:translate-y-5"></div>
               
@@ -80,7 +80,7 @@ export function HeroSection() {
                   src="/profile.png"
                   alt="Balinda Mubarak"
                   fill
-                  sizes="(max-width: 640px) 300px, (max-width: 768px) 420px, 550px"
+                  sizes="(max-width: 640px) 280px, (max-width: 768px) 360px, 460px"
                   className="object-contain object-bottom"
                   priority
                 />
