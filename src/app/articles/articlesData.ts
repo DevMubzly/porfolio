@@ -71,9 +71,11 @@ export const articles: ArticleMeta[] = [
   },
   {
     slug: "llm-systems-that-dont-feel-stitched-on",
-    title: "LLM Systems That Don\'t Feel Stitched On",
+    title: "LLM Systems That Don't Feel Stitched On",
     tag: "AI engineering",
     year: "2025",
+    date: "Feb 10, 2025",
+    readTime: "7 min read",
     description:
       "Principles I follow to integrate LLMs into products so they feel native, reliable, and worth keeping.",
   },
@@ -82,6 +84,8 @@ export const articles: ArticleMeta[] = [
     title: "Designing Resilient Frontends for Fast Backends",
     tag: "Frontend craft",
     year: "2024",
+    date: "Sep 28, 2024",
+    readTime: "6 min read",
     description:
       "Thinking in states, not screens: skeletons, optimistic updates, and failure UIs that still feel calm.",
   },
@@ -90,6 +94,8 @@ export const articles: ArticleMeta[] = [
     title: "Shipping Student Projects Like Production Systems",
     tag: "Career journal",
     year: "2024",
+    date: "Apr 15, 2024",
+    readTime: "4 min read",
     description:
       "How treating university and freelance work like real client projects changed my engineering mindset.",
   },
