@@ -11,7 +11,7 @@ export function HeroSection() {
         Balinda Mubarak
       </div>
       <div className="absolute right-8 lg:right-16 top-1/2 -translate-y-1/2 rotate-90 origin-right text-[#7B7B7B] text-xs tracking-widest uppercase hidden lg:block border-b border-[#E5E5E5] pb-4">
-        {new Date().getFullYear()} Edition
+        Full-Stack Developer
       </div>
 
       <div className="max-w-7xl mx-auto w-full px-6 lg:px-24 flex-1 flex flex-col justify-center relative z-10 py-12 lg:py-0">
@@ -25,7 +25,11 @@ export function HeroSection() {
           <h1 className="text-[3.5rem] sm:text-[5rem] md:text-[6.5rem] lg:text-[8rem] xl:text-[9rem] leading-[1.1] font-light tracking-tight mb-8">
             Hello, I'm{" "}
             <span className="inline-flex items-center justify-center align-middle mx-1 sm:mx-4">
-              <div className="relative w-[50px] h-[50px] sm:w-[70px] sm:h-[70px] md:w-[90px] md:h-[90px] lg:w-[120px] lg:h-[120px] rounded-full overflow-hidden border border-[#E5E5E5] shadow-sm bg-white -rotate-6 hover:rotate-0 transition-transform duration-500 will-change-transform">
+              <motion.div 
+                whileHover={{ rotate: [-6, -15, 10, -10, 5, 0] }}
+                transition={{ duration: 0.4 }}
+                className="relative w-[50px] h-[50px] sm:w-[70px] sm:h-[70px] md:w-[90px] md:h-[90px] lg:w-[120px] lg:h-[120px] rounded-full overflow-hidden border border-[#E5E5E5] shadow-sm bg-white -rotate-6 cursor-pointer"
+              >
                 <Image
                   src="/profile.png"
                   alt="Balinda Mubarak"
@@ -34,10 +38,13 @@ export function HeroSection() {
                   className="object-cover object-top scale-110"
                   priority
                 />
-              </div>
+              </motion.div>
             </span>
             <br className="hidden sm:block" />
-            Balinda.
+            Bal<motion.span 
+              whileHover={{ y: -15, rotate: 12, color: "#a5a5a5" }} 
+              className="inline-block cursor-default transition-colors duration-300"
+            >i</motion.span>nda.
           </h1>
 
           {/* Subtext */}
