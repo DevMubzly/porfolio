@@ -62,7 +62,7 @@ export function AboutSection() {
               
               {/* Experience */}
               <div className="space-y-12">
-                <h3 className="text-xs font-medium text-[#7B7B7B] uppercase tracking-widest">
+                <h3 className="text-xs font-medium text-[#7B7B7B] uppercase tracking-widest border-b border-[#E5E5E5] pb-4">
                   Experience & Education
                 </h3>
                 <div className="flex flex-col gap-12">
@@ -90,11 +90,11 @@ export function AboutSection() {
               </div>
 
               {/* Achievements */}
-              <div className="space-y-12">
-                <h3 className="text-xs font-medium text-[#7B7B7B] uppercase tracking-widest">
+              <div className="space-y-12 pt-12 border-t border-[#E5E5E5]">
+                <h3 className="text-xs font-medium text-[#7B7B7B] uppercase tracking-widest border-b border-[#E5E5E5] pb-4">
                   Recognition
                 </h3>
-                <div className="flex flex-col gap-12">
+                <div className="flex flex-col gap-12">">
                   {achievements.map((item) => (
                     <div key={item.title} className="group">
                       <p className="text-2xl md:text-3xl font-light text-[#222222] mb-3 group-hover:translate-x-2 transition-transform duration-500">
@@ -120,7 +120,7 @@ export function AboutSection() {
 
             {/* Skills (Right Side) */}
             <div className="lg:col-span-5 space-y-12">
-              <h3 className="text-xs font-medium text-[#7B7B7B] uppercase tracking-widest">
+              <h3 className="text-xs font-medium text-[#7B7B7B] uppercase tracking-widest border-b border-[#E5E5E5] pb-4">
                 Capabilities
               </h3>
               <div className="flex flex-col gap-14">
