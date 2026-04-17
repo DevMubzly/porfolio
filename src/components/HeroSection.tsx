@@ -70,15 +70,17 @@ export function HeroSection() {
             transition={{ duration: 1, delay: 0.2 }}
             className="w-full lg:w-1/2 relative lg:translate-x-12 z-10 pointer-events-none flex justify-center lg:justify-end pb-12 lg:pb-0"
           >
-            <div className="relative w-[340px] h-[400px] sm:w-[480px] sm:h-[550px] lg:w-[700px] lg:h-[800px] mx-auto lg:ml-auto select-none opacity-90 lg:opacity-100">
-              <Image
-                src="/profile.png"
-                alt="Balinda Mubarak"
-                fill
-                sizes="(max-width: 640px) 340px, (max-width: 768px) 480px, 700px"
-                className="object-contain object-bottom lg:object-center"
-                priority
-              />
+            <div className="relative w-[320px] h-[420px] sm:w-[450px] sm:h-[550px] lg:w-[600px] lg:h-[750px] mx-auto lg:ml-auto select-none bg-white p-4 sm:p-6 lg:p-8 rounded-[2rem] lg:rounded-[3rem] border border-[#E5E5E5] shadow-sm">
+              <div className="relative w-full h-full bg-[#FAFAFA] rounded-[1rem] lg:rounded-[1.5rem] border border-[#E5E5E5] overflow-hidden">
+                <Image
+                  src="/profile.png"
+                  alt="Balinda Mubarak"
+                  fill
+                  sizes="(max-width: 640px) 320px, (max-width: 768px) 450px, 600px"
+                  className="object-contain object-bottom"
+                  priority
+                />
+              </div>
             </div>
           </motion.div>
 
