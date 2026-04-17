@@ -64,7 +64,7 @@ export function Header() {
           <div className="w-6 h-6 border-[1.5px] border-[#222222] rounded flex items-center justify-center rotate-45 group-hover:bg-[#222222] transition-colors duration-300">
             <span className="w-2 h-2 bg-[#222222] rounded-full group-hover:bg-[#F8F8F8] transition-colors duration-300"></span>
           </div>
-          <span className="text-sm font-medium tracking-wide sr-only md:not-sr-only">
+          <span className="text-6xl tracking-wide sr-only md:not-sr-only font-[family-name:var(--font-brooklyn)] pt-1">
             Balinda Mubarak
           </span>
         </button>
@@ -128,7 +128,7 @@ export function Header() {
               <div className="w-6 h-6 border-[1.5px] border-[#222222] rounded flex items-center justify-center rotate-45 group-hover:bg-[#222222] transition-colors duration-300">
                 <span className="w-2 h-2 bg-[#222222] rounded-full group-hover:bg-white transition-colors duration-300"></span>
               </div>
-              <span className="text-sm font-medium tracking-wide">
+              <span className="text-xl tracking-wide font-[family-name:var(--font-brooklyn)] pt-1">
                 Balinda Mubarak
               </span>
             </button>
