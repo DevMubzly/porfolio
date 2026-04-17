@@ -23,11 +23,11 @@ export function HeroSection() {
         >
           {/* Main Heading with Inline Circular Image */}
           <h1 className="text-[3.5rem] sm:text-[5rem] md:text-[6.5rem] lg:text-[8rem] xl:text-[9rem] leading-[1.1] font-light tracking-tight mb-8">
-            Hello, I'm{" "}
-            <span className="inline-flex items-center justify-center align-middle mx-1 sm:mx-4">
+            H<motion.span whileHover={{ y: -15, rotate: -12, color: "#a5a5a5" }} className="inline-block cursor-default transition-colors duration-300">e</motion.span>llo, I'<motion.span whileHover={{ y: -15, rotate: 12, color: "#a5a5a5" }} className="inline-block cursor-default transition-colors duration-300">m</motion.span>{" "}
+            <span className="inline-flex items-center justify-center align-middle mx-1 sm:mx-4 -translate-y-2 lg:-translate-y-4">
               <motion.div 
-                whileHover={{ rotate: [-6, -15, 10, -10, 5, 0] }}
-                transition={{ duration: 0.4 }}
+                whileHover={{ rotate: [-6, 6, -6] }}
+                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
                 className="relative w-[50px] h-[50px] sm:w-[70px] sm:h-[70px] md:w-[90px] md:h-[90px] lg:w-[120px] lg:h-[120px] rounded-full overflow-hidden border border-[#E5E5E5] shadow-sm bg-white -rotate-6 cursor-pointer"
               >
                 <Image
@@ -44,7 +44,11 @@ export function HeroSection() {
             Bal<motion.span 
               whileHover={{ y: -15, rotate: 12, color: "#a5a5a5" }} 
               className="inline-block cursor-default transition-colors duration-300"
-            >i</motion.span>nda.
+            >i</motion.span>nda<motion.span 
+              whileHover={{ y: [0, -20, 0] }}
+              transition={{ repeat: Infinity, duration: 0.6, ease: "easeOut" }}
+              className="inline-block cursor-default transition-colors duration-300 hover:text-[#a5a5a5]"
+            >.</motion.span>
           </h1>
 
           {/* Subtext */}
