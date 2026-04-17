@@ -82,7 +82,7 @@ export function ProjectsSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className={`group relative overflow-hidden bg-white rounded-3xl ${getSpan()} border border-[#E5E5E5] hover:border-[#222222] transition-colors duration-500 flex flex-col`}
+                  className={`group relative overflow-hidden bg-white rounded-3xl ${getSpan()} border border-[#E5E5E5] transition-colors duration-500 flex flex-col`}
                 >
                   {/* Background Image Area */}
                   <div className="absolute inset-0 w-full h-full">
@@ -105,7 +105,7 @@ export function ProjectsSection() {
                   <div className="absolute inset-0 p-8 lg:p-12 flex flex-col justify-end z-10 transition-colors duration-500">
                     <div className="space-y-4">
                       <div className="flex items-center gap-4">
-                        <span className="text-[10px] sm:text-xs font-medium uppercase tracking-widest border border-[#222222] group-hover:border-white text-[#222222] group-hover:text-white bg-white/50 group-hover:bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full transition-all duration-500">
+                        <span className="text-[10px] sm:text-xs font-medium uppercase tracking-widest text-[#222222] group-hover:text-white bg-white/50 group-hover:bg-black/30 backdrop-blur-sm px-3 py-1 rounded-full transition-all duration-500">
                           {project.status}
                         </span>
                       </div>
@@ -132,7 +132,7 @@ export function ProjectsSection() {
                             href={project.projectURL}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-xs font-medium tracking-widest uppercase text-[#222222] bg-white group-hover:bg-[#222222] group-hover:text-white border border-[#222222] group-hover:border-white px-6 py-3 rounded-full transition-all group-hover:hover:bg-white group-hover:hover:text-[#222222] shadow-sm"
+                            className="inline-flex items-center gap-2 text-xs font-medium tracking-widest uppercase text-[#222222] bg-white group-hover:bg-[#222222] group-hover:text-white px-6 py-3 rounded-full transition-all group-hover:hover:bg-white/90 group-hover:hover:text-[#222222] shadow-sm"
                           >
                             View Live Project <ExternalLink className="w-4 h-4" />
                           </a>
