@@ -22,28 +22,28 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="w-full lg:w-1/2 flex flex-col justify-center pb-20 lg:pb-32 z-20"
+            className="w-full lg:w-1/2 flex flex-col justify-center pb-12 sm:pb-20 lg:pb-32 z-20 mt-10 md:mt-16 lg:mt-0"
           >
             {/* Stats */}
-            <div className="flex gap-12 mb-16">
+            <div className="flex flex-wrap gap-8 lg:gap-12 mb-12 sm:mb-16">
               <div>
                 <div className="text-3xl lg:text-4xl font-light mb-1">3+</div>
-                <div className="text-[11px] text-[#7B7B7B] uppercase tracking-wider">Years Experience</div>
+                <div className="text-[10px] sm:text-[11px] text-[#7B7B7B] uppercase tracking-wider">Years Experience</div>
               </div>
               <div>
                 <div className="text-3xl lg:text-4xl font-light mb-1">20+</div>
-                <div className="text-[11px] text-[#7B7B7B] uppercase tracking-wider">Projects Built</div>
+                <div className="text-[10px] sm:text-[11px] text-[#7B7B7B] uppercase tracking-wider">Projects Built</div>
               </div>
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-[6rem] sm:text-[8rem] lg:text-[10rem] leading-none font-light tracking-tight mb-6">
+            <h1 className="text-[5rem] sm:text-[7rem] md:text-[8rem] lg:text-[10rem] leading-none font-light tracking-tight mb-6">
               Hello.
             </h1>
 
             {/* Subtext */}
-            <div className="text-lg lg:text-xl text-[#222222] font-light flex items-center gap-4">
-              <span className="w-8 h-[1px] bg-[#222222]"></span>
+            <div className="text-base sm:text-lg lg:text-xl text-[#222222] font-light flex items-center gap-4">
+              <span className="w-6 sm:w-8 h-[1px] bg-[#222222]"></span>
               <p>I'm Balinda, an AI & software engineer.</p>
             </div>
 
@@ -68,14 +68,14 @@ export function HeroSection() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="w-full lg:w-1/2 absolute bottom-0 right-0 lg:relative lg:translate-x-12 z-10 pointer-events-none"
+            className="w-full lg:w-1/2 absolute bottom-0 right-0 lg:relative lg:translate-x-12 z-10 pointer-events-none flex justify-end items-end"
           >
-            <div className="relative w-[300px] h-[400px] sm:w-[400px] sm:h-[500px] lg:w-[600px] lg:h-[700px] mx-auto lg:ml-auto select-none mt-12 lg:mt-0">
+            <div className="relative w-[280px] h-[350px] sm:w-[400px] sm:h-[500px] lg:w-[600px] lg:h-[700px] mx-auto lg:ml-auto select-none mt-8 lg:mt-0 opacity-80 lg:opacity-100">
               <Image
                 src="/profile.png"
                 alt="Balinda Mubarak"
                 fill
-                sizes="(max-width: 768px) 300px, (max-width: 1024px) 400px, 600px"
+                sizes="(max-width: 640px) 280px, (max-width: 768px) 400px, 600px"
                 className="object-contain object-bottom"
                 priority
               />

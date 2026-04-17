@@ -43,15 +43,15 @@ export function AboutSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="space-y-32"
+          className="space-y-20 lg:space-y-32"
         >
           {/* Main About Block */}
-          <div className="flex flex-col md:flex-row md:items-start gap-12 md:gap-24 relative">
+          <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-12 lg:gap-24 relative">
             <h2 className="text-4xl md:text-5xl lg:text-7xl font-light tracking-tight md:w-1/3">
               About
             </h2>
             <div className="md:w-2/3">
-              <p className="text-xl md:text-3xl text-[#7B7B7B] font-light leading-relaxed max-w-3xl">
+              <p className="text-lg sm:text-xl md:text-3xl text-[#7B7B7B] font-light leading-relaxed max-w-3xl">
                 I&apos;m a developer from Uganda focused on building web applications and AI-powered systems.
                 I enjoy working across the stack, from designing interfaces to building backend infrastructure.
               </p>

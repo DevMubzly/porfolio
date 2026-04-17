@@ -14,13 +14,13 @@ export function ArticlesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="space-y-24"
+          className="space-y-16 lg:space-y-24"
         >
-          <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[#E5E5E5] pb-12 gap-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[#E5E5E5] pb-8 lg:pb-12 gap-6 lg:gap-8">
             <h2 className="text-4xl md:text-5xl lg:text-7xl font-light tracking-tight">
               Insights & Writing
             </h2>
-            <p className="text-lg md:text-xl text-[#7B7B7B] font-light max-w-sm text-right">
+            <p className="text-base sm:text-lg md:text-xl text-[#7B7B7B] font-light max-w-sm md:text-right">
               Thoughts on development, engineering, and artificial intelligence.
             </p>
           </div>
