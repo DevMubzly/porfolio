@@ -65,29 +65,20 @@ export function HeroSection() {
 
           {/* Right Image Area */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="w-full lg:w-1/2 relative lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:right-0 lg:translate-x-12 z-10 pointer-events-none flex justify-center lg:justify-end pb-12 lg:pb-0"
+            className="absolute top-0 right-0 lg:-top-16 lg:right-0 z-30 pointer-events-none flex justify-end"
           >
-            <div className="relative w-[200px] h-[260px] sm:w-[260px] sm:h-[320px] lg:w-[320px] lg:h-[400px] mx-auto lg:ml-auto select-none mt-12 md:mt-8 lg:mt-0">
-              {/* Decorative Offset Frame (Starts lower to let image protrude massively) */}
-              <div className="absolute inset-x-0 bottom-0 top-16 lg:top-24 rounded-[1.5rem] lg:rounded-[2rem] border border-[#222222]/30 translate-x-3 translate-y-3 lg:translate-x-5 lg:translate-y-5 z-0"></div>
-              
-              {/* Inner Frame Background */}
-              <div className="absolute inset-x-0 bottom-0 top-16 lg:top-24 bg-[#E5E5E5]/30 rounded-[1.5rem] lg:rounded-[2rem] backdrop-blur-sm border border-[#E5E5E5] z-[1]"></div>
-              
-              {/* Protruding Image */}
-              <div className="absolute inset-x-0 bottom-0 top-0 z-[2]">
-                <Image
-                  src="/profile.png"
-                  alt="Balinda Mubarak"
-                  fill
-                  sizes="(max-width: 640px) 200px, (max-width: 768px) 260px, 320px"
-                  className="object-contain object-bottom drop-shadow-xl scale-[1.8] lg:scale-[2.0] origin-bottom"
-                  priority
-                />
-              </div>
+            <div className="relative w-[100px] h-[100px] sm:w-[140px] sm:h-[140px] lg:w-[200px] lg:h-[200px] rounded-full overflow-hidden border-2 border-white shadow-md bg-[#E5E5E5]/20 pointer-events-auto">
+              <Image
+                src="/profile.png"
+                alt="Balinda Mubarak"
+                fill
+                sizes="(max-width: 640px) 100px, (max-width: 768px) 140px, 200px"
+                className="object-cover object-top"
+                priority
+              />
             </div>
           </motion.div>
 
