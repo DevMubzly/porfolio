@@ -15,7 +15,7 @@ export function HeroSection() {
       </div>
 
       <div className="max-w-7xl mx-auto w-full px-6 lg:px-24 flex-1 flex flex-col justify-center relative z-10">
-        <div className="flex flex-col lg:flex-row items-end justify-between w-full relative">
+        <div className="flex flex-col lg:flex-row items-center justify-between w-full relative">
           
           {/* Left Content Area */}
           <motion.div
@@ -68,15 +68,15 @@ export function HeroSection() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="w-full lg:w-1/2 relative lg:translate-x-12 z-10 pointer-events-none flex justify-center lg:justify-end items-end mt-auto pt-8 lg:pt-0"
+            className="w-full lg:w-1/2 relative lg:translate-x-12 z-10 pointer-events-none flex justify-center lg:justify-end items-center pt-8 lg:pt-0"
           >
-            <div className="relative w-[280px] h-[350px] sm:w-[400px] sm:h-[500px] lg:w-[600px] lg:h-[700px] mx-auto lg:ml-auto select-none opacity-90 lg:opacity-100">
+            <div className="relative w-[320px] h-[400px] sm:w-[450px] sm:h-[550px] lg:w-[700px] lg:h-[800px] mx-auto lg:ml-auto select-none opacity-90 lg:opacity-100">
               <Image
                 src="/profile.png"
                 alt="Balinda Mubarak"
                 fill
-                sizes="(max-width: 640px) 280px, (max-width: 768px) 400px, 600px"
-                className="object-contain object-bottom"
+                sizes="(max-width: 640px) 320px, (max-width: 768px) 450px, 700px"
+                className="object-contain object-center"
                 priority
               />
             </div>
