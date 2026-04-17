@@ -70,13 +70,17 @@ export function HeroSection() {
             transition={{ duration: 1, delay: 0.2 }}
             className="w-full lg:w-1/2 relative lg:translate-x-12 z-10 pointer-events-none flex justify-center lg:justify-end pb-12 lg:pb-0"
           >
-            <div className="relative w-[320px] h-[420px] sm:w-[450px] sm:h-[550px] lg:w-[600px] lg:h-[750px] mx-auto lg:ml-auto select-none bg-white p-4 sm:p-6 lg:p-8 rounded-[2rem] lg:rounded-[3rem] border border-[#E5E5E5] shadow-sm">
-              <div className="relative w-full h-full bg-[#FAFAFA] rounded-[1rem] lg:rounded-[1.5rem] border border-[#E5E5E5] overflow-hidden">
+            <div className="relative w-[300px] h-[400px] sm:w-[420px] sm:h-[520px] lg:w-[550px] lg:h-[700px] mx-auto lg:ml-auto select-none mt-4 lg:mt-0">
+              {/* Decorative Offset Frame */}
+              <div className="absolute inset-0 rounded-[2rem] lg:rounded-[3rem] border border-[#222222]/30 translate-x-3 translate-y-3 lg:translate-x-5 lg:translate-y-5"></div>
+              
+              {/* Inner Image Container */}
+              <div className="relative w-full h-full bg-[#E5E5E5]/20 rounded-[2rem] lg:rounded-[3rem] overflow-hidden backdrop-blur-sm border border-[#E5E5E5]">
                 <Image
                   src="/profile.png"
                   alt="Balinda Mubarak"
                   fill
-                  sizes="(max-width: 640px) 320px, (max-width: 768px) 450px, 600px"
+                  sizes="(max-width: 640px) 300px, (max-width: 768px) 420px, 550px"
                   className="object-contain object-bottom"
                   priority
                 />
