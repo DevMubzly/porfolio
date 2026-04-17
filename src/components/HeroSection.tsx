@@ -84,7 +84,7 @@ export function HeroSection() {
                   alt="Balinda Mubarak"
                   fill
                   sizes="(max-width: 640px) 200px, (max-width: 768px) 260px, 320px"
-                  className="object-contain object-bottom drop-shadow-xl scale-[1.2] lg:scale-[1.3] origin-bottom"
+                  className="object-contain object-bottom drop-shadow-xl scale-[2.4] lg:scale-[2.6] origin-bottom"
                   priority
                 />
               </div>
