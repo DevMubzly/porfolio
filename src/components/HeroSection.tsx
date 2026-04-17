@@ -14,7 +14,7 @@ export function HeroSection() {
         {new Date().getFullYear()}
       </div>
 
-      <div className="max-w-7xl mx-auto w-full px-6 lg:px-24 flex-1 flex flex-col justify-center relative z-10">
+      <div className="max-w-7xl mx-auto w-full px-6 lg:px-24 flex-1 flex flex-col justify-end relative z-10 pb-8 sm:pb-12 lg:pb-32">
         <div className="flex flex-col lg:flex-row items-end justify-between w-full relative">
           
           {/* Left Content Area */}
@@ -22,7 +22,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="w-full lg:w-1/2 flex flex-col justify-center pb-12 sm:pb-20 lg:pb-32 z-20 mt-10 md:mt-16 lg:mt-0"
+            className="w-full lg:w-1/2 flex flex-col justify-end z-20 mt-20 md:mt-24 lg:mt-0"
           >
             {/* Stats */}
             <div className="flex flex-wrap gap-8 lg:gap-12 mb-12 sm:mb-16">
@@ -68,14 +68,14 @@ export function HeroSection() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="w-full lg:w-1/2 relative lg:translate-x-12 z-10 pointer-events-none flex justify-center lg:justify-end pb-12 lg:pb-0"
+            className="w-full lg:w-1/2 relative lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:right-0 lg:translate-x-12 z-10 pointer-events-none flex justify-center lg:justify-end pb-12 lg:pb-0"
           >
-            <div className="relative w-[260px] h-[320px] sm:w-[320px] sm:h-[400px] lg:w-[420px] lg:h-[500px] mx-auto lg:ml-auto select-none mt-12 md:mt-8 lg:mt-0">
-              {/* Decorative Offset Frame (Starts lower) */}
-              <div className="absolute inset-x-0 bottom-0 top-12 lg:top-20 rounded-[2rem] lg:rounded-[3rem] border border-[#222222]/30 translate-x-3 translate-y-3 lg:translate-x-5 lg:translate-y-5 z-0"></div>
+            <div className="relative w-[200px] h-[260px] sm:w-[260px] sm:h-[320px] lg:w-[320px] lg:h-[400px] mx-auto lg:ml-auto select-none mt-12 md:mt-8 lg:mt-0">
+              {/* Decorative Offset Frame (Starts lower to let image protrude massively) */}
+              <div className="absolute inset-x-0 bottom-0 top-16 lg:top-24 rounded-[1.5rem] lg:rounded-[2rem] border border-[#222222]/30 translate-x-3 translate-y-3 lg:translate-x-5 lg:translate-y-5 z-0"></div>
               
               {/* Inner Frame Background */}
-              <div className="absolute inset-x-0 bottom-0 top-12 lg:top-20 bg-[#E5E5E5]/30 rounded-[2rem] lg:rounded-[3rem] backdrop-blur-sm border border-[#E5E5E5] z-[1]"></div>
+              <div className="absolute inset-x-0 bottom-0 top-16 lg:top-24 bg-[#E5E5E5]/30 rounded-[1.5rem] lg:rounded-[2rem] backdrop-blur-sm border border-[#E5E5E5] z-[1]"></div>
               
               {/* Protruding Image */}
               <div className="absolute inset-x-0 bottom-0 top-0 z-[2]">
@@ -83,7 +83,7 @@ export function HeroSection() {
                   src="/profile.png"
                   alt="Balinda Mubarak"
                   fill
-                  sizes="(max-width: 640px) 260px, (max-width: 768px) 320px, 420px"
+                  sizes="(max-width: 640px) 200px, (max-width: 768px) 260px, 320px"
                   className="object-contain object-bottom drop-shadow-xl"
                   priority
                 />
