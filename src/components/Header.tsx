@@ -85,10 +85,12 @@ export function Header() {
             <Github className="w-4 h-4" />
           </a>
           <a
-            href="mailto:bmubs15@gmail.com"
+            href="https://wa.me/256771050357"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-xs sm:text-sm font-medium border-b border-[#222222] pb-0.5 hover:text-[#7B7B7B] hover:border-[#7B7B7B] transition-all flex items-center gap-1 uppercase tracking-wider"
           >
-            Book A Call <ArrowUpRight className="w-3.5 h-3.5" />
+            WhatsApp <ArrowUpRight className="w-3.5 h-3.5" />
           </a>
         </div>
       </div>

@@ -25,7 +25,7 @@ export function ArticlesSection() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-16 lg:gap-24">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 rounded-3xl overflow-hidden bg-[#F8F8F8] p-4 lg:p-8">
             {articles.map((article, index) => (
               <motion.div
                 key={article.slug}
@@ -33,30 +33,31 @@ export function ArticlesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow duration-300 border border-[#E5E5E5] flex flex-col justify-between"
               >
-                <Link href={`/articles/${article.slug}`} className="block group">
-                  <div className="space-y-6">
-                    <div className="flex items-center gap-4">
-                      <span className="text-xs font-medium text-[#222222] uppercase border border-[#E5E5E5] px-3 py-1 tracking-widest bg-[#F8F8F8]">
+                <Link href={`/articles/${article.slug}`} className="block group flex-grow">
+                  <div className="space-y-6 flex flex-col h-full">
+                    <div className="flex items-center gap-4 flex-wrap">
+                      <span className="text-[10px] lg:text-xs font-medium text-[#222222] uppercase border border-[#E5E5E5] px-3 py-1 tracking-widest bg-[#F8F8F8] rounded-full">
                         {article.tag}
                       </span>
-                      <div className="flex items-center gap-2 text-xs font-medium text-[#7B7B7B] tracking-wider uppercase">
+                      <div className="flex items-center gap-2 text-[10px] lg:text-xs font-medium text-[#7B7B7B] tracking-wider uppercase">
                         <span>{article.date}</span>
                         <span className="w-1 h-1 rounded-full bg-[#E5E5E5]"></span>
                         <span>{article.readTime}</span>
                       </div>
                     </div>
                     
-                    <h3 className="text-2xl lg:text-3xl font-light text-[#222222] group-hover:text-[#7B7B7B] transition-colors duration-500 line-clamp-2">
+                    <h3 className="text-xl lg:text-2xl font-light text-[#222222] group-hover:underline underline-offset-4 decoration-[#E5E5E5] transition-all duration-300 line-clamp-3">
                       {article.title}
                     </h3>
                     
-                    <p className="text-base lg:text-lg text-[#7B7B7B] font-light line-clamp-3 leading-relaxed">
+                    <p className="text-sm lg:text-base text-[#7B7B7B] font-light line-clamp-3 leading-relaxed flex-grow">
                       {article.description}
                     </p>
 
-                    <div className="flex items-center text-sm font-medium text-[#222222] group-hover:opacity-60 transition-opacity gap-2 uppercase tracking-widest pt-2">
-                      Read Article <ArrowUpRight className="w-4 h-4" />
+                    <div className="flex items-center text-xs lg:text-sm font-medium text-[#222222] group-hover:text-[#7B7B7B] transition-colors gap-2 uppercase tracking-widest pt-4 mt-auto border-t border-[#E5E5E5]">
+                      Read Article <ArrowUpRight className="w-4 h-4 ml-auto" />
                     </div>
                   </div>
                 </Link>

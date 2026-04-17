@@ -144,43 +144,60 @@ export function ProjectsSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/40 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-12 bg-black/60 backdrop-blur-md overflow-y-auto"
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="relative w-full max-w-3xl bg-[#F8F8F8] p-8 md:p-12 shadow-2xl overflow-hidden"
+              className="relative w-full max-w-5xl bg-[#F8F8F8] rounded-[2rem] shadow-2xl overflow-hidden my-auto flex flex-col md:flex-row"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-6 right-6 p-2 text-[#7B7B7B] hover:text-[#222222] transition-colors bg-white rounded-full shadow-sm hover:shadow"
+                className="absolute top-6 right-6 z-10 p-2.5 text-[#222222] hover:text-white bg-white hover:bg-[#222222] transition-colors rounded-full shadow-md"
               >
                 <X className="w-5 h-5" />
               </button>
 
-              <div className="space-y-8 mt-2">
+              {/* Image Section */}
+              <div className="w-full md:w-1/2 h-64 md:h-auto relative bg-[#E5E5E5] hidden md:block">
+                {selectedProject.image ? (
+                  <Image
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-[#FAFAFA] flex items-center justify-center">
+                    <span className="text-[#7B7B7B] tracking-widest uppercase text-xs font-medium">No preview available</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Content Section */}
+              <div className="w-full md:w-1/2 p-8 md:p-12 space-y-8 flex flex-col justify-center">
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <h3 className="text-3xl md:text-4xl font-light tracking-tight text-[#222222]">{selectedProject.title}</h3>
+                    <h3 className="text-3xl md:text-5xl font-light tracking-tight text-[#222222]">{selectedProject.title}</h3>
                   </div>
                   {selectedProject.status && (
-                    <span className="inline-block text-xs font-medium text-[#7B7B7B] uppercase tracking-widest">
-                      Status: {selectedProject.status}
+                    <span className="inline-block text-[10px] md:text-xs font-medium text-[#7B7B7B] border border-[#E5E5E5] px-3 py-1 rounded-full uppercase tracking-widest">
+                      {selectedProject.status}
                     </span>
                   )}
                 </div>
 
-                <p className="text-lg md:text-xl text-[#7B7B7B] font-light leading-relaxed">
+                <p className="text-base md:text-lg text-[#7B7B7B] font-light leading-relaxed max-w-lg">
                   {selectedProject.longDescription || selectedProject.description}
                 </p>
 
-                <div className="flex flex-wrap gap-2 pt-4 border-t border-[#E5E5E5]">
+                <div className="flex flex-wrap gap-2 pt-6 border-t border-[#E5E5E5]">
                   {selectedProject.stack.map((tech) => (
-                    <span key={tech} className="px-4 py-2 text-xs font-medium bg-white text-[#222222] tracking-wider uppercase border border-[#E5E5E5]">
+                    <span key={tech} className="px-3 py-1.5 text-[10px] sm:text-xs font-medium bg-white text-[#222222] tracking-widest uppercase border border-[#E5E5E5] rounded-full">
                       {tech}
                     </span>
                   ))}
@@ -192,7 +209,7 @@ export function ProjectsSection() {
                       href={selectedProject.projectURL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm text-white bg-[#222222] px-6 py-3 hover:bg-[#7B7B7B] transition-colors tracking-widest uppercase font-medium"
+                      className="inline-flex items-center gap-2 text-xs md:text-sm text-white bg-[#222222] px-8 py-4 rounded-full hover:bg-black transition-all hover:scale-[1.02] tracking-widest uppercase font-medium shadow-md"
                     >
                       View Live Project <ExternalLink className="w-4 h-4" />
                     </a>
