@@ -14,11 +14,11 @@ export function Footer() {
         </div>
 
         <a
-          href="/myCV.pdf"
+          href="/cv.html"
           target="_blank"
           className="text-xs lg:text-sm text-[#222222] font-medium uppercase tracking-widest hover:text-[#7B7B7B] transition-colors border-b border-[#222222] pb-0.5 hover:border-[#7B7B7B]"
         >
-          Download CV
+          View CV
         </a>
       </div>
     </footer>
