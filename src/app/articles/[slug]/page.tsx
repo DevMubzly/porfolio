@@ -262,7 +262,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
         <header className="space-y-3">
           <p className="text-xs font-mono uppercase tracking-[0.18em] text-neutral-500">
-            {article.tag}  b7 {article.year}
+            {article.tag} <span>&bull;</span> {article.date}
           </p>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-balance">
             {article.title}

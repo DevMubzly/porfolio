@@ -19,7 +19,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="w-full flex flex-col items-center text-center mt-24 md:mt-32 lg:mt-20"
+          className="w-full flex flex-col items-center text-center mt-6 md:mt-16 lg:mt-12"
         >
           {/* Main Heading with Inline Circular Image */}
           <h1 className="text-[2.75rem] sm:text-[4rem] md:text-[5rem] lg:text-[6.5rem] xl:text-[7.5rem] leading-[1.1] font-light tracking-tight mb-4 sm:mb-6">
