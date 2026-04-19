@@ -19,10 +19,10 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="w-full flex flex-col items-center text-center mt-10 md:mt-0"
+          className="w-full flex flex-col items-center text-center mt-24 md:mt-32 lg:mt-20"
         >
           {/* Main Heading with Inline Circular Image */}
-          <h1 className="text-[3.5rem] sm:text-[5rem] md:text-[6.5rem] lg:text-[8rem] xl:text-[9rem] leading-[1.1] font-light tracking-tight mb-8">
+          <h1 className="text-[2.75rem] sm:text-[4rem] md:text-[5rem] lg:text-[6.5rem] xl:text-[7.5rem] leading-[1.1] font-light tracking-tight mb-4 sm:mb-6">
             H<motion.span whileHover={{ y: -15, rotate: -12, color: "#a5a5a5" }} className="inline-block cursor-default transition-colors duration-300">e</motion.span>llo, I&apos;<motion.span whileHover={{ y: -15, rotate: 12, color: "#a5a5a5" }} className="inline-block cursor-default transition-colors duration-300">m</motion.span>{" "}
             <span className="inline-flex items-center justify-center align-middle mx-1 sm:mx-4 -translate-y-2 lg:-translate-y-4">
               <motion.div 
@@ -40,24 +40,20 @@ export function HeroSection() {
                 />
               </motion.div>
             </span>
-            <br className="hidden sm:block" />
-            <span className="inline-block whitespace-nowrap">Bal<motion.span 
-              whileHover={{ y: -15, rotate: 12, color: "#a5a5a5" }} 
+            <span className="block mt-2 sm:mt-0 md:-mt-2 lg:-mt-6 xl:-mt-8 whitespace-nowrap font-[family-name:var(--font-brooklyn)] tracking-normal text-[1.4em] sm:text-[1.5em] md:text-[1.6em] lg:text-[1.65em]">Bal<motion.span
+              whileHover={{ y: -15, rotate: 12, color: "#a5a5a5" }}
               className="inline-block cursor-default transition-colors duration-300"
-            >i</motion.span>nda<motion.span 
-              whileHover={{ y: [0, -20, 0] }}
-              transition={{ repeat: Infinity, duration: 0.6, ease: "easeOut" }}
-              className="inline-block cursor-default transition-colors duration-300 hover:text-[#a5a5a5]"
+            >i</motion.span>nda<motion.span
             >.</motion.span></span>
           </h1>
 
           {/* Subtext */}
-          <p className="text-lg sm:text-xl lg:text-2xl text-[#7B7B7B] font-light max-w-2xl mx-auto mt-2 px-4 leading-relaxed">
+          <p className="text-lg sm:text-xl lg:text-xl text-[#7B7B7B] font-light max-w-2xl mx-auto mt-2 px-4 leading-relaxed">
             An AI & software engineer crafting minimal, resilient systems.
           </p>
 
           {/* Stats */}
-          <div className="flex flex-wrap justify-center gap-12 sm:gap-24 mt-16 sm:mt-24">
+          <div className="flex flex-wrap justify-center gap-12 sm:gap-24 mt-12 lg:mt-16">
             <div className="text-center">
               <div className="text-3xl lg:text-4xl font-light mb-1 text-[#222222]">3+</div>
               <div className="text-[10px] sm:text-[11px] text-[#7B7B7B] uppercase tracking-wider whitespace-pre-line">
@@ -73,7 +69,7 @@ export function HeroSection() {
           </div>
 
           {/* Scroll Down */}
-          <div className="mt-12 sm:mt-16 flex flex-col items-center gap-4 hidden lg:flex">
+          <div className="mt-8 lg:mt-12 flex flex-col items-center gap-4 hidden lg:flex">
             <span className="text-[10px] uppercase tracking-widest font-medium text-[#7B7B7B]">
               Scroll down
             </span>
