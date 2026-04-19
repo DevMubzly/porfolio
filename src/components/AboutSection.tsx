@@ -123,15 +123,22 @@ export function AboutSection() {
               <h3 className="text-xs font-medium text-[#7B7B7B] uppercase tracking-widest border-b border-[#E5E5E5] pb-4">
                 Capabilities
               </h3>
-              <div className="flex flex-col gap-14">
+              <div className="flex flex-col gap-12">
                 {skills.map((group) => (
                   <div key={group.category} className="group">
-                    <p className="text-[10px] text-[#A0A0A0] uppercase tracking-widest mb-4 font-medium">
+                    <p className="text-[10px] text-[#A0A0A0] uppercase tracking-widest mb-5 font-medium">
                       {group.category}
                     </p>
-                    <p className="text-xl sm:text-2xl font-light text-[#222222] leading-relaxed group-hover:text-[#7B7B7B] transition-colors duration-500">
-                      {group.items.join(" \u200B · \u200B ")}
-                    </p>
+                    <div className="flex flex-wrap gap-2 sm:gap-3">
+                      {group.items.map((item) => (
+                        <span 
+                          key={item} 
+                          className="px-4 py-2 rounded-2xl border border-[#E5E5E5] text-[#222222] text-sm sm:text-base font-light hover:bg-[#222222] hover:text-white hover:border-[#222222] transition-colors duration-300 cursor-default"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 ))}
               </div>
