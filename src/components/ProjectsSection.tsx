@@ -17,6 +17,15 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "EdgeKeeper",
+    summary: "Visual algorithmic trading platform",
+    description: "A sophisticated no-code platform for building, backtesting, and deploying automated trading strategies using a visual node-based interface.",
+    stack: ["Next.js", "TypeScript", "Python", "WebSockets"],
+    status: "Live",
+    image: "/image.png",
+    projectURL: "https://edgekeeper.app",
+  },
+  {
     title: "Metro Fried Chicken App",
     summary: "Cross-platform mobile ordering app",
     description: "React Native app for food ordering with menu browsing, cart, and order tracking.",
