@@ -38,7 +38,7 @@ export default function HackathonArticle() {
 
           <h2 className="text-2xl font-normal mt-12 mb-6">The Problem Statement</h2>
           <p>
-            The overarching theme of the hackathon was "Modernizing Industrial Workflows." While many participants focused heavily on hardware, I noticed a major bottleneck that facilities ignored: human-AI synchronization in data pipelines. Manufacturers had machines emitting massive logs, but middle management still relied on fragile spreadsheets and sluggish reporting chains to interpret that data.
+            The overarching theme of the hackathon was &quot;Modernizing Industrial Workflows.&quot; While many participants focused heavily on hardware, I noticed a major bottleneck that facilities ignored: human-AI synchronization in data pipelines. Manufacturers had machines emitting massive logs, but middle management still relied on fragile spreadsheets and sluggish reporting chains to interpret that data.
           </p>
 
           <h2 className="text-2xl font-normal mt-12 mb-6">The Architecture</h2>
@@ -54,15 +54,15 @@ export default function HackathonArticle() {
 
           <h2 className="text-2xl font-normal mt-12 mb-6">Navigating the 48-Hour Crunch</h2>
           <p>
-            Because I was flying solo, I couldn't afford to get bogged down in DevOps configurations. My prior experience containerizing with Docker completely saved me here, allowing me to spin up a PostgreSQL instance, a Redis cache, and the FastAPI application locally without hitting a single snag. 
+            Because I was flying solo, I couldn&apos;t afford to get bogged down in DevOps configurations. My prior experience containerizing with Docker completely saved me here, allowing me to spin up a PostgreSQL instance, a Redis cache, and the FastAPI application locally without hitting a single snag. 
           </p>
           <p>
-            The hardest challenge was writing the heuristic that triggered the LLM. I didn't want the AI running blindly on every ping. Instead, I routed the data stream through a fast statistical anomaly detector. The LLM would only wake up, pull context, and generate a human-readable diagnosis if a true anomaly threshold was broken. This kept extreme API costs down and impressed the judges heavily regarding "production realism."
+            The hardest challenge was writing the heuristic that triggered the LLM. I didn&apos;t want the AI running blindly on every ping. Instead, I routed the data stream through a fast statistical anomaly detector. The LLM would only wake up, pull context, and generate a human-readable diagnosis if a true anomaly threshold was broken. This kept extreme API costs down and impressed the judges heavily regarding &quot;production realism.&quot;
           </p>
 
           <h2 className="text-2xl font-normal mt-12 mb-6">The Pitch and the Win</h2>
           <p>
-            During the final showcase at the ABQ Launch, my live demonstration triggered an intentional data-spike in the mocked pipeline. Within exactly 1.4 seconds, the dashboard lit up, and instead of showing a confusing error code (e.g., Error 0x8273), it showed a generated report: <em>"Pressure values in Valve 4 have spiked by 40% outside historical bounds in the last 5 minutes. Recommended immediate shutoff to prevent line burst."</em>
+            During the final showcase at the ABQ Launch, my live demonstration triggered an intentional data-spike in the mocked pipeline. Within exactly 1.4 seconds, the dashboard lit up, and instead of showing a confusing error code (e.g., Error 0x8273), it showed a generated report: <em>&quot;Pressure values in Valve 4 have spiked by 40% outside historical bounds in the last 5 minutes. Recommended immediate shutoff to prevent line burst.&quot;</em>
           </p>
           <p>
             This was the specific moment that won the judges over. It bridged the gap between Industry 4.0 data generation and human actionability. 
@@ -70,7 +70,7 @@ export default function HackathonArticle() {
 
           <h2 className="text-2xl font-normal mt-12 mb-6">Key Takeaways</h2>
           <p>
-            Winning the overall prize at the ABQ Launch was an incredible validation of the hours I spend practicing and refining my tech stack. It proved to me that modern web technologies aren't just for SaaS dashboards; they are perfectly capable of handling industrial workloads when architected cleanly. 
+            Winning the overall prize at the ABQ Launch was an incredible validation of the hours I spend practicing and refining my tech stack. It proved to me that modern web technologies aren&apos;t just for SaaS dashboards; they are perfectly capable of handling industrial workloads when architected cleanly. 
           </p>
           <p>
             You can read the official university press release about our victory at the <a href="https://www.must.ac.ug/must-students-sweep-top-spots-at-the-national-industry-4-0-hackathon/" target="_blank" rel="noopener noreferrer" className="text-[#222222] font-medium border-b border-[#E5E5E5] hover:border-[#222222] transition-colors items-center inline-flex gap-1">National Industry 4.0 Hackathon <span className="text-xs">↗</span></a>.

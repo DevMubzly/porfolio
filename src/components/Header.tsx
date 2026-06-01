@@ -53,7 +53,7 @@ export function Header() {
         transition={{ duration: 0.5 }}
         className={`pointer-events-auto transition-all duration-500 ease-out flex items-center justify-center ${
           isScrolled
-            ? "w-[95%] max-w-6xl bg-white/95 backdrop-blur-md border border-[#E5E5E5] rounded-[3rem] px-6 lg:px-12 mt-6 h-[90px] lg:h-[100px] shadow-sm"
+            ? "w-[95%] max-w-6xl bg-white/95 backdrop-blur-md border border-[#E5E5E5] rounded-2xl px-6 lg:px-12 mt-6 h-[90px] lg:h-[100px] shadow-sm"
             : "w-full max-w-none bg-[#F8F8F8] border border-transparent px-6 lg:px-24 mt-0 h-[80px] lg:h-[90px] shadow-none rounded-none"
         }`}
       >

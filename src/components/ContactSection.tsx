@@ -19,7 +19,7 @@ export function ContactSection() {
               Get in touch
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-[#7B7B7B] font-light max-w-sm md:text-right">
-              Available for opportunities or collaborations. Let's work together.
+              Available for opportunities or collaborations. Let&apos;s work together.
             </p>
           </div>
 

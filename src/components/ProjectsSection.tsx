@@ -132,6 +132,7 @@ export function ProjectsSection() {
                         src={project.image}
                         alt={project.title}
                         fill
+                        sizes="33vw"
                         className="object-cover object-center grayscale"
                       />
                       <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#F8F8F8]/50 to-[#F8F8F8]"></div>
