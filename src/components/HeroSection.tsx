@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export function HeroSection() {
   return (
-    <section className="sticky top-0 z-[1] h-screen w-full bg-[#F8F8F8] text-[#222222] font-sans flex flex-col justify-between pt-24 lg:pt-20 pb-8 rounded-b-[3rem] lg:rounded-b-[4rem] shadow-sm overflow-hidden">
+    <section className="sticky top-0 z-1 h-screen w-full bg-[#F8F8F8] text-[#222222] font-sans flex flex-col justify-between pt-24 lg:pt-20 pb-8 rounded-b-[3rem] lg:rounded-b-[4rem] shadow-sm overflow-hidden">
       {/* Side decorative texts */}
       <div className="absolute left-8 lg:left-16 top-1/2 -translate-y-1/2 -rotate-90 origin-left text-[#7B7B7B] text-xs tracking-widest uppercase hidden lg:block border-b border-[#E5E5E5] pb-4">
         Balinda Mubarak
@@ -14,7 +14,7 @@ export function HeroSection() {
         Full-Stack Developer
       </div>
 
-      <div className="max-w-7xl mx-auto w-full px-6 lg:px-24 flex-1 flex flex-col justify-center relative z-10">
+      <div className="max-w-7xl mx-auto pt-10 w-full px-6 lg:px-24 flex-1 flex flex-col justify-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

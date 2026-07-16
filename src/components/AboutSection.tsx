@@ -61,7 +61,7 @@ const slideInLeft = {
 
 export function AboutSection() {
   return (
-    <section id="about" className="relative z-[2] py-24 lg:py-32 px-6 lg:px-24 bg-white text-[#222222] rounded-t-[3rem] lg:rounded-t-[4rem] shadow-[0_-4px_24px_rgba(0,0,0,0.03)] flex flex-col justify-center">
+    <section id="about" className="sticky top-0 z-[2] py-24 lg:py-32 px-6 lg:px-24 bg-white text-[#222222] rounded-t-[3rem] lg:rounded-t-[4rem] shadow-[0_-4px_24px_rgba(0,0,0,0.03)] flex flex-col justify-center">
       <div className="max-w-7xl mx-auto w-full">
         <motion.div
           variants={containerVariants}
