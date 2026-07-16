@@ -5,7 +5,7 @@ import { Github, Mail, ArrowUpRight } from "lucide-react";
 
 export function ContactSection() {
   return (
-    <section id="contact" className="sticky top-0 z-[5] py-24 lg:py-32 px-6 lg:px-24 bg-[#F8F8F8] text-[#222222] rounded-t-[3rem] lg:rounded-t-[4rem] shadow-[0_-4px_24px_rgba(0,0,0,0.03)] flex flex-col justify-center">
+    <section id="contact" className="relative z-[5] py-24 lg:py-32 px-6 lg:px-24 bg-[#F8F8F8] text-[#222222] rounded-t-[3rem] lg:rounded-t-[4rem] shadow-[0_-4px_24px_rgba(0,0,0,0.03)] flex flex-col justify-center -mt-8 lg:-mt-12">
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
