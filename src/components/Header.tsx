@@ -2,11 +2,10 @@
 
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
-import { ArrowUpRight, Github, Menu, X } from "lucide-react";
+import { ArrowUpRight, Github, Mail, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -16,27 +15,6 @@ export function Header() {
       document.body.style.overflow = "unset";
     }
   }, [isMobileMenuOpen]);
-
-  useEffect(() => {
-    let lastScrollY = window.scrollY;
-
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      // If we scroll down past 50px, become the floating pill
-      if (currentScrollY > 50 && currentScrollY > lastScrollY) {
-        setIsScrolled(true);
-      } else {
-        // If we scroll up, or are back at the top, revert to original
-        setIsScrolled(false);
-      }
-      
-      lastScrollY = currentScrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const navItems = [
     { label: "About Me", href: "#about" },
@@ -51,13 +29,9 @@ export function Header() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`pointer-events-auto transition-all duration-500 ease-out flex items-center justify-center ${
-          isScrolled
-            ? "w-[95%] max-w-6xl bg-white/95 backdrop-blur-md border border-[#E5E5E5] rounded-2xl px-6 lg:px-12 mt-6 h-[90px] lg:h-[100px] shadow-sm"
-            : "w-full max-w-none bg-[#F8F8F8] border border-transparent px-6 lg:px-24 mt-0 h-[80px] lg:h-[90px] shadow-none rounded-none"
-        }`}
+        className="pointer-events-auto transition-all duration-500 ease-out flex items-center justify-center w-full max-w-none bg-[#F8F8F8] border border-transparent px-6 lg:px-24 mt-0 h-[80px] lg:h-[90px] shadow-none rounded-none"
       >
-        <div className={`flex items-center justify-between text-[#222222] w-full transition-all duration-500 ${!isScrolled && "max-w-7xl"}`}>
+        <div className="flex items-center justify-between text-[#222222] w-full transition-all duration-500 max-w-7xl">
         
         {/* Left Side: Logo/Name */}
         <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-3 group focus:outline-none">
@@ -94,12 +68,10 @@ export function Header() {
             <Github className="w-4 h-4" />
           </a>
           <a
-            href="https://wa.me/256771050357"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="mailto:bmubs15@gmail.com"
             className="text-[10px] sm:text-xs md:text-sm font-medium border-b border-[#222222] pb-0.5 hover:text-[#7B7B7B] hover:border-[#7B7B7B] transition-all flex items-center gap-1 uppercase tracking-wider"
           >
-            WhatsApp <ArrowUpRight className="w-3 md:w-3.5 h-3 md:h-3.5" />
+            Email <ArrowUpRight className="w-3 md:w-3.5 h-3 md:h-3.5" />
           </a>
           <button
             className="md:hidden p-2 -mr-2 text-[#222222] hover:text-[#7B7B7B] transition-colors"

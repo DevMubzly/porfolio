@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export function HeroSection() {
   return (
-    <section className="sticky top-0 z-[1] min-h-[100dvh] lg:h-screen w-full bg-[#F8F8F8] text-[#222222] font-sans flex flex-col justify-center pt-28 lg:pt-24 rounded-b-[3rem] lg:rounded-b-[4rem] shadow-sm overflow-hidden">
+    <section className="sticky top-0 z-[1] h-screen w-full bg-[#F8F8F8] text-[#222222] font-sans flex flex-col justify-between pt-24 lg:pt-20 pb-8 rounded-b-[3rem] lg:rounded-b-[4rem] shadow-sm overflow-hidden">
       {/* Side decorative texts */}
       <div className="absolute left-8 lg:left-16 top-1/2 -translate-y-1/2 -rotate-90 origin-left text-[#7B7B7B] text-xs tracking-widest uppercase hidden lg:block border-b border-[#E5E5E5] pb-4">
         Balinda Mubarak
@@ -14,15 +14,15 @@ export function HeroSection() {
         Full-Stack Developer
       </div>
 
-      <div className="max-w-7xl mx-auto w-full px-6 lg:px-24 flex-1 flex flex-col justify-center relative z-10 py-12 lg:py-0">
+      <div className="max-w-7xl mx-auto w-full px-6 lg:px-24 flex-1 flex flex-col justify-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="w-full flex flex-col items-center text-center mt-6 md:mt-16 lg:mt-12"
+          className="w-full flex flex-col items-center text-center"
         >
           {/* Main Heading with Inline Circular Image */}
-          <h1 className="text-[2.75rem] sm:text-[4rem] md:text-[5rem] lg:text-[6.5rem] xl:text-[7.5rem] leading-[1.1] font-light tracking-tight mb-4 sm:mb-6">
+          <h1 className="text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] xl:text-[6.5rem] leading-[1.1] font-light tracking-tight mb-2 sm:mb-3">
             H<motion.span whileHover={{ y: -15, rotate: -12, color: "#a5a5a5" }} className="inline-block cursor-default transition-colors duration-300">e</motion.span>llo, I&apos;<motion.span whileHover={{ y: -15, rotate: 12, color: "#a5a5a5" }} className="inline-block cursor-default transition-colors duration-300">m</motion.span>{" "}
             <span className="inline-flex items-center justify-center align-middle mx-1 sm:mx-4 -translate-y-2 lg:-translate-y-4">
               <motion.div 
@@ -48,12 +48,12 @@ export function HeroSection() {
           </h1>
 
           {/* Subtext */}
-          <p className="text-lg sm:text-xl lg:text-xl text-[#7B7B7B] font-light max-w-2xl mx-auto mt-2 px-4 leading-relaxed">
+          <p className="text-lg sm:text-xl lg:text-xl text-[#7B7B7B] font-light max-w-2xl mx-auto mt-1 px-4 leading-relaxed">
             An AI & software engineer crafting minimal, resilient systems.
           </p>
 
           {/* Stats */}
-          <div className="flex flex-wrap justify-center gap-12 sm:gap-24 mt-12 lg:mt-16">
+          <div className="flex flex-wrap justify-center gap-12 sm:gap-24 mt-6 lg:mt-8">
             <div className="text-center">
               <div className="text-3xl lg:text-4xl font-light mb-1 text-[#222222]">3+</div>
               <div className="text-[10px] sm:text-[11px] text-[#7B7B7B] uppercase tracking-wider whitespace-pre-line">
@@ -69,7 +69,7 @@ export function HeroSection() {
           </div>
 
           {/* Scroll Down */}
-          <div className="mt-8 lg:mt-12 flex flex-col items-center gap-4 hidden lg:flex">
+          <div className="mt-6 lg:mt-8 flex flex-col items-center gap-4 hidden lg:flex">
             <span className="text-[10px] uppercase tracking-widest font-medium text-[#7B7B7B]">
               Scroll down
             </span>

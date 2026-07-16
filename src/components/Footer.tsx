@@ -8,11 +8,6 @@ export function Footer() {
           © {new Date().getFullYear()} Balinda Mubarak
         </p>
         
-        <div className="flex items-center gap-2 text-[#7B7B7B]">
-          <span className="w-1.5 h-1.5 bg-[#222222] rounded-full"></span>
-          <span className="text-xs uppercase tracking-widest font-medium">Available for work</span>
-        </div>
-
         <a
           href="/cv.html"
           target="_blank"
