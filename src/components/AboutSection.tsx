@@ -11,6 +11,11 @@ const skills = [
 
 const experience = [
   {
+    title: "Software Engineer",
+    company: "Tricsoft Technologies Ltd",
+    period: "Present",
+  },
+  {
     title: "Lead Full-Stack Mobile Engineer",
     company: "MFC Ordering App",
     period: "2025 - Dec 26th",
