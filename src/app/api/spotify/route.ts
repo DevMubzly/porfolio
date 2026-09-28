@@ -97,7 +97,12 @@ export async function GET() {
           return NextResponse.json(cachedResponse.body);
         }
         return NextResponse.json(
-          { error: "Spotify request failed" },
+          {
+            error:
+              recentRes.status === 429
+                ? "Spotify quota exceeded. Development-mode apps are limited; request Extended Quota in the Spotify dashboard or wait for the daily reset."
+                : `Spotify request failed with status ${recentRes.status}`,
+          },
           { status: recentRes.status }
         );
       }
