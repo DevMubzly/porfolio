@@ -16,19 +16,35 @@ export function SpotifyCard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let cancelled = false;
+    let interval: ReturnType<typeof setInterval>;
+
     const fetchTrack = () => {
       fetch("/api/spotify")
-        .then((res) => res.json())
+        .then((res) => {
+          if (res.status === 429) {
+            clearInterval(interval);
+            return null;
+          }
+          return res.json();
+        })
         .then((data) => {
+          if (cancelled || !data) return;
           if (data.track) setTrack(data.track);
           setLoading(false);
         })
-        .catch(() => setLoading(false));
+        .catch(() => {
+          if (!cancelled) setLoading(false);
+        });
     };
 
     fetchTrack();
-    const interval = setInterval(fetchTrack, 15000);
-    return () => clearInterval(interval);
+    interval = setInterval(fetchTrack, 60000);
+
+    return () => {
+      cancelled = true;
+      clearInterval(interval);
+    };
   }, []);
 
   if (loading) {

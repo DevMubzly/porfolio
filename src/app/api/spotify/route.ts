@@ -4,81 +4,123 @@ const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const REFRESH_TOKEN = process.env.SPOTIFY_REFRESH_TOKEN;
 
-async function getAccessToken() {
-  const response = await fetch("https://accounts.spotify.com/api/token", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: `Basic ${Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString("base64")}`,
-    },
-    body: new URLSearchParams({
-      grant_type: "refresh_token",
-      refresh_token: REFRESH_TOKEN || "",
-    }),
-  });
+let cachedToken: { value: string; expiresAt: number } | null = null;
+let cachedResponse: { body: unknown; expiresAt: number } | null = null;
 
-  const data = await response.json();
-  return data.access_token;
+const RESPONSE_TTL = 60_000;
+
+async function getAccessToken(): Promise<string | null> {
+  if (cachedToken && Date.now() < cachedToken.expiresAt) {
+    return cachedToken.value;
+  }
+
+  try {
+    const response = await fetch("https://accounts.spotify.com/api/token", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Basic ${Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString("base64")}`,
+      },
+      body: new URLSearchParams({
+        grant_type: "refresh_token",
+        refresh_token: REFRESH_TOKEN || "",
+      }),
+    });
+
+    if (!response.ok) return null;
+
+    const data = await response.json();
+    if (!data.access_token) return null;
+
+    cachedToken = {
+      value: data.access_token,
+      expiresAt: Date.now() + (data.expires_in - 60) * 1000,
+    };
+
+    return data.access_token;
+  } catch {
+    return null;
+  }
+}
+
+function toTrack(track: {
+  name: string;
+  artists: Array<{ name: string }>;
+  album: { images: Array<{ url: string }> };
+  external_urls: { spotify: string };
+}) {
+  return {
+    name: track.name,
+    artist: track.artists.map((a) => a.name).join(", "),
+    albumArt: track.album.images[0]?.url || "",
+    url: track.external_urls.spotify,
+  };
 }
 
 export async function GET() {
-  try {
-    const accessToken = await getAccessToken();
+  if (cachedResponse && Date.now() < cachedResponse.expiresAt) {
+    return NextResponse.json(cachedResponse.body);
+  }
 
-    // Try currently playing first
+  const accessToken = await getAccessToken();
+
+  if (!accessToken) {
+    return NextResponse.json(
+      { error: "Could not authenticate with Spotify" },
+      { status: 500 }
+    );
+  }
+
+  try {
     const currentRes = await fetch(
       "https://api.spotify.com/v1/me/player/currently-playing",
       { headers: { Authorization: `Bearer ${accessToken}` } }
     );
 
-    // 204 means nothing is currently playing
-    if (currentRes.status === 204) {
-      // Fall through to recently played
-    } else if (currentRes.ok) {
+    let body: unknown;
+
+    if (currentRes.status === 200) {
       const currentData = await currentRes.json();
       if (currentData.item) {
-        const track = currentData.item;
-        return NextResponse.json({
-          isPlaying: true,
-          track: {
-            name: track.name,
-            artist: track.artists.map((a: { name: string }) => a.name).join(", "),
-            albumArt: track.album.images[0]?.url || "",
-            url: track.external_urls.spotify,
-          },
-        });
+        body = { isPlaying: true, track: toTrack(currentData.item) };
       }
     }
 
-    // Fall back to recently played
-    const recentRes = await fetch(
-      "https://api.spotify.com/v1/me/player/recently-played?limit=1",
-      { headers: { Authorization: `Bearer ${accessToken}` } }
-    );
+    if (!body) {
+      const recentRes = await fetch(
+        "https://api.spotify.com/v1/me/player/recently-played?limit=1",
+        { headers: { Authorization: `Bearer ${accessToken}` } }
+      );
 
-    if (!recentRes.ok) {
-      return NextResponse.json({ error: "Failed to fetch" }, { status: recentRes.status });
+      if (!recentRes.ok) {
+        if (cachedResponse) {
+          return NextResponse.json(cachedResponse.body);
+        }
+        return NextResponse.json(
+          { error: "Spotify request failed" },
+          { status: recentRes.status }
+        );
+      }
+
+      const data = await recentRes.json();
+
+      if (!data.items || data.items.length === 0) {
+        body = { isPlaying: false, track: null };
+      } else {
+        body = { isPlaying: false, track: toTrack(data.items[0].track) };
+      }
     }
 
-    const data = await recentRes.json();
+    cachedResponse = { body, expiresAt: Date.now() + RESPONSE_TTL };
 
-    if (!data.items || data.items.length === 0) {
-      return NextResponse.json({ isPlaying: false, track: null });
-    }
-
-    const item = data.items[0];
-    const track = item.track;
-
-    return NextResponse.json({
-      isPlaying: false,
-      track: {
-        name: track.name,
-        artist: track.artists.map((a: { name: string }) => a.name).join(", "),
-        albumArt: track.album.images[0]?.url || "",
-        url: track.external_urls.spotify,
-      },
-    });
+    return NextResponse.json(body);
   } catch {
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    if (cachedResponse) {
+      return NextResponse.json(cachedResponse.body);
+    }
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
   }
 }
