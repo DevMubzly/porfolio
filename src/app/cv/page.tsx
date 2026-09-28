@@ -83,16 +83,7 @@ const referees = [
 export default function CVPage() {
   return (
     <main className="min-h-screen pt-28 pb-16 px-6 lg:px-24">
-      <div className="max-w-4xl mx-auto relative">
-        {/* Decorative wavy lines on the right */}
-        <div className="absolute top-0 right-0 w-32 h-full overflow-hidden pointer-events-none hidden lg:block">
-          <svg className="w-full h-full" viewBox="0 0 100 800" preserveAspectRatio="none" fill="none">
-            <path d="M50 0 C80 100, 20 200, 50 300 C80 400, 20 500, 50 600 C80 700, 20 800, 50 800" stroke="var(--border)" strokeWidth="1" opacity="0.5" />
-            <path d="M70 0 C100 100, 40 200, 70 300 C100 400, 40 500, 70 600 C100 700, 40 800, 70 800" stroke="var(--border)" strokeWidth="1" opacity="0.3" />
-            <path d="M30 0 C60 100, 0 200, 30 300 C60 400, 0 500, 30 600 C60 700, 0 800, 30 800" stroke="var(--border)" strokeWidth="1" opacity="0.4" />
-          </svg>
-        </div>
-
+      <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -120,7 +111,7 @@ export default function CVPage() {
             <div className="flex flex-wrap gap-4 text-sm text-[var(--text-muted)] mb-6">
               <span>bmubs15@gmail.com</span>
               <span>+256771050357</span>
-              <span>https://bmubarak.xyz</span>
+              <a href="https://bmubarak.xyz" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--text-primary)] transition-colors">https://bmubarak.xyz</a>
             </div>
             <p className="text-base text-[var(--text-secondary)] font-light leading-relaxed">
               I am a developer focused on building elegant web applications and intelligent AI-powered systems. I specialize in crafting minimal, resilient architectures from backend infrastructure down to the frontend user experience.
