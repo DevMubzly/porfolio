@@ -75,10 +75,14 @@ export default function Home() {
                 — Eren Yeager
               </p>
             </div>
-            <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden flex-shrink-0">
+            <motion.div
+              className="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden flex-shrink-0"
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/eren.svg" alt="Eren Yeager" className="w-full h-full object-cover" />
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </motion.main>
