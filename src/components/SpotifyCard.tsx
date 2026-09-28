@@ -39,7 +39,7 @@ export function SpotifyCard() {
     };
 
     fetchTrack();
-    interval = setInterval(fetchTrack, 60000);
+    interval = setInterval(fetchTrack, 30000);
 
     return () => {
       cancelled = true;

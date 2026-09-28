@@ -7,7 +7,7 @@ const REFRESH_TOKEN = process.env.SPOTIFY_REFRESH_TOKEN;
 let cachedToken: { value: string; expiresAt: number } | null = null;
 let cachedResponse: { body: unknown; expiresAt: number } | null = null;
 
-const RESPONSE_TTL = 60_000;
+const RESPONSE_TTL = 15_000;
 
 async function getAccessToken(): Promise<string | null> {
   if (cachedToken && Date.now() < cachedToken.expiresAt) {
