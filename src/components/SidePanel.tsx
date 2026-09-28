@@ -64,7 +64,7 @@ export function SidePanel() {
       <div className="w-px h-8 bg-[var(--border)]" />
 
       <nav className="flex flex-col gap-3">
-        {["home", "about", "projects", "articles", "contact"].map((section) => {
+        {["home", "projects", "articles", "contact"].map((section) => {
           const isActive = activeSection === section && pathname === "/";
           return (
             <button
