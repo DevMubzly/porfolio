@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useEffect, useRef } from "react";
+import LocomotiveScroll from "locomotive-scroll";
 import { HeroSection } from "@/components/HeroSection";
 import { AboutSection } from "@/components/AboutSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
@@ -9,8 +11,28 @@ import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const locomotiveRef = useRef<LocomotiveScroll | null>(null);
+
+  useEffect(() => {
+    if (!scrollRef.current) return;
+
+    const scroll = new LocomotiveScroll({
+      el: scrollRef.current,
+      smooth: true,
+      multiplier: 1,
+      lerp: 0.1,
+    });
+
+    locomotiveRef.current = scroll;
+
+    return () => {
+      scroll.destroy();
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen">
+    <div ref={scrollRef} className="min-h-screen" data-scroll-container>
       <motion.main
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
