@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umutoni Caroline - CV</title>
+    <style>
+        :root {
+            --bg: #FFFFFF;
+            --text-main: #222222;
+            --text-muted: #7B7B7B;
+            --border: #E5E5E5;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 32px;
+        }
+
+        header {
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 2px solid var(--text-main);
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 500;
+            letter-spacing: -0.03em;
+            margin: 0 0 8px 0;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            margin: 0 0 24px 0;
+            letter-spacing: -0.01em;
+        }
+
+        .user-stats {
+            display: flex;
+            gap: 24px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .contact {
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+            color: var(--text-muted);
+            display: flex;
+            gap: 16px;
+            font-weight: 300;
+            flex-wrap: wrap;
+        }
+
+        .summary-text {
+            font-size: 1.15rem;
+            font-weight: 300;
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        section {
+            margin-bottom: 56px;
+        }
+
+        h2 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-main);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 12px;
+            margin-top: 0;
+            margin-bottom: 32px;
+            font-weight: 600;
+        }
+
+        .item {
+            margin-bottom: 32px;
+            page-break-inside: avoid;
+        }
+
+        .item:last-child {
+            margin-bottom: 0;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 4px;
+        }
+
+        .item-title {
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin: 0;
+            color: var(--text-main);
+        }
+
+        .item-place {
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        .item-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: right;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .item-subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin: 0 0 12px 0;
+            font-weight: 300;
+        }
+
+        .edu-school-title {
+            font-size: 1.05rem;
+            font-weight: 400;
+            margin: 0;
+            color: var(--text-main);
+        }
+
+        .item-desc {
+            font-size: 0.95rem;
+            margin: 0;
+            color: var(--text-main);
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .item-desc ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .item-desc li {
+            margin-bottom: 6px;
+        }
+
+        .item-desc li:last-child {
+            margin-bottom: 0;
+        }
+
+        .education .item {
+            margin-bottom: 12px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px 24px;
+        }
+
+        @media (min-width: 600px) {
+            .skills-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .skill-group p {
+            margin: 0;
+        }
+
+        .skill-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 12px !important;
+            font-weight: 500;
+        }
+
+        .skill-items {
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .print-btn {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            background: var(--text-main);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .print-btn:hover {
+            transform: translateY(-2px);
+            background: #000000;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                padding: 0;
+                max-width: 100%;
+            }
+            .print-btn {
+                display: none;
+            }
+            @page {
+                margin: 2cm;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="print-btn" onclick="window.print()">Print / Save PDF</button>
+
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <h1>Umutoni Caroline</h1>
+            <p class="subtitle">Public Relations Officer · Journalism &amp; Mass Communication</p>
+
+            <div class="user-stats">
+                <span>Kabale District, Uganda</span>
+                <span>PR &amp; Administration</span>
+                <span>BA Candidate 2026</span>
+            </div>
+
+            <div class="contact">
+                <span>+256 775 491 785</span>
+                <span>umutonicaroline9@gmail.com</span>
+                <span>Kabale District, Uganda</span>
+            </div>
+
+            <p class="summary-text">
+                Motivated and adaptable professional with a Bachelor of Arts in Journalism and Mass Communication.
+                Experienced in public relations, office administration, hospitality management, and creative support.
+                Currently serving as a Public Relations Officer for a Sacco, with prior roles in a law firm, café/restaurant
+                management, and art production. Strong communication, organizational, and customer-service skills.
+            </p>
+        </header>
+
+        <!-- Professional Summary Section -->
+        <section>
+            <h2>Professional Summary</h2>
+
+            <div class="item">
+                <p class="item-desc">
+                    A dynamic and adaptable professional whose career path weaves together creativity, service, and
+                    strategic communication. From supporting artistic production to leading hospitality operations,
+                    managing legal office workflows, and now shaping public relations for a Sacco, I bring a unique blend
+                    of operational excellence and people-centred insight. Currently advancing my studies at Uganda
+                    Christian University, I thrive at the intersection of organisation, relationship-building, and
+                    purposeful impact.
+                </p>
+            </div>
+        </section>
+
+        <!-- Work Experience Section -->
+        <section>
+            <h2>Work Experience</h2>
+
+            <div class="item">
+                <div class="item-header">
+                    <h3 class="item-title">Public Relations Officer <span class="item-place">(Sacco)</span></h3>
+                    <span class="item-meta">2026 – Present</span>
+                </div>
+                <p class="item-desc">
+                    <ul>
+                        <li>Manage public communications, stakeholder relations, and organizational image.</li>
+                        <li>Support outreach initiatives and maintain positive community engagement.</li>
+                    </ul>
+                </p>
+            </div>
+
+            <div class="item">
+                <div class="item-header">
+                    <h3 class="item-title">Office Assistant <span class="item-place">(Law Firm)</span></h3>
+                    <span class="item-meta">2025 (14 months)</span>
+                </div>
+                <p class="item-desc">
+                    <ul>
+                        <li>Provided administrative support including document preparation, filing, and scheduling.</li>
+                        <li>Assisted legal staff with client coordination and office operations.</li>
+                    </ul>
+                </p>
+            </div>
+
+            <div class="item">
+                <div class="item-header">
+                    <h3 class="item-title">Manager <span class="item-place">(Café &amp; Restaurant)</span></h3>
+                    <span class="item-meta">2024 (1 year)</span>
+                </div>
+                <p class="item-desc">
+                    <ul>
+                        <li>Oversaw daily operations, staff coordination, and customer service standards.</li>
+                        <li>Managed inventory, quality control, and ensured a positive dining experience.</li>
+                    </ul>
+                </p>
+            </div>
+
+            <div class="item">
+                <div class="item-header">
+                    <h3 class="item-title">Art Work Assistant <span class="item-place">(Art Production / Studio)</span></h3>
+                    <span class="item-meta">2023 (1 year)</span>
+                </div>
+                <p class="item-desc">
+                    <ul>
+                        <li>Supported creative projects and production processes in an artistic environment.</li>
+                        <li>Assisted with material preparation, organization, and project coordination.</li>
+                    </ul>
+                </p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section>
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-group">
+                    <p class="skill-category">Office &amp; Administration</p>
+                    <div class="skill-items">
+                        <span>Seamless office coordination</span>
+                        <span>Precise documentation</span>
+                        <span>Structured record management</span>
+                        <span>Process organisation</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <p class="skill-category">Communication &amp; Relations</p>
+                    <div class="skill-items">
+                        <span>Crafting clear, engaging public communication</span>
+                        <span>Client &amp; stakeholder relationships</span>
+                        <span>Collaborative teamwork</span>
+                        <span>Interpersonal fluency</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <p class="skill-category">Leadership &amp; Operations</p>
+                    <div class="skill-items">
+                        <span>Leading teams</span>
+                        <span>Optimising daily operations</span>
+                        <span>Agile time management</span>
+                        <span>Thoughtful problem-solving</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="education">
+            <h2>Education</h2>
+
+            <div class="item">
+                <div class="item-header">
+                    <h3 class="item-title">Uganda Christian University</h3>
+                    <span class="item-meta">2023 – 2026</span>
+                </div>
+                <p class="item-subtitle">Bachelor of Arts in Journalism and Mass Communication</p>
+            </div>
+
+            <div class="item">
+                <div class="item-header">
+                    <h3 class="edu-school-title">St. Maria Goretti Secondary School</h3>
+                    <span class="item-meta">2020 – 2022</span>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-header">
+                    <h3 class="edu-school-title">St. Mary's Secondary School, Rushoroza</h3>
+                    <span class="item-meta">2016 – 2019</span>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-header">
+                    <h3 class="edu-school-title">St. Maria Goretti Preparatory School</h3>
+                    <span class="item-meta">2007 – 2015</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hobbies & Interests Section -->
+        <section>
+            <h2>Hobbies &amp; Interests</h2>
+
+            <div class="item">
+                <p class="item-desc">
+                    <ul>
+                        <li>Exploring visual arts and creative expression</li>
+                        <li>Engaging in community-driven initiatives</li>
+                        <li>Reading widely for insight and inspiration</li>
+                        <li>Building meaningful professional and social connections</li>
+                        <li>Discovering fresh perspectives in business and communication</li>
+                    </ul>
+                </p>
+            </div>
+        </section>
+
+        <!-- Career Objective Section -->
+        <section>
+            <h2>Career Objective</h2>
+
+            <div class="item">
+                <p class="item-desc">
+                    To step into a role where my diverse experience in administration, service leadership, and public
+                    relations can be channelled into meaningful organisational growth while continuing to refine my
+                    craft and contribute with both precision and creative energy.
+                </p>
+            </div>
+        </section>
+
+        <!-- References Section -->
+        <section>
+            <h2>References</h2>
+
+            <div class="item">
+                <div class="item-header">
+                    <h3 class="item-title">Mashemererwa Mike</h3>
+                    <span class="item-meta">+256 39 2596318</span>
+                </div>
+                <p class="item-subtitle">Lecturer, Kabale University</p>
+            </div>
+        </section>
+
+    </div>
+</body>
+</html>

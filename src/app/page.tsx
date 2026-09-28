@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
 import { AboutSection } from "@/components/AboutSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
@@ -11,9 +10,7 @@ import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#F8F8F8]">
-      <Header />
-
+    <div className="min-h-screen">
       <motion.main
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -25,10 +22,7 @@ export default function Home() {
         <ArticlesSection />
         <ContactSection />
       </motion.main>
-
-      <div className="relative z-50">
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 # My portfolio
 
-Live at: **[www.bmubarak.tech](https://www.bmubarak.tech)**
+Live at: **[www.bmubarak.xyz](https://www.bmubarak.xyz)**
 
 ## Features
 

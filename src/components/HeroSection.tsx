@@ -1,87 +1,94 @@
 "use client";
 
 import { motion } from "motion/react";
-import Image from "next/image";
+import { SpotifyCard } from "./SpotifyCard";
+import { SocialIcons } from "./SocialIcons";
+import { ProfileAvatar } from "./Avatar";
+import dynamic from "next/dynamic";
+
+const GitHubHeatmap = dynamic(() => import("./GitHubHeatmap").then((mod) => mod.GitHubHeatmap), {
+  ssr: false,
+  loading: () => (
+    <div className="p-6 overflow-hidden">
+      <h3 className="text-sm font-medium text-[var(--text-primary)] mb-4">GitHub Contributions</h3>
+      <div className="h-32 bg-[var(--bg-tertiary)] rounded animate-pulse" />
+    </div>
+  ),
+});
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.3 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
 
 export function HeroSection() {
   return (
-    <section className="sticky top-0 z-1 h-screen w-full bg-[#F8F8F8] text-[#222222] font-sans flex flex-col justify-between pt-24 lg:pt-20 pb-8 rounded-b-[3rem] lg:rounded-b-[4rem] shadow-sm overflow-hidden">
-      {/* Side decorative texts */}
-      <div className="absolute left-8 lg:left-16 top-1/2 -translate-y-1/2 -rotate-90 origin-left text-[#7B7B7B] text-xs tracking-widest uppercase hidden lg:block border-b border-[#E5E5E5] pb-4">
-        Balinda Mubarak
-      </div>
-      <div className="absolute right-8 lg:right-16 top-1/2 -translate-y-1/2 rotate-90 origin-right text-[#7B7B7B] text-xs tracking-widest uppercase hidden lg:block border-b border-[#E5E5E5] pb-4">
-        Full-Stack Developer
-      </div>
-
-      <div className="max-w-7xl mx-auto pt-10 w-full px-6 lg:px-24 flex-1 flex flex-col justify-center relative z-10">
+    <section className="min-h-screen pt-40 px-6 lg:px-24">
+      <div className="max-w-4xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="w-full flex flex-col items-center text-center"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="space-y-8"
         >
-          {/* Main Heading with Inline Circular Image */}
-          <h1 className="text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] xl:text-[6.5rem] leading-[1.1] font-light tracking-tight mb-2 sm:mb-3">
-            H<motion.span whileHover={{ y: -15, rotate: -12, color: "#a5a5a5" }} className="inline-block cursor-default transition-colors duration-300">e</motion.span>llo, I&apos;<motion.span whileHover={{ y: -15, rotate: 12, color: "#a5a5a5" }} className="inline-block cursor-default transition-colors duration-300">m</motion.span>{" "}
-            <span className="inline-flex items-center justify-center align-middle mx-1 sm:mx-4 -translate-y-2 lg:-translate-y-4">
-              <motion.div 
-                whileHover={{ rotate: [-6, 6, -6] }}
-                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                className="relative w-[50px] h-[50px] sm:w-[70px] sm:h-[70px] md:w-[90px] md:h-[90px] lg:w-[120px] lg:h-[120px] rounded-full overflow-hidden border border-[#E5E5E5] shadow-sm bg-gradient-to-br from-[#E5E5E5] text-transparent via-white to-[#F8F8F8] -rotate-6 cursor-pointer"
-              >
-                <Image
-                  src="/profile.png"
-                  alt="Balinda Mubarak"
-                  fill
-                  sizes="(max-width: 640px) 50px, (max-width: 768px) 90px, 120px"
-                  className="object-cover object-top scale-110"
-                  priority
-                />
-              </motion.div>
+          <motion.div variants={itemVariants} className="flex items-center gap-5">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 rounded-full overflow-hidden">
+              <ProfileAvatar />
+            </div>
+            <div className="flex-1 flex flex-col justify-center space-y-1">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight text-[var(--text-primary)]">
+                Balinda Mubarak
+              </h1>
+              <p className="text-base sm:text-lg text-[var(--text-secondary)] font-light">
+                Product Engineer
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div variants={itemVariants} className="flex flex-wrap gap-4 text-sm text-[var(--text-muted)]">
+            <span className="flex items-center gap-1.5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+              bmubs15@gmail.com
             </span>
-            <span className="block mt-2 sm:mt-0 md:-mt-2 lg:-mt-6 xl:-mt-8 whitespace-nowrap font-[family-name:var(--font-brooklyn)] tracking-normal text-[1.4em] sm:text-[1.5em] md:text-[1.6em] lg:text-[1.65em]">Bal<motion.span
-              whileHover={{ y: -15, rotate: 12, color: "#a5a5a5" }}
-              className="inline-block cursor-default transition-colors duration-300"
-            >i</motion.span>nda<motion.span
-            >.</motion.span></span>
-          </h1>
-
-          {/* Subtext */}
-          <p className="text-lg sm:text-xl lg:text-xl text-[#7B7B7B] font-light max-w-2xl mx-auto mt-1 px-4 leading-relaxed">
-            An AI & software engineer crafting minimal, resilient systems.
-          </p>
-
-          {/* Stats */}
-          <div className="flex flex-wrap justify-center gap-12 sm:gap-24 mt-6 lg:mt-8">
-            <div className="text-center">
-              <div className="text-3xl lg:text-4xl font-light mb-1 text-[#222222]">3+</div>
-              <div className="text-[10px] sm:text-[11px] text-[#7B7B7B] uppercase tracking-wider whitespace-pre-line">
-                Years{"\n"}Experience
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl lg:text-4xl font-light mb-1 text-[#222222]">20+</div>
-              <div className="text-[10px] sm:text-[11px] text-[#7B7B7B] uppercase tracking-wider whitespace-pre-line">
-                Projects{"\n"}Built
-              </div>
-            </div>
-          </div>
-
-          {/* Scroll Down */}
-          <div className="mt-6 lg:mt-8 flex flex-col items-center gap-4 hidden lg:flex">
-            <span className="text-[10px] uppercase tracking-widest font-medium text-[#7B7B7B]">
-              Scroll down
+            <span className="flex items-center gap-1.5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              Uganda
             </span>
-            <div className="w-[1px] h-16 bg-[#E5E5E5] relative overflow-hidden">
-              <motion.div 
-                initial={{ y: "-100%" }}
-                animate={{ y: "100%" }}
-                transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
-                className="absolute top-0 w-full h-1/2 bg-[#222222]" 
-              />
-            </div>
-          </div>
+          </motion.div>
+
+          <motion.p variants={itemVariants} className="text-base sm:text-lg text-[var(--text-secondary)] font-light leading-relaxed">
+            I&apos;m a developer from Uganda focused on building elegant web applications and intelligent AI-powered systems. I like building cool stuff and shit.
+          </motion.p>
+
+          <motion.div variants={itemVariants}>
+            <SpotifyCard />
+          </motion.div>
+
+          <motion.div variants={itemVariants}>
+            <SocialIcons />
+          </motion.div>
+
+          <motion.div variants={itemVariants}>
+            <GitHubHeatmap />
+          </motion.div>
         </motion.div>
       </div>
     </section>

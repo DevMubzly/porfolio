@@ -1,64 +1,56 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Github, Mail, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export function ContactSection() {
   return (
-    <section id="contact" className="relative z-[5] py-24 lg:py-32 px-6 lg:px-24 bg-[#F8F8F8] text-[#222222] rounded-t-[3rem] lg:rounded-t-[4rem] shadow-[0_-4px_24px_rgba(0,0,0,0.03)] flex flex-col justify-center -mt-8 lg:-mt-12">
-      <div className="max-w-7xl mx-auto w-full relative z-10">
+    <section id="contact" className="py-16 lg:py-20 px-6 lg:px-24">
+      <div className="max-w-4xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="space-y-16 lg:space-y-24"
+          className="text-center space-y-8"
         >
-          <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[#E5E5E5] pb-8 lg:pb-12 gap-6 lg:gap-8">
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-light tracking-tight">
-              Get in touch
-            </h2>
-          </div>
+          <motion.blockquote
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-2xl sm:text-3xl lg:text-4xl font-light text-[var(--text-primary)] max-w-3xl mx-auto leading-relaxed"
+          >
+            &ldquo;The best way to predict the future is to build it.&rdquo;
+          </motion.blockquote>
 
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-16">
-            <a
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-[var(--text-muted)] text-sm"
+          >
+            — Let&apos;s build something together
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="pt-4"
+          >
+            <motion.a
               href="mailto:bmubs15@gmail.com"
-              className="group flex items-center justify-between p-8 bg-white border border-[#E5E5E5] hover:border-[#222222] transition-colors"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[var(--text-primary)] text-[var(--bg)] text-sm font-medium hover:opacity-90 transition-opacity"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <div className="flex items-center gap-6">
-                <div className="w-12 h-12 bg-[#F8F8F8] flex items-center justify-center rounded-full group-hover:bg-[#222222] group-hover:text-white transition-colors duration-500">
-                  <Mail className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="text-xs font-medium text-[#7B7B7B] uppercase tracking-widest mb-1">Email</p>
-                  <p className="text-xl lg:text-2xl font-light text-[#222222]">bmubs15@gmail.com</p>
-                </div>
-              </div>
-              <div className="w-10 h-10 border border-[#E5E5E5] rounded-full flex items-center justify-center group-hover:bg-[#222222] group-hover:border-[#222222] transition-colors duration-500">
-                <ArrowUpRight className="w-5 h-5 text-[#7B7B7B] group-hover:text-white transition-colors duration-500" />
-              </div>
-            </a>
-
-            <a
-              href="https://github.com/DevMubzly"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center justify-between p-8 bg-white border border-[#E5E5E5] hover:border-[#222222] transition-colors"
-            >
-              <div className="flex items-center gap-6">
-                <div className="w-12 h-12 bg-[#F8F8F8] flex items-center justify-center rounded-full group-hover:bg-[#222222] group-hover:text-white transition-colors duration-500">
-                  <Github className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="text-xs font-medium text-[#7B7B7B] uppercase tracking-widest mb-1">GitHub</p>
-                  <p className="text-xl lg:text-2xl font-light text-[#222222]">@DevMubzly</p>
-                </div>
-              </div>
-              <div className="w-10 h-10 border border-[#E5E5E5] rounded-full flex items-center justify-center group-hover:bg-[#222222] group-hover:border-[#222222] transition-colors duration-500">
-                <ArrowUpRight className="w-5 h-5 text-[#7B7B7B] group-hover:text-white transition-colors duration-500" />
-              </div>
-            </a>
-          </div>
+              Get in touch
+              <ArrowUpRight className="w-4 h-4" />
+            </motion.a>
+          </motion.div>
         </motion.div>
       </div>
     </section>
