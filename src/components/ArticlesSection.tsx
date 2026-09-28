@@ -10,55 +10,53 @@ export function ArticlesSection() {
     <section id="articles" className="py-16 lg:py-20 px-6 lg:px-24">
       <div className="max-w-4xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="space-y-16"
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="space-y-10"
         >
-          <div className="flex flex-col md:flex-row md:items-end justify-between pb-12 gap-6 border-b border-[var(--border)]">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-[var(--text-primary)]">
+          <div>
+            <h2 className="text-xs font-semibold text-[var(--text-primary)] uppercase tracking-wider mb-4">
               Insights & Writing
             </h2>
-            <p className="text-base text-[var(--text-muted)] font-light max-w-sm md:text-right pb-2">
+            <p className="text-base text-[var(--text-muted)] font-light">
               Thoughts on development, engineering, and artificial intelligence.
             </p>
           </div>
 
-          <div className="flex flex-col border-t border-[var(--border)]">
+          <div className="border-t border-[var(--border)]">
             {articles.map((article, index) => (
               <motion.div
                 key={article.slug}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
               >
                 <Link
                   href={`/articles/${article.slug}`}
-                  className="group flex flex-col md:flex-row md:items-center justify-between py-8 lg:py-12 border-b border-[var(--border)] gap-6 hover:px-6 lg:hover:px-10 hover:bg-[var(--bg-secondary)] transition-all duration-500 rounded-2xl md:-mx-6 lg:-mx-10"
+                  className="group flex flex-col sm:flex-row sm:items-center justify-between gap-3 py-5 border-b border-[var(--border)] last:border-b-0"
                 >
-                  <div className="flex-1 max-w-4xl space-y-4">
-                    <div className="flex items-center gap-3 text-[10px] lg:text-xs font-medium">
-                      <span className="text-[var(--text-primary)] px-3 py-1 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-full">
-                        {article.tag}
-                      </span>
-                      <span className="text-[var(--text-muted)]">{article.date}</span>
+                  <div className="flex-1 min-w-0 space-y-2">
+                    <div className="flex items-center gap-3 text-xs text-[var(--text-muted)]">
+                      <span className="font-medium">{article.tag}</span>
                       <span className="w-1 h-1 rounded-full bg-[var(--border)]"></span>
-                      <span className="text-[var(--text-muted)]">{article.readTime}</span>
+                      <span>{article.date}</span>
+                      <span className="w-1 h-1 rounded-full bg-[var(--border)]"></span>
+                      <span>{article.readTime}</span>
                     </div>
-
-                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-light text-[var(--text-primary)] group-hover:translate-x-2 transition-transform duration-500">
+                    <h3 className="text-lg font-light text-[var(--text-primary)] group-hover:text-[var(--text-secondary)] transition-colors">
                       {article.title}
                     </h3>
                   </div>
 
-                  <div className="flex items-center gap-4 mt-4 md:mt-0">
-                    <span className="md:hidden text-xs text-[var(--text-muted)] group-hover:text-[var(--text-primary)] transition-colors duration-300">
-                      Read Article
+                  <div className="flex items-center gap-3 flex-shrink-0">
+                    <span className="text-xs text-[var(--text-muted)] group-hover:text-[var(--text-primary)] transition-colors">
+                      Read
                     </span>
-                    <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-full border border-[var(--border)] bg-[var(--bg-secondary)] flex items-center justify-center group-hover:bg-[var(--text-primary)] group-hover:text-[var(--bg)] group-hover:border-[var(--text-primary)] transition-all duration-500 flex-shrink-0">
-                      <ArrowUpRight className="w-5 h-5 lg:w-6 lg:h-6 group-hover:rotate-45 transition-transform duration-500" />
+                    <div className="w-8 h-8 rounded-full border border-[var(--border)] flex items-center justify-center group-hover:bg-[var(--text-primary)] group-hover:text-[var(--bg)] group-hover:border-[var(--text-primary)] transition-all duration-300">
+                      <ArrowUpRight className="w-3.5 h-3.5 group-hover:rotate-45 transition-transform duration-300" />
                     </div>
                   </div>
                 </Link>

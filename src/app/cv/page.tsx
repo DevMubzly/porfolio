@@ -1,18 +1,19 @@
 "use client";
 
 import { motion } from "motion/react";
+import { Printer } from "lucide-react";
 
 const experience = [
   {
     title: "Software Engineer",
     company: "Tricsoft Technologies Ltd",
-    period: "Present",
-    desc: "Developing and maintaining software solutions, contributing to full-stack development and collaborating on enterprise projects.",
+    period: "June 2026 - September 2026",
+    desc: "Pioneered a major VR platform project as lead engineer, overseeing overall development from architecture to deployment.",
   },
   {
     title: "Lead Full-Stack Mobile Engineer",
-    company: "MFC Ordering App",
-    period: "2025 - Dec 26th",
+    company: "Metro Fried Chicken by Chello",
+    period: "June 2025 - December 2025",
     desc: "Leading the end-to-end development of a cross-platform mobile ordering application using React Native, Expo, and Zustand. Focusing on a seamless food ordering experience with menu browsing, cart management, and order tracking.",
   },
   {
@@ -24,6 +25,14 @@ const experience = [
 ];
 
 const projects = [
+  {
+    title: "SalaStores",
+    status: "Live",
+    subtitle: "E-commerce platform",
+    desc: "A business operation system that organizes merchant inventory and exposes it as a store, Shopify-style. Built with Node.js, React, PostgreSQL, and deployed on Cloudflare.",
+    tags: ["Node.js", "React", "PostgreSQL", "Cloudflare"],
+    url: "https://salastores.com",
+  },
   {
     title: "EdgeKeeper",
     status: "Live",
@@ -74,12 +83,32 @@ const referees = [
 export default function CVPage() {
   return (
     <main className="min-h-screen pt-28 pb-16 px-6 lg:px-24">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto relative">
+        {/* Decorative wavy lines on the right */}
+        <div className="absolute top-0 right-0 w-32 h-full overflow-hidden pointer-events-none hidden lg:block">
+          <svg className="w-full h-full" viewBox="0 0 100 800" preserveAspectRatio="none" fill="none">
+            <path d="M50 0 C80 100, 20 200, 50 300 C80 400, 20 500, 50 600 C80 700, 20 800, 50 800" stroke="var(--border)" strokeWidth="1" opacity="0.5" />
+            <path d="M70 0 C100 100, 40 200, 70 300 C100 400, 40 500, 70 600 C100 700, 40 800, 70 800" stroke="var(--border)" strokeWidth="1" opacity="0.3" />
+            <path d="M30 0 C60 100, 0 200, 30 300 C60 400, 0 500, 30 600 C60 700, 0 800, 30 800" stroke="var(--border)" strokeWidth="1" opacity="0.4" />
+          </svg>
+        </div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
+          {/* Print CV Button */}
+          <div className="flex justify-end mb-8">
+            <button
+              onClick={() => window.print()}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--border)] bg-[var(--bg-secondary)] text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-strong)] transition-colors"
+            >
+              <Printer className="w-3.5 h-3.5" />
+              Print CV
+            </button>
+          </div>
+
           {/* Header */}
           <div className="pb-8 mb-12 border-b-2 border-[var(--text-primary)]">
             <h1 className="text-4xl sm:text-5xl font-light tracking-tight text-[var(--text-primary)] mb-2">

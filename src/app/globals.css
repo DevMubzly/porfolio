@@ -125,23 +125,23 @@ body {
 .react-github-calendar [data-level="1"],
 .react-github-calendar rect[fill="#9be9a8"],
 .react-github-calendar rect[fill="#0e4429"] {
-  fill: var(--border-strong) !important;
+  fill: #f0f0f2 !important;
 }
 
 .react-github-calendar [data-level="2"],
 .react-github-calendar rect[fill="#40c463"],
 .react-github-calendar rect[fill="#006d32"] {
-  fill: var(--text-muted) !important;
+  fill: #e4e4e7 !important;
 }
 
 .react-github-calendar [data-level="3"],
 .react-github-calendar rect[fill="#30a14e"],
 .react-github-calendar rect[fill="#216e39"] {
-  fill: var(--text-secondary) !important;
+  fill: #d4d4d8 !important;
 }
 
 .react-github-calendar [data-level="4"],
 .react-github-calendar rect[fill="#39d353"],
 .react-github-calendar rect[fill="#26a641"] {
-  fill: var(--text-primary) !important;
+  fill: #b8b8bf !important;
 }

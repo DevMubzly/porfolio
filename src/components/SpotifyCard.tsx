@@ -8,6 +8,7 @@ interface Track {
   artist: string;
   albumArt: string;
   url: string;
+  isPlaying: boolean;
 }
 
 export function SpotifyCard() {
@@ -15,23 +16,31 @@ export function SpotifyCard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/spotify")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.track) setTrack(data.track);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    const fetchTrack = () => {
+      fetch("/api/spotify")
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.track) setTrack(data.track);
+          setLoading(false);
+        })
+        .catch(() => setLoading(false));
+    };
+
+    fetchTrack();
+    const interval = setInterval(fetchTrack, 15000);
+    return () => clearInterval(interval);
   }, []);
 
   if (loading) {
     return (
-      <div className="flex items-center gap-4 p-4 rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)]">
-        <div className="w-14 h-14 rounded-lg bg-[var(--bg-tertiary)] animate-pulse" />
-        <div className="flex-1 space-y-2">
-          <div className="h-3 w-32 bg-[var(--bg-tertiary)] rounded animate-pulse" />
-          <div className="h-2 w-24 bg-[var(--bg-tertiary)] rounded animate-pulse" />
+      <div className="flex items-center gap-4 p-4 rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] max-w-sm">
+        <div className="w-14 h-14 rounded-lg bg-[var(--bg-tertiary)] animate-pulse flex-shrink-0" />
+        <div className="flex-1 min-w-0 space-y-2">
+          <div className="h-2.5 w-16 bg-[var(--bg-tertiary)] rounded animate-pulse" />
+          <div className="h-3.5 w-32 bg-[var(--bg-tertiary)] rounded animate-pulse" />
+          <div className="h-2.5 w-24 bg-[var(--bg-tertiary)] rounded animate-pulse" />
         </div>
+        <div className="w-8 h-8 rounded-full bg-[var(--bg-tertiary)] animate-pulse flex-shrink-0" />
       </div>
     );
   }
@@ -43,7 +52,7 @@ export function SpotifyCard() {
       href={track.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center gap-4 p-4 rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] hover:border-[var(--border-strong)] transition-colors group"
+      className="flex items-center gap-4 p-4 rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] hover:border-[var(--border-strong)] transition-colors group max-w-sm"
       whileHover={{ scale: 1.01 }}
       whileTap={{ scale: 0.99 }}
     >
@@ -52,7 +61,9 @@ export function SpotifyCard() {
         <img src={track.albumArt} alt={track.name} className="w-full h-full object-cover" />
       </div>
       <div className="flex-1 min-w-0">
-        <p className="text-xs text-[var(--text-muted)] uppercase tracking-wider mb-0.5">Last played</p>
+        <p className="text-xs text-[var(--text-muted)] uppercase tracking-wider mb-0.5">
+          {track.isPlaying ? "Now playing" : "Last played"}
+        </p>
         <p className="text-sm font-medium text-[var(--text-primary)] truncate">{track.name}</p>
         <p className="text-xs text-[var(--text-secondary)] truncate">{track.artist}</p>
       </div>

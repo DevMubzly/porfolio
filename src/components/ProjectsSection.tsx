@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "motion/react";
-import Image from "next/image";
 import { ExternalLink } from "lucide-react";
+import { Icon } from "@iconify/react";
 
 interface Project {
   title: string;
@@ -10,27 +10,32 @@ interface Project {
   description: string;
   stack: string[];
   status?: string;
-  image?: string;
   projectURL?: string;
 }
 
 const projects: Project[] = [
+  {
+    title: "SalaStores",
+    summary: "E-commerce platform",
+    description: "A business operation system that organizes merchant inventory and exposes it as a store, Shopify-style. Built with Node.js, React, PostgreSQL, and deployed on Cloudflare.",
+    stack: ["Node.js", "React", "PostgreSQL", "Cloudflare"],
+    status: "Live",
+    projectURL: "https://salastores.com",
+  },
   {
     title: "EdgeKeeper",
     summary: "Visual algorithmic trading platform",
     description: "A sophisticated no-code platform for building, backtesting, and deploying automated trading strategies using a visual node-based interface.",
     stack: ["Next.js", "TypeScript", "Python", "WebSockets"],
     status: "Live",
-    image: "/image.png",
     projectURL: "https://edgekeeper.app",
   },
   {
-    title: "MetroFried Chicken App",
+    title: "Metro Fried Chicken by Chello",
     summary: "Cross-platform mobile ordering app",
     description: "React Native app for food ordering with menu browsing, cart, and order tracking.",
     stack: ["React Native", "Expo", "TypeScript", "Zustand"],
     status: "In Progress",
-    image: "/chicken.jpg",
     projectURL: "https://github.com/DevMubzly/mfc-ordering-app",
   },
   {
@@ -39,101 +44,93 @@ const projects: Project[] = [
     description: "Open-source platform for running LLMs on-premises with security and compliance.",
     stack: ["FastAPI", "Docker", "Next.js", "Prometheus"],
     status: "In Development",
-    image: "/fortress.jpg",
     projectURL: "https://fortress-stack.tech",
   },
 ];
+
+const techIcons: Record<string, string> = {
+  "Next.js": "logos:nextjs-icon",
+  "TypeScript": "logos:typescript-icon",
+  "Python": "logos:python",
+  "PostgreSQL": "logos:postgresql",
+  "React Native": "logos:react",
+  "Expo": "logos:expo-icon",
+  "Zustand": "logos:react",
+  "FastAPI": "logos:python",
+  "Docker": "logos:docker-icon",
+  "Prometheus": "logos:prometheus-icon",
+  "Node.js": "logos:nodejs-icon",
+  "React": "logos:react",
+  "Cloudflare": "logos:cloudflare-icon",
+  "WebSockets": "mdi:websocket",
+};
 
 export function ProjectsSection() {
   return (
     <section id="projects" className="py-16 lg:py-20 px-6 lg:px-24">
       <div className="max-w-4xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="space-y-16"
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="space-y-10"
         >
-          <div className="flex flex-col md:flex-row md:items-end justify-between pb-12 gap-6 border-b border-[var(--border)]">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-[var(--text-primary)]">
+          <div>
+            <h2 className="text-xs font-semibold text-[var(--text-primary)] uppercase tracking-wider mb-4">
               Selected Works
             </h2>
-            <p className="text-base text-[var(--text-muted)] font-light max-w-sm md:text-right pb-2">
+            <p className="text-base text-[var(--text-muted)] font-light">
               A curated collection of projects and experimental systems.
             </p>
           </div>
 
-          <div className="flex flex-col border-t border-[var(--border)]">
+          <div className="border-t border-[var(--border)]">
             {projects.map((project, index) => (
               <motion.div
                 key={project.title}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
               >
-                <div className="group relative flex flex-col lg:flex-row justify-between lg:items-center py-12 px-4 md:px-6 lg:px-10 border-b border-[var(--border)] gap-8 transition-all duration-500 hover:bg-[var(--bg-secondary)] rounded-2xl md:-mx-6 lg:-mx-10">
-                  <div className="flex flex-col flex-1 max-w-3xl space-y-6 z-10">
-                    <div className="flex flex-wrap items-center gap-3">
-                      <span className="text-[10px] sm:text-xs font-medium text-[var(--text-primary)] bg-[var(--bg-secondary)] border border-[var(--border)] px-3 py-1 rounded-full">
+                <div className="group flex flex-col sm:flex-row sm:items-center justify-between gap-3 py-6 border-b border-[var(--border)] last:border-b-0">
+                  <div className="flex-1 min-w-0 space-y-2">
+                    <div className="flex items-center gap-3">
+                      <p className="text-lg font-light text-[var(--text-primary)] group-hover:text-[var(--text-secondary)] transition-colors">
+                        {project.title}
+                      </p>
+                      <span className="text-[10px] font-medium text-[var(--text-primary)] bg-[var(--bg-secondary)] border border-[var(--border)] px-2 py-0.5 rounded-full">
                         {project.status}
                       </span>
-                      {project.stack.slice(0, 3).map((tech) => (
-                        <span key={tech} className="text-xs text-[var(--text-muted)] font-medium hidden sm:block">
-                          {tech}
-                        </span>
+                    </div>
+                    <p className="text-sm text-[var(--text-muted)]">{project.summary}</p>
+                    <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{project.description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.stack.map((tech) => (
+                        <div
+                          key={tech}
+                          className="w-7 h-7 rounded-full border border-[var(--border)] bg-[var(--bg-secondary)] flex items-center justify-center text-[var(--text-secondary)]"
+                        >
+                          <Icon icon={techIcons[tech] || "mdi:code-tags"} className="w-3.5 h-3.5" />
+                        </div>
                       ))}
                     </div>
-
-                    <h3 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-[var(--text-primary)] group-hover:translate-x-2 transition-transform duration-500">
-                      {project.title}
-                    </h3>
-
-                    <p className="text-base sm:text-lg text-[var(--text-muted)] font-light leading-relaxed">
-                      {project.description}
-                    </p>
                   </div>
 
-                  <div className="flex items-center gap-6 lg:flex-col lg:items-end lg:justify-center z-10 mt-2 lg:mt-0">
-                    {project.projectURL ? (
-                      <a
-                        href={project.projectURL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-4 group/btn"
-                      >
-                        <span className="text-xs text-[var(--text-muted)] group-hover/btn:text-[var(--text-primary)] transition-colors duration-300">
-                          View Project
-                        </span>
-                        <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-full border border-[var(--border)] bg-[var(--bg-secondary)] flex items-center justify-center group-hover/btn:bg-[var(--text-primary)] group-hover/btn:text-[var(--bg)] group-hover/btn:border-[var(--text-primary)] transition-all duration-500">
-                          <ExternalLink className="w-5 h-5 lg:w-6 lg:h-6 group-hover/btn:rotate-45 group-hover/btn:scale-110 transition-transform duration-500" />
-                        </div>
-                      </a>
-                    ) : (
-                      <div className="flex items-center gap-4 cursor-not-allowed opacity-50">
-                        <span className="text-xs uppercase tracking-widest text-[var(--text-muted)]">
-                          Internal Project
-                        </span>
-                        <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-full border border-[var(--border)] bg-[var(--bg-tertiary)] flex items-center justify-center">
-                          <span className="w-2 h-2 rounded-full bg-[var(--border)]"></span>
-                        </div>
-                      </div>
-                    )}
+                  <div className="flex items-center gap-3 flex-shrink-0">
+                    <span className="text-xs text-[var(--text-muted)] group-hover:text-[var(--text-primary)] transition-colors">
+                      View
+                    </span>
+                    <a
+                      href={project.projectURL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-8 h-8 rounded-full border border-[var(--border)] flex items-center justify-center group-hover:bg-[var(--text-primary)] group-hover:text-[var(--bg)] group-hover:border-[var(--text-primary)] transition-all duration-300"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5 group-hover:rotate-45 transition-transform duration-300" />
+                    </a>
                   </div>
-
-                  {project.image && (
-                    <div className="absolute inset-y-4 right-4 w-1/3 rounded-xl overflow-hidden opacity-0 group-hover:opacity-10 scale-95 group-hover:scale-100 hidden lg:block transition-all duration-700 ease-out pointer-events-none z-0">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        sizes="33vw"
-                        className="object-cover object-center grayscale"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[var(--bg-secondary)]/50 to-[var(--bg-secondary)]"></div>
-                    </div>
-                  )}
                 </div>
               </motion.div>
             ))}
