@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeSwitcher } from "./ThemeSwitcher";
@@ -18,6 +18,7 @@ const navItems = [
 export function Header() {
   const pathname = usePathname();
   const [activeSection, setActiveSection] = useState("home");
+  const [activeIndex, setActiveIndex] = useState(-1);
   const isScrolling = useRef(false);
 
   useEffect(() => {
@@ -50,6 +51,16 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [pathname]);
 
+  useEffect(() => {
+    const idx = navItems.findIndex((item) => {
+      if (item.href.startsWith("#")) {
+        return activeSection === item.href.slice(1) && pathname === "/";
+      }
+      return pathname === item.href;
+    });
+    setActiveIndex(idx);
+  }, [activeSection, pathname]);
+
   const handleClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith("#")) {
       e.preventDefault();
@@ -68,8 +79,19 @@ export function Header() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="flex items-center gap-1 p-1.5 rounded-full border border-[var(--border)] bg-[var(--bg-secondary)]/80 backdrop-blur-xl shadow-lg shadow-black/5"
+        className="relative flex items-center gap-1 p-1.5 rounded-full border border-[var(--border)] bg-[var(--bg-secondary)]/80 backdrop-blur-xl shadow-lg shadow-black/5"
       >
+        {activeIndex >= 0 && (
+          <motion.div
+            className="absolute top-1.5 bottom-1.5 rounded-full bg-[var(--text-primary)]"
+            initial={false}
+            animate={{
+              left: `${activeIndex * 64 + 6}px`,
+              width: "52px",
+            }}
+            transition={{ type: "spring", stiffness: 400, damping: 32, mass: 0.6 }}
+          />
+        )}
         {navItems.map((item) => {
           const isActive = item.href.startsWith("#")
             ? activeSection === item.href.slice(1) && pathname === "/"
@@ -77,7 +99,7 @@ export function Header() {
 
           const classes = `relative px-4 py-2 rounded-full transition-colors duration-200 ${
             isActive
-              ? "bg-[var(--text-primary)] text-[var(--bg)]"
+              ? "text-[var(--bg)]"
               : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
           }`;
 
