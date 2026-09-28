@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 
 const navItems = [
@@ -13,10 +14,19 @@ const navItems = [
 ];
 
 export function Header() {
+  const router = useRouter();
+  const pathname = usePathname();
+
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith("#")) {
       e.preventDefault();
       const id = href.slice(1);
+
+      if (pathname !== "/") {
+        router.push(`/#${id}`);
+        return;
+      }
+
       const element = document.getElementById(id);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
