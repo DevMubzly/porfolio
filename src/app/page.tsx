@@ -1,30 +1,26 @@
 "use client";
 
 import { motion } from "motion/react";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import LocomotiveScroll from "locomotive-scroll";
+import "locomotive-scroll/dist/locomotive-scroll.css";
 import { HeroSection } from "@/components/HeroSection";
 import { AboutSection } from "@/components/AboutSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { ArticlesSection } from "@/components/ArticlesSection";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
+import { registerLocomotive } from "@/lib/scroll";
 
 export default function Home() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const locomotiveRef = useRef<LocomotiveScroll | null>(null);
-
   useEffect(() => {
-    if (!scrollRef.current) return;
-
     const scroll = new LocomotiveScroll({
-      el: scrollRef.current,
-      smooth: true,
-      multiplier: 1,
-      lerp: 0.1,
+      lenisOptions: {
+        lerp: 0.1,
+      },
     });
 
-    locomotiveRef.current = scroll;
+    registerLocomotive(scroll);
 
     return () => {
       scroll.destroy();
@@ -32,7 +28,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div ref={scrollRef} className="min-h-screen" data-scroll-container>
+    <div className="min-h-screen" data-scroll>
       <motion.main
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

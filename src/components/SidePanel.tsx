@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { scrollToId } from "@/lib/scroll";
 
 export function SidePanel() {
   const pathname = usePathname();
@@ -33,10 +34,7 @@ export function SidePanel() {
   }, [pathname]);
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    scrollToId(id);
   };
 
   return (

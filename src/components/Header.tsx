@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { ThemeSwitcher } from "./ThemeSwitcher";
+import { scrollToId } from "@/lib/scroll";
 
 const navItems = [
   { label: "Home", href: "#home" },
@@ -27,10 +28,7 @@ export function Header() {
         return;
       }
 
-      const element = document.getElementById(id);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
+      scrollToId(id);
     }
   };
 
