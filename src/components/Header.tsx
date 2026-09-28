@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeSwitcher } from "./ThemeSwitcher";
@@ -18,7 +18,8 @@ const navItems = [
 export function Header() {
   const pathname = usePathname();
   const [activeSection, setActiveSection] = useState("home");
-  const [activeIndex, setActiveIndex] = useState(-1);
+  const [indicator, setIndicator] = useState({ left: 0, width: 0 });
+  const navRef = useRef<HTMLDivElement>(null);
   const isScrolling = useRef(false);
 
   useEffect(() => {
@@ -52,13 +53,38 @@ export function Header() {
   }, [pathname]);
 
   useEffect(() => {
-    const idx = navItems.findIndex((item) => {
-      if (item.href.startsWith("#")) {
-        return activeSection === item.href.slice(1) && pathname === "/";
+    const updateIndicator = () => {
+      if (!navRef.current) return;
+      const nav = navRef.current;
+      const links = nav.querySelectorAll("a, button");
+      const allItems = Array.from(links).filter((el) => {
+        const text = el.textContent?.trim();
+        return navItems.some((item) => item.label === text);
+      });
+
+      const activeItem = allItems.find((el) => {
+        const text = el.textContent?.trim();
+        const item = navItems.find((i) => i.label === text);
+        if (!item) return false;
+        if (item.href.startsWith("#")) {
+          return activeSection === item.href.slice(1) && pathname === "/";
+        }
+        return pathname === item.href;
+      });
+
+      if (activeItem) {
+        const navRect = nav.getBoundingClientRect();
+        const itemRect = activeItem.getBoundingClientRect();
+        setIndicator({
+          left: itemRect.left - navRect.left,
+          width: itemRect.width,
+        });
       }
-      return pathname === item.href;
-    });
-    setActiveIndex(idx);
+    };
+
+    updateIndicator();
+    window.addEventListener("resize", updateIndicator);
+    return () => window.removeEventListener("resize", updateIndicator);
   }, [activeSection, pathname]);
 
   const handleClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -76,20 +102,21 @@ export function Header() {
   return (
     <div className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
       <motion.nav
+        ref={navRef}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="relative flex items-center gap-1 p-1.5 rounded-full border border-[var(--border)] bg-[var(--bg-secondary)]/80 backdrop-blur-xl shadow-lg shadow-black/5"
+        className="relative flex items-center gap-1 p-1.5 rounded-full border border-[var(--border)] bg-[var(--bg-secondary)]/80 backdrop-blur-xl shadow-lg shadow-black/5 max-w-full overflow-x-auto"
       >
-        {activeIndex >= 0 && (
+        {indicator.width > 0 && (
           <motion.div
             className="absolute top-1.5 bottom-1.5 rounded-full bg-[var(--text-primary)]"
             initial={false}
             animate={{
-              left: `${activeIndex * 64 + 6}px`,
-              width: "52px",
+              left: indicator.left,
+              width: indicator.width,
             }}
-            transition={{ type: "spring", stiffness: 400, damping: 32, mass: 0.6 }}
+            transition={{ type: "spring", stiffness: 350, damping: 30 }}
           />
         )}
         {navItems.map((item) => {
@@ -97,7 +124,7 @@ export function Header() {
             ? activeSection === item.href.slice(1) && pathname === "/"
             : pathname === item.href;
 
-          const classes = `relative px-4 py-2 rounded-full transition-colors duration-200 ${
+          const classes = `relative px-3 sm:px-4 py-2 rounded-full transition-colors duration-200 whitespace-nowrap ${
             isActive
               ? "text-[var(--bg)]"
               : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
@@ -126,8 +153,10 @@ export function Header() {
             </Link>
           );
         })}
-        <div className="w-px h-5 bg-[var(--border)] mx-1" />
-        <ThemeSwitcher />
+        <div className="w-px h-5 bg-[var(--border)] mx-1 flex-shrink-0" />
+        <div className="flex-shrink-0">
+          <ThemeSwitcher />
+        </div>
       </motion.nav>
     </div>
   );
