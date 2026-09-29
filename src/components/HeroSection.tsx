@@ -126,7 +126,7 @@ export function HeroSection() {
           </motion.div>
 
           <motion.p variants={itemVariants} className="text-base sm:text-lg text-[var(--text-secondary)] font-light leading-relaxed">
-            Hi, I&apos;m a developer from Uganda focused on building elegant web applications and intelligent AI-powered systems. I like building cool stuff.
+            Hi, I&apos;m a developer from Uganda focused on building elegant web applications and intelligent AI-powered systems.
           </motion.p>
 
           <motion.div variants={itemVariants}>

@@ -3,11 +3,42 @@ import { NextResponse } from "next/server";
 const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const REFRESH_TOKEN = process.env.SPOTIFY_REFRESH_TOKEN;
+// Optional: skip the /v1/me lookup (which is quota-limited in dev mode)
+const PROFILE_URL_OVERRIDE = process.env.SPOTIFY_PROFILE_URL || "";
 
 let cachedToken: { value: string; expiresAt: number } | null = null;
 let cachedResponse: { body: unknown; expiresAt: number } | null = null;
+let cachedProfile: { value: string; expiresAt: number } | null = null;
 
 const RESPONSE_TTL = 15_000;
+const PROFILE_TTL = 24 * 60 * 60 * 1000;
+
+async function getProfileUrl(accessToken: string): Promise<string> {
+  if (PROFILE_URL_OVERRIDE) return PROFILE_URL_OVERRIDE;
+
+  if (cachedProfile && Date.now() < cachedProfile.expiresAt) {
+    return cachedProfile.value;
+  }
+
+  try {
+    const res = await fetch("https://api.spotify.com/v1/me", {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      const url: string = data?.external_urls?.spotify || "";
+      if (url) {
+        cachedProfile = { value: url, expiresAt: Date.now() + PROFILE_TTL };
+        return url;
+      }
+    }
+  } catch {
+    // fall through to the default below
+  }
+
+  return "https://open.spotify.com";
+}
 
 async function getAccessToken(): Promise<string | null> {
   if (cachedToken && Date.now() < cachedToken.expiresAt) {
@@ -72,6 +103,8 @@ export async function GET() {
   }
 
   try {
+    const profileUrl = await getProfileUrl(accessToken);
+
     const currentRes = await fetch(
       "https://api.spotify.com/v1/me/player/currently-playing",
       { headers: { Authorization: `Bearer ${accessToken}` } }
@@ -82,7 +115,7 @@ export async function GET() {
     if (currentRes.status === 200) {
       const currentData = await currentRes.json();
       if (currentData.item) {
-        body = { isPlaying: true, track: toTrack(currentData.item) };
+        body = { isPlaying: true, track: toTrack(currentData.item), profileUrl };
       }
     }
 
@@ -99,7 +132,7 @@ export async function GET() {
         if (cachedResponse) {
           return NextResponse.json(cachedResponse.body);
         }
-        body = { isPlaying: false, track: null };
+        body = { isPlaying: false, track: null, profileUrl };
         cachedResponse = { body, expiresAt: Date.now() + RESPONSE_TTL };
         return NextResponse.json(body);
       }
@@ -107,9 +140,9 @@ export async function GET() {
       const data = await recentRes.json();
 
       if (!data.items || data.items.length === 0) {
-        body = { isPlaying: false, track: null };
+        body = { isPlaying: false, track: null, profileUrl };
       } else {
-        body = { isPlaying: false, track: toTrack(data.items[0].track) };
+        body = { isPlaying: false, track: toTrack(data.items[0].track), profileUrl };
       }
     }
 
