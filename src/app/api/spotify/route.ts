@@ -93,18 +93,15 @@ export async function GET() {
       );
 
       if (!recentRes.ok) {
+        // Spotify dev-mode apps get a tiny daily quota on this endpoint.
+        // Serve the last good response if we have one, otherwise report
+        // "no track" with a 200 so the card degrades quietly.
         if (cachedResponse) {
           return NextResponse.json(cachedResponse.body);
         }
-        return NextResponse.json(
-          {
-            error:
-              recentRes.status === 429
-                ? "Spotify quota exceeded. Development-mode apps are limited; request Extended Quota in the Spotify dashboard or wait for the daily reset."
-                : `Spotify request failed with status ${recentRes.status}`,
-          },
-          { status: recentRes.status }
-        );
+        body = { isPlaying: false, track: null };
+        cachedResponse = { body, expiresAt: Date.now() + RESPONSE_TTL };
+        return NextResponse.json(body);
       }
 
       const data = await recentRes.json();

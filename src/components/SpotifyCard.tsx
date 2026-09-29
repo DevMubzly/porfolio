@@ -21,16 +21,14 @@ export function SpotifyCard() {
 
     const fetchTrack = () => {
       fetch("/api/spotify")
-        .then((res) => {
-          if (res.status === 429) {
-            clearInterval(interval);
-            return null;
-          }
-          return res.json();
-        })
+        .then((res) => res.json())
         .then((data) => {
           if (cancelled || !data) return;
-          if (data.track) setTrack(data.track);
+          if (data.track) {
+            setTrack({ ...data.track, isPlaying: Boolean(data.isPlaying) });
+          } else {
+            setTrack(null);
+          }
           setLoading(false);
         })
         .catch(() => {
