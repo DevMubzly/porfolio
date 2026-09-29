@@ -86,7 +86,7 @@ export function SpotifyCard() {
           {track ? (track.isPlaying ? "Now playing" : "Last played") : "Spotify"}
         </p>
         <p className="text-sm font-medium text-[var(--text-primary)] truncate">
-          {track ? track.name : "Not playing right now"}
+          {track ? track.name : "Follow me on Spotify"}
         </p>
         <p className="text-xs text-[var(--text-secondary)] truncate">
           {track ? track.artist : "Open Spotify"}
