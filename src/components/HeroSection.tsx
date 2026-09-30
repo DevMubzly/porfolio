@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { SpotifyCard } from "./SpotifyCard";
 import { SocialIcons } from "./SocialIcons";
+import { EatClock } from "./EatClock";
 import { Icon } from "@iconify/react";
 import dynamic from "next/dynamic";
 
@@ -123,6 +124,7 @@ export function HeroSection() {
               </svg>
               Uganda
             </span>
+            <EatClock />
           </motion.div>
 
           <motion.p variants={itemVariants} className="text-base sm:text-lg text-[var(--text-secondary)] font-light leading-relaxed">
