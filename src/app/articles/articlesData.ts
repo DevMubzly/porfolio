@@ -20,16 +20,6 @@ export const articles: ArticleMeta[] = [
       "A deep dive into the engineering, rapid prototyping, and AI integration strategies that led me to become the overall winner of the Industry 4.0+ ABQ Launch hackathon.",
   },
   {
-    slug: "mastering-tailwind-css",
-    title: "Mastering Tailwind CSS for Real-World Design Systems",
-    tag: "Tailwind CSS",
-    year: "2026",
-    date: "Feb 12, 2026",
-    readTime: "5 min read",
-    description:
-      "How I use Tailwind to ship fast without creating a mess: constraints, design tokens, and patterns that scale as projects grow.",
-  },
-  {
     slug: "learning-and-mastering-langchain",
     title: "Learning and Mastering LangChain",
     tag: "LangChain & LLMs",
@@ -38,36 +28,6 @@ export const articles: ArticleMeta[] = [
     readTime: "6 min read",
     description:
       "A practical mental model for LangChain: chains, tools, memory, and how to avoid building fragile LLM spaghetti.",
-  },
-  {
-    slug: "introduction-to-docker-orchestration",
-    title: "Introduction to Docker Orchestration",
-    tag: "DevOps & Docker",
-    year: "2025",
-    date: "Oct 18, 2025",
-    readTime: "7 min read",
-    description:
-      "From a single container to multi-service deployments: Compose, networks, volumes, and how I think about environments.",
-  },
-  {
-    slug: "fundamentals-of-express-and-node",
-    title: "Fundamentals of Express.js and Node",
-    tag: "Backend basics",
-    year: "2025",
-    date: "Aug 22, 2025",
-    readTime: "5 min read",
-    description:
-      "The core Express patterns I actually use in production: routing, middleware, error handling, and project structure.",
-  },
-  {
-    slug: "guide-to-hono-on-the-edge",
-    title: "Guide to Hono.js on the Edge",
-    tag: "Edge APIs & Hono",
-    year: "2025",
-    date: "Jun 15, 2025",
-    readTime: "4 min read",
-    description:
-      "Why I enjoy Hono for small but sharp APIs: edge runtimes, DX, and when I pick it over Express.",
   },
   {
     slug: "llm-systems-that-dont-feel-stitched-on",

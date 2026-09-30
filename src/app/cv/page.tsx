@@ -46,7 +46,7 @@ const projects = [
     status: "In Development",
     subtitle: "Enterprise LLM Deployment Platform",
     desc: "Open-source platform designed for running large language models on-premises with strict security, auditing, and compliance safeguards built-in.",
-    tags: ["FastAPI", "Docker", "Next.js", "Prometheus"],
+    tags: ["FastAPI", "Docker", "Next.js", "Prometheus", "Nginx", "React", "TypeScript", "Ollama"],
     url: "https://fortress-stack.tech",
   },
 ];

@@ -16,6 +16,9 @@ const techStack = [
   { name: "PostgreSQL", icon: "logos:postgresql" },
   { name: "Docker", icon: "logos:docker-icon" },
   { name: "Cloudflare", icon: "logos:cloudflare-icon" },
+  { name: "NestJS", icon: "logos:nestjs" },
+  { name: "Git", icon: "logos:git-icon" },
+  { name: "Nginx", icon: "logos:nginx" },
 ];
 
 const GitHubHeatmap = dynamic(() => import("./GitHubHeatmap").then((mod) => mod.GitHubHeatmap), {

@@ -42,7 +42,7 @@ const projects: Project[] = [
     title: "Fortress",
     summary: "Enterprise LLM deployment platform",
     description: "Open-source platform for running LLMs on-premises with security and compliance.",
-    stack: ["FastAPI", "Docker", "Next.js", "Prometheus"],
+    stack: ["FastAPI", "Docker", "Next.js", "Prometheus", "Nginx", "React", "TypeScript", "Ollama"],
     status: "In Development",
     projectURL: "https://fortress-stack.tech",
   },
@@ -63,6 +63,8 @@ const techIcons: Record<string, string> = {
   "React": "logos:react",
   "Cloudflare": "logos:cloudflare-icon",
   "WebSockets": "mdi:websocket",
+  "Nginx": "logos:nginx",
+  "Ollama": "simple-icons:ollama",
 };
 
 export function ProjectsSection() {

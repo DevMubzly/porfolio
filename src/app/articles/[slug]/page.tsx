@@ -31,39 +31,6 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
 
 function ArticleBody({ slug }: { slug: string }) {
   switch (slug) {
-    case "mastering-tailwind-css":
-      return (
-        <>
-          <p className="mt-6 text-[var(--text-secondary)] leading-relaxed">
-            Tailwind CSS is often dismissed as &quot;just utility classes&quot;, but in real projects it becomes a
-            powerful way to encode a design system directly into the codebase. The goal is not to memorize
-            every class but to design a small, opinionated vocabulary that your future self and teammates can
-            use consistently.
-          </p>
-          <h2 className="mt-10 text-xl font-light tracking-tight text-[var(--text-primary)]">Start with constraints, not colors</h2>
-          <p className="mt-3 text-[var(--text-secondary)] leading-relaxed">
-            Before touching JSX, I define spacing, typography, and color scales in Tailwind config. This gives
-            me predictable primitives like <code>space-y-6</code>, <code>text-sm</code>, and
-            <code>bg-neutral-100</code> instead of one-off values. When everything is composed from the same
-            handful of tokens, pages feel cohesive even as they grow.
-          </p>
-          <h2 className="mt-8 text-xl font-light tracking-tight text-[var(--text-primary)]">Build layout primitives</h2>
-          <p className="mt-3 text-[var(--text-secondary)] leading-relaxed">
-            I try to avoid repeating the same complex class strings across the app. Instead, I create small
-            layout primitives like &quot;card&quot;, &quot;pill button&quot;, or &quot;section shell&quot; using Tailwind utilities and
-            extract them into components. This keeps the speed of utilities while still giving me semantic
-            building blocks.
-          </p>
-          <h2 className="mt-8 text-xl font-light tracking-tight text-[var(--text-primary)]">Design for dark mode and theming early</h2>
-          <p className="mt-3 text-[var(--text-secondary)] leading-relaxed">
-            Tailwind makes theme variants cheap: <code>dark:bg-neutral-900</code>,
-            <code>dark:text-neutral-100</code>, etc. Building both light and dark states from day one forces you
-            to think in contrast ratios and keeps your palette honest. It also means flipping the entire site to
-            dark mode later is not a refactor; it is just toggling a class on <code>&lt;html&gt;</code>.
-          </p>
-        </>
-      );
-
     case "learning-and-mastering-langchain":
       return (
         <>
@@ -84,73 +51,6 @@ function ArticleBody({ slug }: { slug: string }) {
             business logic. I design tools with strict, typed inputs and clear error messages so I can log and
             monitor how often they fail. The LLM is then orchestrating reliable pieces instead of improvising
             everything.
-          </p>
-        </>
-      );
-
-    case "introduction-to-docker-orchestration":
-      return (
-        <>
-          <p className="mt-6 text-[var(--text-secondary)] leading-relaxed">
-            Docker by itself is about packaging one process. Orchestration is about describing how multiple
-            services run together: API, database, queues, dashboards, and supporting tools.
-          </p>
-          <h2 className="mt-10 text-xl font-light tracking-tight text-[var(--text-primary)]">From single container to Compose</h2>
-          <p className="mt-3 text-[var(--text-secondary)] leading-relaxed">
-            I usually start with a simple Dockerfile for the app. Once that is healthy, I introduce
-            <code>docker-compose.yml</code> to describe the full stack: app, Postgres, Redis, and any sidecars.
-            Networks and volumes are declared there, so local development becomes <code>docker compose up</code>
-            instead of a README full of shell commands.
-          </p>
-          <h2 className="mt-8 text-xl font-light tracking-tight text-[var(--text-primary)]">Thinking in environments</h2>
-          <p className="mt-3 text-[var(--text-secondary)] leading-relaxed">
-            I try to make dev and production as similar as possible. That means using the same images and
-            environment variables, with only a few overrides for scaling. Once that is true, most bugs I see in
-            production have already appeared in a local or staging Docker environment first.
-          </p>
-        </>
-      );
-
-    case "fundamentals-of-express-and-node":
-      return (
-        <>
-          <p className="mt-6 text-[var(--text-secondary)] leading-relaxed">
-            Express remains one of the cleanest ways to learn backend fundamentals. Every concept—routing,
-            middleware, error handling—is small and explicit.
-          </p>
-          <h2 className="mt-10 text-xl font-light tracking-tight text-[var(--text-primary)]">Requests, responses, and middleware</h2>
-          <p className="mt-3 text-[var(--text-secondary)] leading-relaxed">
-            I structure apps around three things: route handlers that stay small, middleware for cross-cutting
-            concerns (auth, logging, parsing), and dedicated modules for business logic. This keeps controllers
-            thin and makes it much easier to test logic without spinning up an entire HTTP server.
-          </p>
-          <h2 className="mt-8 text-xl font-light tracking-tight text-[var(--text-primary)]">Error handling as a first-class feature</h2>
-          <p className="mt-3 text-[var(--text-secondary)] leading-relaxed">
-            A single error-handling middleware at the bottom of the stack is where I normalize all errors into a
-            consistent JSON shape. That handler logs internal details while returning safe user-facing messages.
-            Once this exists, new routes simply <code>throw</code> errors when something goes wrong.
-          </p>
-        </>
-      );
-
-    case "guide-to-hono-on-the-edge":
-      return (
-        <>
-          <p className="mt-6 text-[var(--text-secondary)] leading-relaxed">
-            Hono.js feels like Express re-imagined for the edge. It is tiny, fast, and designed for runtimes like
-            Cloudflare Workers and Vercel Edge Functions, where startup time and per-request cost matter.
-          </p>
-          <h2 className="mt-10 text-xl font-light tracking-tight text-[var(--text-primary)]">Why Hono for small sharp APIs</h2>
-          <p className="mt-3 text-[var(--text-secondary)] leading-relaxed">
-            For APIs that need to be globally distributed and respond in a few milliseconds, the edge runtime is
-            a good fit. Hono gives me expressive routing, middleware, and TypeScript support without pulling in a
-            full Node.js dependency tree.
-          </p>
-          <h2 className="mt-8 text-xl font-light tracking-tight text-[var(--text-primary)]">Patterns I like</h2>
-          <p className="mt-3 text-[var(--text-secondary)] leading-relaxed">
-            I keep handlers small and pure, passing dependencies (like database clients) in via the context. This
-            makes it straightforward to unit test handlers and to plug the same logic into other environments if
-            needed.
           </p>
         </>
       );
