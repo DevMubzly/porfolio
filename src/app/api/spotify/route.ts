@@ -7,11 +7,24 @@ const REFRESH_TOKEN = process.env.SPOTIFY_REFRESH_TOKEN;
 const PROFILE_URL_OVERRIDE = process.env.SPOTIFY_PROFILE_URL || "";
 
 let cachedToken: { value: string; expiresAt: number } | null = null;
-let cachedResponse: { body: unknown; expiresAt: number } | null = null;
 let cachedProfile: { value: string; expiresAt: number } | null = null;
 
-const RESPONSE_TTL = 15_000;
+// Short enough that a track change shows up promptly, long enough that the
+// 30s client poll and a handful of concurrent visitors share one upstream call.
+const RESPONSE_TTL = 10_000;
 const PROFILE_TTL = 24 * 60 * 60 * 1000;
+
+type SpotifyBody = {
+  isPlaying: boolean;
+  track: ReturnType<typeof toTrack> | null;
+  profileUrl: string;
+};
+
+let cachedBody: { value: SpotifyBody; expiresAt: number } | null = null;
+
+function freshCache(): SpotifyBody | null {
+  return cachedBody && Date.now() < cachedBody.expiresAt ? cachedBody.value : null;
+}
 
 async function getProfileUrl(accessToken: string): Promise<string> {
   if (PROFILE_URL_OVERRIDE) return PROFILE_URL_OVERRIDE;
@@ -83,19 +96,26 @@ function toTrack(track: {
   return {
     name: track.name,
     artist: track.artists.map((a) => a.name).join(", "),
-    albumArt: track.album.images[0]?.url || "",
+    // Spotify orders artwork largest first, so the last entry is the 64px
+    // variant. That is the right size for the card's 56px thumbnail, and it
+    // avoids pulling a 640px image on every poll.
+    albumArt: track.album.images.at(-1)?.url || "",
     url: track.external_urls.spotify,
   };
 }
 
 export async function GET() {
-  if (cachedResponse && Date.now() < cachedResponse.expiresAt) {
-    return NextResponse.json(cachedResponse.body);
-  }
+  const fresh = freshCache();
+  if (fresh) return NextResponse.json(fresh);
 
   const accessToken = await getAccessToken();
 
   if (!accessToken) {
+    // Serve a stale body only while it is still inside its TTL. Beyond that,
+    // report the failure rather than pinning the last good payload forever.
+    const stale = cachedBody?.value ?? null;
+    if (stale) return NextResponse.json(stale);
+
     return NextResponse.json(
       { error: "Could not authenticate with Spotify" },
       { status: 500 }
@@ -110,12 +130,18 @@ export async function GET() {
       { headers: { Authorization: `Bearer ${accessToken}` } }
     );
 
-    let body: unknown;
+    // 200 with an item means a track is live. 204 means Spotify is reporting
+    // no active playback, which is a valid answer and not a failure.
+    let body: SpotifyBody | null = null;
 
     if (currentRes.status === 200) {
       const currentData = await currentRes.json();
       if (currentData.item) {
-        body = { isPlaying: true, track: toTrack(currentData.item), profileUrl };
+        body = {
+          isPlaying: true,
+          track: toTrack(currentData.item),
+          profileUrl,
+        };
       }
     }
 
@@ -126,33 +152,33 @@ export async function GET() {
       );
 
       if (!recentRes.ok) {
-        // Spotify dev-mode apps get a tiny daily quota on this endpoint.
-        // Serve the last good response if we have one, otherwise report
-        // "no track" with a 200 so the card degrades quietly.
-        if (cachedResponse) {
-          return NextResponse.json(cachedResponse.body);
-        }
+        // Dev-mode apps get a tiny daily quota on this endpoint. Degrade to a
+        // quiet "no track" rather than surfacing a 500 into the card.
+        const stale = cachedBody?.value ?? null;
+        if (stale) return NextResponse.json(stale);
+
         body = { isPlaying: false, track: null, profileUrl };
-        cachedResponse = { body, expiresAt: Date.now() + RESPONSE_TTL };
+        cachedBody = { value: body, expiresAt: Date.now() + RESPONSE_TTL };
         return NextResponse.json(body);
       }
 
       const data = await recentRes.json();
+      const recent = data.items?.[0]?.track;
 
-      if (!data.items || data.items.length === 0) {
-        body = { isPlaying: false, track: null, profileUrl };
-      } else {
-        body = { isPlaying: false, track: toTrack(data.items[0].track), profileUrl };
-      }
+      body = {
+        isPlaying: false,
+        track: recent ? toTrack(recent) : null,
+        profileUrl,
+      };
     }
 
-    cachedResponse = { body, expiresAt: Date.now() + RESPONSE_TTL };
+    cachedBody = { value: body, expiresAt: Date.now() + RESPONSE_TTL };
 
     return NextResponse.json(body);
   } catch {
-    if (cachedResponse) {
-      return NextResponse.json(cachedResponse.body);
-    }
+    const stale = cachedBody?.value ?? null;
+    if (stale) return NextResponse.json(stale);
+
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }
