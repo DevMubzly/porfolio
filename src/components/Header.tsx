@@ -33,7 +33,7 @@ export function Header() {
   };
 
   return (
-    <div className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
+    <div className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 print:hidden">
       <motion.nav
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}

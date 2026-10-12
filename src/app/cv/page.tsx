@@ -1,20 +1,28 @@
 "use client";
 
-import { motion } from "motion/react";
 import { Printer } from "lucide-react";
 
-const experience = [
+const experience: { title: string; company: string; period: string; desc: string; points?: string[] }[] = [
   {
     title: "Software Engineer",
     company: "Tricsoft Technologies Ltd",
     period: "June 2026 - September 2026",
-    desc: "Pioneered a major VR platform project as lead engineer, overseeing overall development from architecture to deployment.",
+    desc: "Founding full-stack engineer on a multi-tenant immersive learning platform, taking it from requirements and architecture through to delivery across database, API, and user interface.",
+    points: [
+      "Strengthened login security by keeping admin accounts fully separate from regular users, each with its own login system, plus safe session refresh and login rate limiting.",
+      "Built school and classroom management (creating schools, inviting members, joining classes with a code, pausing or reactivating students) with a review flow where learning materials get approved before publishing, teachers assign work, students submit it, and teachers grade it with instant notifications.",
+      "Delivered the content library used by teachers, schools, and admins, supporting both in-browser 3D scenes and uploaded WebGL builds with previews, one-click importing, and fast tile-based browsing.",
+      "Built a desktop app for rendering 3D scenes, similar to EON XR, packaged for both Windows and Linux (AppImage) so students can explore experiences outside the browser.",
+    ],
   },
   {
     title: "Lead Full-Stack Mobile Engineer",
     company: "Metro Fried Chicken by Chello",
     period: "June 2025 - December 2025",
     desc: "Leading the end-to-end development of a cross-platform mobile ordering application using React Native, Expo, and Zustand. Focusing on a seamless food ordering experience with menu browsing, cart management, and order tracking.",
+    points: [
+      "Built a kitchen display system (KDS) with a kanban-style board and a clean, smooth interface so kitchen staff can track and progress orders in real time.",
+    ],
   },
   {
     title: "IT Intern",
@@ -27,7 +35,6 @@ const experience = [
 const projects = [
   {
     title: "SalaStores",
-    status: "Live",
     subtitle: "E-commerce platform",
     desc: "A business operation system that organizes merchant inventory and exposes it as a store, Shopify-style. Built with Node.js, React, PostgreSQL, and deployed on Cloudflare.",
     tags: ["Node.js", "React", "PostgreSQL", "Cloudflare"],
@@ -35,7 +42,6 @@ const projects = [
   },
   {
     title: "EdgeKeeper",
-    status: "Live",
     subtitle: "Visual Algorithmic Trading Platform",
     desc: "A sophisticated no-code platform for building, backtesting, and deploying automated trading strategies using a visual node-based interface.",
     tags: ["Next.js", "TypeScript", "Python", "WebSockets"],
@@ -43,7 +49,6 @@ const projects = [
   },
   {
     title: "Fortress",
-    status: "In Development",
     subtitle: "Enterprise LLM Deployment Platform",
     desc: "Open-source platform designed for running large language models on-premises with strict security, auditing, and compliance safeguards built-in.",
     tags: ["FastAPI", "Docker", "Next.js", "Prometheus", "Nginx", "React", "TypeScript", "Ollama"],
@@ -52,8 +57,8 @@ const projects = [
 ];
 
 const skills = [
-  { category: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS"] },
-  { category: "Backend", items: ["Node.js", "Python", "FastAPI", "PostgreSQL"] },
+  { category: "Frontend", items: ["React", "React Native", "Next.js", "TypeScript", "Tailwind CSS"] },
+  { category: "Backend", items: ["Node.js", "NestJS", "Python", "FastAPI", "PostgreSQL"] },
   { category: "DevOps", items: ["Docker", "Git / GitHub Actions", "Nginx"] },
   { category: "AI", items: ["LangChain", "OpenAI API", "Hugging Face", "RAG Systems"] },
 ];
@@ -72,186 +77,172 @@ const achievements = [
   },
 ];
 
-const interests = ["Building innovations", "movies", "music", "hiking", "swimming", "football", "table tennis"];
+const interests = ["Building innovations", "music", "swimming", "football", "table tennis", "being a huge anime fan", "playing a lot of PUBG and CODM"];
 
 const referees = [
-  { name: "Mr. Baguma Asuman", phone: "+256701988620", role: "Systems Officer & Software Developer, Ministry of Finance, Planning and Economic Development" },
+  { name: "Mr. Baguma Asuman", phone: "+256701988620", role: "Systems Officer, Ministry of Finance, Planning and Economic Development" },
   { name: "Mr. Buri Gershom", phone: "+256773635525", role: "Lecturer, Mbarara University of Science and Technology" },
   { name: "Muhesi Joyce", phone: "+256784789636", role: "Nursing Officer In-Charge, Maternity Ward, Fort Portal Regional Referral Hospital" },
 ];
 
+function SectionTitle({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 className="text-[13px] font-bold uppercase tracking-wider text-neutral-900 border-b border-neutral-400 pb-1 mb-3">
+      {children}
+    </h2>
+  );
+}
+
 export default function CVPage() {
   return (
-    <main className="min-h-screen pt-28 pb-16 px-6 lg:px-24">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          {/* Print CV Button */}
-          <div className="flex justify-end mb-8">
-            <button
-              onClick={() => window.print()}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--border)] bg-[var(--bg-secondary)] text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-strong)] transition-colors"
-            >
-              <Printer className="w-3.5 h-3.5" />
-              Print CV
-            </button>
-          </div>
+    <main className="min-h-screen bg-white text-neutral-900 pt-28 pb-16 px-6 print:pt-0 print:pb-0 print:px-0">
+      <div className="max-w-3xl mx-auto">
+        {/* Download PDF Button */}
+        <div className="flex justify-end mb-8 print:hidden">
+          <button
+            onClick={() => window.print()}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-neutral-300 bg-neutral-100 text-xs font-medium text-neutral-600 hover:text-neutral-900 hover:border-neutral-400 transition-colors"
+          >
+            <Printer className="w-3.5 h-3.5" />
+            Download PDF
+          </button>
+        </div>
 
-          {/* Header */}
-          <div className="pb-8 mb-12 border-b-2 border-[var(--text-primary)]">
-            <h1 className="text-4xl sm:text-5xl font-light tracking-tight text-[var(--text-primary)] mb-2">
-              Balinda Mubarak
-            </h1>
-            <p className="text-lg text-[var(--text-muted)] font-light mb-6">
-              Full-Stack Developer / AI Engineer
-            </p>
-            <div className="flex flex-wrap gap-4 text-sm text-[var(--text-muted)] mb-6">
-              <span>bmubs15@gmail.com</span>
-              <span>+256771050357</span>
-              <a href="https://bmubarak.xyz" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--text-primary)] transition-colors">https://bmubarak.xyz</a>
-            </div>
-            <p className="text-base text-[var(--text-secondary)] font-light leading-relaxed">
-              I am a developer focused on building elegant web applications and intelligent AI-powered systems. I specialize in crafting minimal, resilient architectures from backend infrastructure down to the frontend user experience.
+        {/* Header */}
+        <header>
+          <h1 className="text-3xl font-bold uppercase tracking-wide">Balinda Mubarak</h1>
+          <p className="text-[15px] font-semibold uppercase tracking-wide mt-1">Product Engineer</p>
+          <div className="border-b-[3px] border-neutral-900 mt-2 pt-1">
+            <p className="text-[13px] pb-2">
+              +256771050357 | bmubs15@gmail.com | https://bmubarak.xyz
             </p>
           </div>
+        </header>
 
-          {/* Experience */}
-          <section className="mb-12">
-            <h2 className="text-sm font-medium text-[var(--text-muted)] tracking-wide border-b border-[var(--border)] pb-3 mb-6">
-              Experience
-            </h2>
-            <div className="space-y-6">
-              {experience.map((item) => (
-                <div key={item.title} className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
-                  <div>
-                    <p className="text-lg font-light text-[var(--text-primary)]">{item.title}</p>
-                    <p className="text-sm text-[var(--text-muted)]">{item.company}</p>
-                    <p className="text-sm text-[var(--text-secondary)] mt-2 leading-relaxed">{item.desc}</p>
-                  </div>
-                  <span className="text-xs text-[var(--text-muted)] whitespace-nowrap">{item.period}</span>
-                </div>
-              ))}
-            </div>
-          </section>
+        {/* Profile */}
+        <section className="mt-8">
+          <SectionTitle>Profile</SectionTitle>
+          <p className="text-sm leading-relaxed">
+            I am a developer focused on building elegant web applications and intelligent AI-powered systems. I specialize in crafting minimal, resilient architectures from backend infrastructure down to the frontend user experience.
+          </p>
+        </section>
 
-          {/* Selected Works */}
-          <section className="mb-12">
-            <h2 className="text-sm font-medium text-[var(--text-muted)] tracking-wide border-b border-[var(--border)] pb-3 mb-6">
-              Selected Works
-            </h2>
-            <div className="space-y-6">
-              {projects.map((project) => (
-                <div key={project.title} className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
-                  <div>
-                    <div className="flex items-center gap-3">
-                      <p className="text-lg font-light text-[var(--text-primary)]">{project.title}</p>
-                      <span className="text-[10px] font-medium text-[var(--text-primary)] bg-[var(--bg-secondary)] border border-[var(--border)] px-2 py-0.5 rounded-full">
-                        {project.status}
-                      </span>
-                    </div>
-                    <p className="text-sm text-[var(--text-muted)]">{project.subtitle}</p>
-                    <p className="text-sm text-[var(--text-secondary)] mt-2 leading-relaxed">{project.desc}</p>
-                    <div className="flex flex-wrap gap-2 mt-3">
-                      {project.tags.map((tag) => (
-                        <span key={tag} className="text-[10px] text-[var(--text-muted)] font-medium">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Capabilities */}
-          <section className="mb-12">
-            <h2 className="text-sm font-medium text-[var(--text-muted)] tracking-wide border-b border-[var(--border)] pb-3 mb-6">
-              Capabilities
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {skills.map((group) => (
-                <div key={group.category}>
-                  <p className="text-xs text-[var(--text-muted)] mb-3">{group.category}</p>
-                  <div className="space-y-2">
-                    {group.items.map((item) => (
-                      <p key={item} className="text-sm text-[var(--text-secondary)]">{item}</p>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Education */}
-          <section className="mb-12">
-            <h2 className="text-sm font-medium text-[var(--text-muted)] tracking-wide border-b border-[var(--border)] pb-3 mb-6">
-              Education
-            </h2>
-            <div className="space-y-6">
-              {education.map((item) => (
-                <div key={item.title} className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
-                  <div>
-                    <p className="text-lg font-light text-[var(--text-primary)]">{item.title}</p>
-                    <p className="text-sm text-[var(--text-muted)]">{item.degree}</p>
-                  </div>
-                  <span className="text-xs text-[var(--text-muted)] whitespace-nowrap">{item.period}</span>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Achievements */}
-          <section className="mb-12">
-            <h2 className="text-sm font-medium text-[var(--text-muted)] tracking-wide border-b border-[var(--border)] pb-3 mb-6">
-              Achievements
-            </h2>
-            {achievements.map((item) => (
+        {/* Experience */}
+        <section className="mt-10">
+          <SectionTitle>Professional Experience</SectionTitle>
+          <div className="space-y-4">
+            {experience.map((item) => (
               <div key={item.title}>
-                <p className="text-lg font-light text-[var(--text-primary)]">{item.title}</p>
-                <p className="text-sm text-[var(--text-muted)]">{item.subtitle}</p>
-                <p className="text-sm text-[var(--text-secondary)] mt-2 leading-relaxed">{item.desc}</p>
-                <a
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block mt-2 text-sm text-[var(--text-primary)] border-b border-[var(--text-primary)] pb-0.5 hover:text-[var(--text-muted)] hover:border-[var(--text-muted)] transition-colors"
-                >
-                  Read official news ↗
-                </a>
+                <div className="flex items-baseline justify-between gap-4">
+                  <p className="text-[15px] font-medium">
+                    {item.title} - {item.company}
+                  </p>
+                  <span className="text-[13px] whitespace-nowrap shrink-0">{item.period}</span>
+                </div>
+                <p className="text-sm leading-relaxed mt-1">{item.desc}</p>
+                {item.points && (
+                  <ul className="mt-1 space-y-1 list-disc pl-5">
+                    {item.points.map((point) => (
+                      <li key={point.slice(0, 24)} className="text-sm leading-relaxed">
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             ))}
-          </section>
+          </div>
+        </section>
 
-          {/* Interests */}
-          <section className="mb-12">
-            <h2 className="text-sm font-medium text-[var(--text-muted)] tracking-wide border-b border-[var(--border)] pb-3 mb-6">
-              Interests
-            </h2>
-            <p className="text-sm text-[var(--text-secondary)]">{interests.join(", ")}</p>
-          </section>
+        {/* Selected Works */}
+        <section className="mt-10">
+          <SectionTitle>Selected Works</SectionTitle>
+          <div className="space-y-4">
+            {projects.map((project) => (
+              <div key={project.title}>
+                <p className="text-[15px] font-medium">
+                  {project.title} - {project.subtitle}
+                </p>
+                <p className="text-sm leading-relaxed mt-1">{project.desc}</p>
+                <p className="text-[13px] mt-1">
+                  <a href={project.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
+                    {project.url.replace("https://", "")}
+                  </a>
+                  {" | "}
+                  {project.tags.join(", ")}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
 
-          {/* Referees */}
-          <section>
-            <h2 className="text-sm font-medium text-[var(--text-muted)] tracking-wide border-b border-[var(--border)] pb-3 mb-6">
-              Referees
-            </h2>
-            <div className="space-y-6">
-              {referees.map((ref) => (
-                <div key={ref.name} className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
-                  <div>
-                    <p className="text-lg font-light text-[var(--text-primary)]">{ref.name}</p>
-                    <p className="text-sm text-[var(--text-muted)]">{ref.role}</p>
-                  </div>
-                  <span className="text-xs text-[var(--text-muted)] whitespace-nowrap">{ref.phone}</span>
+        {/* Capabilities */}
+        <section className="mt-10">
+          <SectionTitle>Professional Skills</SectionTitle>
+          <ul className="space-y-1 list-disc pl-5">
+            {skills.map((group) => (
+              <li key={group.category} className="text-sm leading-relaxed">
+                <span className="font-medium">{group.category}:</span> {group.items.join(", ")}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {/* Education */}
+        <section className="mt-10">
+          <SectionTitle>Education</SectionTitle>
+          <div className="space-y-3">
+            {education.map((item) => (
+              <div key={item.title}>
+                <div className="flex items-baseline justify-between gap-4">
+                  <p className="text-[15px] font-medium">{item.degree}</p>
+                  <span className="text-[13px] whitespace-nowrap shrink-0">{item.period}</span>
                 </div>
-              ))}
+                <p className="text-sm">{item.title}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Achievements */}
+        <section className="mt-10">
+          <SectionTitle>Achievements</SectionTitle>
+          {achievements.map((item) => (
+            <div key={item.title}>
+              <p className="text-[15px] font-medium">
+                {item.title} - {item.subtitle}
+              </p>
+              <p className="text-sm leading-relaxed mt-1">{item.desc}</p>
+              <p className="text-[13px] mt-1">
+                <a href={item.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
+                  Read official news
+                </a>
+              </p>
             </div>
-          </section>
-        </motion.div>
+          ))}
+        </section>
+
+        {/* Interests */}
+        <section className="mt-10">
+          <SectionTitle>Interests</SectionTitle>
+          <p className="text-sm leading-relaxed">{interests.join(", ")}</p>
+        </section>
+
+        {/* Referees */}
+        <section className="mt-10">
+          <SectionTitle>Referees</SectionTitle>
+          <div className="space-y-3">
+            {referees.map((ref) => (
+              <div key={ref.name}>
+                <div className="flex items-baseline justify-between gap-4">
+                  <p className="text-[15px] font-medium">{ref.name}</p>
+                  <span className="text-[13px] whitespace-nowrap shrink-0">{ref.phone}</span>
+                </div>
+                <p className="text-sm">{ref.role}</p>
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
     </main>
   );

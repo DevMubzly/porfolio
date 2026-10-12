@@ -37,8 +37,10 @@ export function SidePanel() {
     scrollToId(id);
   };
 
+  if (pathname?.startsWith("/cv")) return null;
+
   return (
-    <div className="fixed left-10 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-start gap-6">
+    <div className="fixed left-10 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-start gap-6 print:hidden">
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
