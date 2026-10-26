@@ -78,7 +78,7 @@ export function ProjectsSection() {
             Selected Works
           </h2>
 
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="border-t border-[var(--border)]">
             {projects.map((project, index) => (
               <motion.a
                 key={project.title}
@@ -89,29 +89,29 @@ export function ProjectsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.08 }}
-                className="group flex flex-col rounded-2xl bg-[var(--bg-secondary)] p-6 transition-colors hover:bg-[var(--bg-tertiary)]"
+                className="group grid gap-4 border-b border-[var(--border)] py-8 sm:grid-cols-[1fr_1.3fr] sm:gap-12 last:border-b-0"
               >
-                <div className="flex items-start justify-between gap-4">
-                  <div className="min-w-0">
-                    <h3 className="text-lg font-medium text-[var(--text-primary)] group-hover:text-[var(--text-secondary)] transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="mt-1 text-xs font-medium text-[var(--text-muted)]">{project.summary}</p>
+                <div>
+                  <h3 className="text-lg font-medium text-[var(--text-primary)] group-hover:text-[var(--text-secondary)] transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="mt-1 text-xs font-medium text-[var(--text-muted)]">{project.summary}</p>
+
+                  <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-[var(--text-muted)]">
+                    {project.stack.map((tech) => (
+                      <span key={tech} className="inline-flex items-center gap-1.5">
+                        <Icon icon={techIcons[tech] || "mdi:code-tags"} className="w-3.5 h-3.5" />
+                        {tech}
+                      </span>
+                    ))}
                   </div>
+                </div>
+
+                <div className="flex items-start justify-between gap-4">
+                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{project.description}</p>
                   <span className="w-8 h-8 flex-shrink-0 flex items-center justify-center text-[var(--text-muted)] group-hover:text-[var(--text-primary)] transition-colors">
                     <ExternalLink className="w-3.5 h-3.5 group-hover:rotate-45 transition-transform duration-300" />
                   </span>
-                </div>
-
-                <p className="mt-3 text-sm text-[var(--text-secondary)] leading-relaxed">{project.description}</p>
-
-                <div className="mt-auto pt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-[var(--text-muted)]">
-                  {project.stack.map((tech) => (
-                    <span key={tech} className="inline-flex items-center gap-1.5">
-                      <Icon icon={techIcons[tech] || "mdi:code-tags"} className="w-3.5 h-3.5" />
-                      {tech}
-                    </span>
-                  ))}
                 </div>
               </motion.a>
             ))}

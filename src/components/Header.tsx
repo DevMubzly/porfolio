@@ -15,7 +15,7 @@ const navItems = [
   { label: "CV", href: "/cv" },
 ];
 
-const pillLink = "relative px-2.5 sm:px-3 py-2 rounded-full whitespace-nowrap text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200";
+const pillLink = "relative px-1.5 sm:px-3 py-2 rounded-full whitespace-nowrap text-[11px] sm:text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200";
 
 export function Header() {
   const router = useRouter();
@@ -51,7 +51,7 @@ export function Header() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
-      className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 flex items-center gap-0.5 p-1 rounded-full border border-[var(--border)] bg-[var(--bg-secondary)]/80 backdrop-blur-xl max-w-[calc(100vw-2rem)] overflow-x-auto print:hidden"
+      className="fixed top-4 left-1/2 -translate-x-1/2 sm:top-6 lg:left-auto lg:right-6 lg:translate-x-0 z-50 flex items-center p-1 rounded-full border border-[var(--border)] bg-[var(--bg-secondary)]/80 backdrop-blur-xl max-w-[calc(100vw-2rem)] overflow-x-auto print:hidden"
     >
       {navItems.map((navItem) => renderItem(navItem, pillLink))}
       <div className="w-px h-5 bg-[var(--border)] mx-1 flex-shrink-0" />

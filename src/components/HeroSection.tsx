@@ -74,10 +74,10 @@ function AboutCards() {
     "absolute inset-0 m-auto h-[250px] w-[180px] rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] p-1.5 sm:h-[320px] sm:w-[230px]";
 
   const cards = [
-    { src: "/aboutme.jpg", alt: "Mubarak at work", rotate: -10, y: 10, offset: "translate-x-[-60px] lg:translate-x-[-234px]" },
-    { src: "/aboutme3.png", alt: "Mubarak", rotate: -4, y: 4, offset: "translate-x-[-20px] lg:translate-x-[-78px]" },
-    { src: "/aboutme2.png", alt: "Mubarak", rotate: 4, y: 4, offset: "translate-x-[20px] lg:translate-x-[78px]" },
-    { src: "/about%20me4.png", alt: "Mubarak", rotate: 10, y: 10, offset: "translate-x-[60px] lg:translate-x-[234px]" },
+    { src: "/aboutme.jpg", alt: "Mubarak at work", rotate: -10, y: 10, offset: "translate-x-[-60px] md:translate-x-[-120px] lg:translate-x-[-234px]" },
+    { src: "/aboutme3.png", alt: "Mubarak", rotate: -4, y: 4, offset: "translate-x-[-20px] md:translate-x-[-40px] lg:translate-x-[-78px]" },
+    { src: "/aboutme2.png", alt: "Mubarak", rotate: 4, y: 4, offset: "translate-x-[20px] md:translate-x-[40px] lg:translate-x-[78px]" },
+    { src: "/about%20me4.png", alt: "Mubarak", rotate: 10, y: 10, offset: "translate-x-[60px] md:translate-x-[120px] lg:translate-x-[234px]" },
   ];
 
   return (
