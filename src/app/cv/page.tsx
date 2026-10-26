@@ -111,7 +111,7 @@ export default function CVPage() {
         {/* Header */}
         <header>
           <h1 className="text-3xl font-bold uppercase tracking-wide">Balinda Mubarak</h1>
-          <p className="text-[15px] font-semibold uppercase tracking-wide mt-1">Product Engineer</p>
+          <p className="text-[15px] font-semibold uppercase tracking-wide mt-1">Developer</p>
           <div className="border-b-[3px] border-neutral-900 mt-2 pt-1">
             <p className="text-[13px] pb-2">
               +256771050357 | bmubs15@gmail.com | https://bmubarak.xyz

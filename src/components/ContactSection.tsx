@@ -35,8 +35,9 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-16 lg:py-20 px-6 lg:px-24">
-      <div className="max-w-4xl mx-auto">
+    <section id="contact" className="px-6 lg:px-24">
+      <div className="max-w-[52rem] mx-auto">
+        <hr className="my-16 lg:my-24 border-[var(--border)]" />
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -45,7 +46,7 @@ export function ContactSection() {
           className="space-y-10 text-center"
         >
           <div>
-            <h2 className="text-xs font-semibold text-[var(--text-primary)] uppercase tracking-wider mb-4">
+            <h2 className="mb-5 text-2xl font-medium tracking-tight capitalize text-[var(--text-primary)] sm:text-3xl">
               Get in touch
             </h2>
             <p className="text-base text-[var(--text-muted)] font-light">
@@ -56,7 +57,7 @@ export function ContactSection() {
           <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto text-left">
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="name" className="block text-xs text-[var(--text-muted)] mb-1.5">
+                <label htmlFor="name" className="block text-sm text-[var(--text-muted)] mb-1.5">
                   Name
                 </label>
                 <input
@@ -64,13 +65,13 @@ export function ContactSection() {
                   type="text"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--bg-tertiary)] text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--border-strong)] transition-colors"
+                  className="w-full px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--bg-tertiary)] text-base text-[var(--text-primary)] focus:outline-none focus:border-[var(--border-strong)] transition-colors"
                   placeholder="Your name"
                   required
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-xs text-[var(--text-muted)] mb-1.5">
+                <label htmlFor="email" className="block text-sm text-[var(--text-muted)] mb-1.5">
                   Email
                 </label>
                 <input
@@ -78,7 +79,7 @@ export function ContactSection() {
                   type="email"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--bg-tertiary)] text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--border-strong)] transition-colors"
+                  className="w-full px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--bg-tertiary)] text-base text-[var(--text-primary)] focus:outline-none focus:border-[var(--border-strong)] transition-colors"
                   placeholder="your@email.com"
                   required
                 />
@@ -86,7 +87,7 @@ export function ContactSection() {
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-xs text-[var(--text-muted)] mb-1.5">
+              <label htmlFor="message" className="block text-sm text-[var(--text-muted)] mb-1.5">
                 Message
               </label>
               <textarea
@@ -94,7 +95,7 @@ export function ContactSection() {
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 rows={4}
-                className="w-full px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--bg-tertiary)] text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--border-strong)] transition-colors resize-none"
+                className="w-full px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--bg-tertiary)] text-base text-[var(--text-primary)] focus:outline-none focus:border-[var(--border-strong)] transition-colors resize-none"
                 placeholder="Tell me about your project..."
                 required
               />
@@ -104,7 +105,7 @@ export function ContactSection() {
               <motion.button
                 type="submit"
                 disabled={sending}
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[var(--text-primary)] text-[var(--bg)] text-xs font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[var(--text-primary)] text-[var(--bg)] text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

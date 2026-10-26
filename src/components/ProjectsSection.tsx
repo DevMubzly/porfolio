@@ -9,7 +9,6 @@ interface Project {
   summary: string;
   description: string;
   stack: string[];
-  status?: string;
   projectURL?: string;
 }
 
@@ -19,7 +18,6 @@ const projects: Project[] = [
     summary: "E-commerce platform",
     description: "A business operation system that organizes merchant inventory and exposes it as a store, Shopify-style. Built with Node.js, React, PostgreSQL, and deployed on Cloudflare.",
     stack: ["Node.js", "React", "PostgreSQL", "Cloudflare"],
-    status: "Live",
     projectURL: "https://salastores.com",
   },
   {
@@ -27,7 +25,6 @@ const projects: Project[] = [
     summary: "Visual algorithmic trading platform",
     description: "A sophisticated no-code platform for building, backtesting, and deploying automated trading strategies using a visual node-based interface.",
     stack: ["Next.js", "TypeScript", "Python", "WebSockets"],
-    status: "Live",
     projectURL: "https://edgekeeper.app",
   },
   {
@@ -35,7 +32,6 @@ const projects: Project[] = [
     summary: "Cross-platform mobile ordering app",
     description: "React Native app for food ordering with menu browsing, cart, and order tracking.",
     stack: ["React Native", "Expo", "TypeScript", "Zustand"],
-    status: "In Progress",
     projectURL: "https://github.com/DevMubzly/mfc-ordering-app",
   },
   {
@@ -43,7 +39,6 @@ const projects: Project[] = [
     summary: "Enterprise LLM deployment platform",
     description: "Open-source platform for running LLMs on-premises with security and compliance.",
     stack: ["FastAPI", "Docker", "Next.js", "Prometheus", "Nginx", "React", "TypeScript", "Ollama"],
-    status: "In Development",
     projectURL: "https://fortress-stack.tech",
   },
 ];
@@ -69,72 +64,56 @@ const techIcons: Record<string, string> = {
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="py-16 lg:py-20 px-6 lg:px-24">
-      <div className="max-w-4xl mx-auto">
+    <section id="projects" className="px-6 lg:px-24">
+      <div className="max-w-[52rem] mx-auto">
+        <hr className="my-16 lg:my-24 border-[var(--border)]" />
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="space-y-10"
+          className="space-y-8"
         >
-          <div>
-            <h2 className="text-xs font-semibold text-[var(--text-primary)] uppercase tracking-wider mb-4">
-              Selected Works
-            </h2>
-            <p className="text-base text-[var(--text-muted)] font-light">
-              A curated collection of projects and experimental systems.
-            </p>
-          </div>
+          <h2 className="text-2xl font-medium tracking-tight capitalize text-[var(--text-primary)] sm:text-3xl">
+            Selected Works
+          </h2>
 
-          <div className="border-t border-[var(--border)]">
+          <div className="grid gap-6 sm:grid-cols-2">
             {projects.map((project, index) => (
-              <motion.div
+              <motion.a
                 key={project.title}
+                href={project.projectURL}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.08 }}
+                className="group flex flex-col rounded-2xl bg-[var(--bg-secondary)] p-6 transition-colors hover:bg-[var(--bg-tertiary)]"
               >
-                <div className="group flex flex-col sm:flex-row sm:items-center justify-between gap-3 py-6 border-b border-[var(--border)] last:border-b-0">
-                  <div className="flex-1 min-w-0 space-y-2">
-                    <div className="flex items-center gap-3">
-                      <p className="text-lg font-light text-[var(--text-primary)] group-hover:text-[var(--text-secondary)] transition-colors">
-                        {project.title}
-                      </p>
-                      <span className="text-[10px] font-medium text-[var(--text-primary)] bg-[var(--bg-secondary)] border border-[var(--border)] px-2 py-0.5 rounded-full">
-                        {project.status}
-                      </span>
-                    </div>
-                    <p className="text-sm text-[var(--text-muted)]">{project.summary}</p>
-                    <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{project.description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.stack.map((tech) => (
-                        <div
-                          key={tech}
-                          className="w-7 h-7 rounded-full border border-[var(--border)] bg-[var(--bg-secondary)] flex items-center justify-center text-[var(--text-secondary)]"
-                        >
-                          <Icon icon={techIcons[tech] || "mdi:code-tags"} className="w-3.5 h-3.5" />
-                        </div>
-                      ))}
-                    </div>
+                <div className="flex items-start justify-between gap-4">
+                  <div className="min-w-0">
+                    <h3 className="text-lg font-medium text-[var(--text-primary)] group-hover:text-[var(--text-secondary)] transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="mt-1 text-xs font-medium text-[var(--text-muted)]">{project.summary}</p>
                   </div>
-
-                  <div className="flex items-center gap-3 flex-shrink-0">
-                    <span className="text-xs text-[var(--text-muted)] group-hover:text-[var(--text-primary)] transition-colors">
-                      View
-                    </span>
-                    <a
-                      href={project.projectURL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-8 h-8 rounded-full border border-[var(--border)] flex items-center justify-center group-hover:bg-[var(--text-primary)] group-hover:text-[var(--bg)] group-hover:border-[var(--text-primary)] transition-all duration-300"
-                    >
-                      <ExternalLink className="w-3.5 h-3.5 group-hover:rotate-45 transition-transform duration-300" />
-                    </a>
-                  </div>
+                  <span className="w-8 h-8 flex-shrink-0 flex items-center justify-center text-[var(--text-muted)] group-hover:text-[var(--text-primary)] transition-colors">
+                    <ExternalLink className="w-3.5 h-3.5 group-hover:rotate-45 transition-transform duration-300" />
+                  </span>
                 </div>
-              </motion.div>
+
+                <p className="mt-3 text-sm text-[var(--text-secondary)] leading-relaxed">{project.description}</p>
+
+                <div className="mt-auto pt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-[var(--text-muted)]">
+                  {project.stack.map((tech) => (
+                    <span key={tech} className="inline-flex items-center gap-1.5">
+                      <Icon icon={techIcons[tech] || "mdi:code-tags"} className="w-3.5 h-3.5" />
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </motion.a>
             ))}
           </div>
         </motion.div>

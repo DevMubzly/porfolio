@@ -44,14 +44,14 @@ export function SpotifyCard() {
 
   if (loading) {
     return (
-      <div className="flex items-center gap-4 p-4 rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] max-w-sm">
-        <div className="w-14 h-14 rounded-lg bg-[var(--bg-tertiary)] animate-pulse flex-shrink-0" />
-        <div className="flex-1 min-w-0 space-y-2">
-          <div className="h-2.5 w-16 bg-[var(--bg-tertiary)] rounded animate-pulse" />
-          <div className="h-3.5 w-32 bg-[var(--bg-tertiary)] rounded animate-pulse" />
-          <div className="h-2.5 w-24 bg-[var(--bg-tertiary)] rounded animate-pulse" />
+      <div className="@container flex w-full items-center gap-3 rounded-2xl bg-[var(--bg-secondary)] p-3 @[260px]:gap-4 @[260px]:p-4">
+        <div className="h-10 w-10 flex-shrink-0 animate-pulse rounded-lg bg-[var(--bg-tertiary)] @[260px]:h-14 @[260px]:w-14" />
+        <div className="min-w-0 flex-1 space-y-2">
+          <div className="h-2.5 w-16 animate-pulse rounded bg-[var(--bg-tertiary)]" />
+          <div className="h-3.5 w-32 animate-pulse rounded bg-[var(--bg-tertiary)]" />
+          <div className="h-2.5 w-24 animate-pulse rounded bg-[var(--bg-tertiary)]" />
         </div>
-        <div className="w-8 h-8 rounded-full bg-[var(--bg-tertiary)] animate-pulse flex-shrink-0" />
+        <div className="hidden h-8 w-8 flex-shrink-0 animate-pulse rounded-full bg-[var(--bg-tertiary)] @[260px]:block" />
       </div>
     );
   }
@@ -63,39 +63,39 @@ export function SpotifyCard() {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center gap-4 p-4 rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] hover:border-[var(--border-strong)] transition-colors group max-w-sm"
+      className="group @container flex w-full items-center gap-3 rounded-2xl bg-[var(--bg-secondary)] p-3 transition-colors @[260px]:gap-4 @[260px]:p-4"
       whileHover={{ scale: 1.01 }}
       whileTap={{ scale: 0.99 }}
     >
       {track ? (
-        <div className="relative w-14 h-14 rounded-lg overflow-hidden flex-shrink-0">
+        <div className="relative h-10 w-10 flex-shrink-0 overflow-hidden rounded-lg @[260px]:h-14 @[260px]:w-14">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={track.albumArt} alt={track.name} className="w-full h-full object-cover" />
+          <img src={track.albumArt} alt={track.name} className="h-full w-full object-cover" />
         </div>
       ) : (
-        <div className="w-14 h-14 rounded-lg bg-[var(--bg-tertiary)] flex items-center justify-center flex-shrink-0">
-          <div className="w-8 h-8 rounded-full bg-[#1DB954] flex items-center justify-center">
+        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--bg-tertiary)] @[260px]:h-14 @[260px]:w-14">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1DB954]">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
-              <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.56.3z"/>
+              <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.56.3z" />
             </svg>
           </div>
         </div>
       )}
-      <div className="flex-1 min-w-0">
-        <p className="text-xs text-[var(--text-muted)] uppercase tracking-wider mb-0.5">
+      <div className="min-w-0 flex-1">
+        <p className="mb-0.5 text-[10px] uppercase tracking-wider text-[var(--text-muted)] @[260px]:text-xs">
           {track ? (track.isPlaying ? "Now playing" : "Last played") : "Spotify"}
         </p>
-        <p className="text-sm font-medium text-[var(--text-primary)] truncate">
+        <p className="truncate text-[13px] font-medium text-[var(--text-primary)] @[260px]:text-sm">
           {track ? track.name : "Follow me on Spotify"}
         </p>
-        <p className="text-xs text-[var(--text-secondary)] truncate">
+        <p className="truncate text-[11px] text-[var(--text-secondary)] @[260px]:text-xs">
           {track ? track.artist : "Open Spotify"}
         </p>
       </div>
       {track && (
-        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#1DB954] flex items-center justify-center">
+        <div className="hidden h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#1DB954] @[260px]:flex">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
-            <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.56.3z"/>
+            <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.56.3z" />
           </svg>
         </div>
       )}

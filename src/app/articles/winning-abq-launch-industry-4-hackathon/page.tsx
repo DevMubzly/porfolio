@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 export default function HackathonArticle() {
   return (
     <main className="min-h-screen pt-28 pb-16 px-6 lg:px-24">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-[52rem] mx-auto">
         <Link
           href="/#articles"
           className="inline-flex items-center gap-2 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-8 group"

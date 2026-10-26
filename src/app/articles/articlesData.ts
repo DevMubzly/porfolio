@@ -30,16 +30,6 @@ export const articles: ArticleMeta[] = [
       "A practical mental model for LangChain: chains, tools, memory, and how to avoid building fragile LLM spaghetti.",
   },
   {
-    slug: "llm-systems-that-dont-feel-stitched-on",
-    title: "LLM Systems That Don't Feel Stitched On",
-    tag: "AI engineering",
-    year: "2025",
-    date: "May 10, 2025",
-    readTime: "7 min read",
-    description:
-      "Principles I follow to integrate LLMs into products so they feel native, reliable, and worth keeping.",
-  },
-  {
     slug: "designing-resilient-frontends-for-fast-backends",
     title: "Designing Resilient Frontends for Fast Backends",
     tag: "Frontend craft",

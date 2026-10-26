@@ -1,74 +1,9 @@
 "use client";
 
-import { motion } from "motion/react";
-import { SpotifyCard } from "./SpotifyCard";
+import { motion, useReducedMotion } from "motion/react";
 import { SocialIcons } from "./SocialIcons";
 import { EatClock } from "./EatClock";
-import { Icon } from "@iconify/react";
-import dynamic from "next/dynamic";
-
-const techStack = [
-  { name: "Next.js", icon: "logos:nextjs-icon" },
-  { name: "TypeScript", icon: "logos:typescript-icon" },
-  { name: "React", icon: "logos:react" },
-  { name: "Python", icon: "logos:python" },
-  { name: "Node.js", icon: "logos:nodejs-icon" },
-  { name: "PostgreSQL", icon: "logos:postgresql" },
-  { name: "Docker", icon: "logos:docker-icon" },
-  { name: "Cloudflare", icon: "logos:cloudflare-icon" },
-  { name: "NestJS", icon: "logos:nestjs" },
-  { name: "Git", icon: "logos:git-icon" },
-  { name: "Nginx", icon: "logos:nginx" },
-];
-
-const GitHubHeatmap = dynamic(() => import("./GitHubHeatmap").then((mod) => mod.GitHubHeatmap), {
-  ssr: false,
-  loading: () => (
-    <div className="p-6 overflow-hidden">
-      <div className="flex items-center justify-between mb-4">
-        <div className="h-3.5 w-32 bg-[var(--bg-tertiary)] rounded animate-pulse" />
-        <div className="h-2.5 w-16 bg-[var(--bg-tertiary)] rounded animate-pulse" />
-      </div>
-      <div className="space-y-1.5">
-        <div className="h-2.5 w-full bg-[var(--bg-tertiary)] rounded animate-pulse" />
-        <div className="flex gap-1">
-          {Array.from({ length: 52 }).map((_, i) => (
-            <div key={i} className="w-2.5 h-2.5 rounded-sm bg-[var(--bg-tertiary)] animate-pulse" />
-          ))}
-        </div>
-        <div className="flex gap-1">
-          {Array.from({ length: 52 }).map((_, i) => (
-            <div key={i} className="w-2.5 h-2.5 rounded-sm bg-[var(--bg-tertiary)] animate-pulse" />
-          ))}
-        </div>
-        <div className="flex gap-1">
-          {Array.from({ length: 52 }).map((_, i) => (
-            <div key={i} className="w-2.5 h-2.5 rounded-sm bg-[var(--bg-tertiary)] animate-pulse" />
-          ))}
-        </div>
-        <div className="flex gap-1">
-          {Array.from({ length: 52 }).map((_, i) => (
-            <div key={i} className="w-2.5 h-2.5 rounded-sm bg-[var(--bg-tertiary)] animate-pulse" />
-          ))}
-        </div>
-        <div className="flex gap-1">
-          {Array.from({ length: 52 }).map((_, i) => (
-            <div key={i} className="w-2.5 h-2.5 rounded-sm bg-[var(--bg-tertiary)] animate-pulse" />
-          ))}
-        </div>
-        <div className="flex gap-1">
-          {Array.from({ length: 52 }).map((_, i) => (
-            <div key={i} className="w-2.5 h-2.5 rounded-sm bg-[var(--bg-tertiary)] animate-pulse" />
-          ))}
-        </div>
-      </div>
-      <div className="flex items-center justify-between mt-4">
-        <div className="h-2.5 w-28 bg-[var(--bg-tertiary)] rounded animate-pulse" />
-        <div className="h-2.5 w-20 bg-[var(--bg-tertiary)] rounded animate-pulse" />
-      </div>
-    </div>
-  ),
-});
+import { scrollToId } from "@/lib/scroll";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -87,32 +22,130 @@ const itemVariants = {
   },
 };
 
+function GetInTouchButton() {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <motion.a
+      href="#contact"
+      onClick={(e) => {
+        e.preventDefault();
+        scrollToId("contact");
+      }}
+      whileHover={{ y: -2 }}
+      whileTap={{ scale: 0.97 }}
+      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+      className="group relative inline-flex shrink-0 overflow-hidden rounded-full p-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--text-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
+    >
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 rounded-full bg-[linear-gradient(140deg,var(--text-muted),transparent_40%,transparent_60%,var(--text-muted))]"
+      />
+      <motion.span
+        aria-hidden
+        className="pointer-events-none absolute -inset-[100%] rounded-full bg-[conic-gradient(from_0deg,transparent_0deg,var(--text-muted)_25deg,transparent_70deg)] opacity-70"
+        animate={reduceMotion ? undefined : { rotate: 360 }}
+        transition={reduceMotion ? undefined : { duration: 6, repeat: Infinity, ease: "linear" }}
+      />
+      <span className="relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-linear-to-b from-[var(--text-secondary)] to-[var(--text-primary)] px-5 py-2.5 text-sm font-medium text-[var(--bg)]">
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -translate-x-[130%] skew-x-[-18deg] bg-[linear-gradient(90deg,transparent,var(--bg),transparent)] opacity-30 transition-transform duration-700 ease-out group-hover:translate-x-[130%]"
+        />
+        <span className="relative">Get in touch</span>
+        <svg
+          className="relative h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M5 12h14M13 6l6 6-6 6" />
+        </svg>
+      </span>
+    </motion.a>
+  );
+}
+
+function AboutCards() {
+  const card =
+    "absolute inset-0 m-auto h-[250px] w-[180px] rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] p-1.5 sm:h-[320px] sm:w-[230px]";
+
+  const cards = [
+    { src: "/aboutme.jpg", alt: "Mubarak at work", rotate: -10, y: 10, offset: "translate-x-[-60px] lg:translate-x-[-234px]" },
+    { src: "/aboutme3.png", alt: "Mubarak", rotate: -4, y: 4, offset: "translate-x-[-20px] lg:translate-x-[-78px]" },
+    { src: "/aboutme2.png", alt: "Mubarak", rotate: 4, y: 4, offset: "translate-x-[20px] lg:translate-x-[78px]" },
+    { src: "/about%20me4.png", alt: "Mubarak", rotate: 10, y: 10, offset: "translate-x-[60px] lg:translate-x-[234px]" },
+  ];
+
+  return (
+    <div className="mt-16 flex justify-center">
+      <div className="relative h-[300px] w-full max-w-[52rem] sm:h-[390px]">
+        {cards.map((item) => (
+          <motion.div
+            key={item.src}
+            initial={{ rotate: 0, y: 0 }}
+            whileInView={{ rotate: item.rotate, y: item.y }}
+            whileHover={{ rotate: 0, y: -14, scale: 1.04, zIndex: 30 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className={`${card} ${item.offset}`}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={item.src} alt={item.alt} className="h-full w-full rounded-xl object-cover" />
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function HeroSection() {
   return (
-    <section id="home" className="min-h-screen pt-40 pb-16 px-6 lg:px-24">
-      <div className="max-w-4xl mx-auto">
+    <section id="home" className="min-h-screen px-6 lg:px-24">
+      <div className="mx-auto h-80 max-w-[58rem] bg-[url('/profile.jpg')] bg-cover bg-center" />
+      <div className="max-w-[52rem] mx-auto">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="space-y-8"
         >
-          <motion.div variants={itemVariants} className="flex items-center gap-5">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0 rounded-full overflow-hidden">
+          <motion.div variants={itemVariants} className="-mt-16 space-y-5">
+            <div className="w-32 h-32 rounded-full overflow-hidden bg-[var(--avatar-bg)] border-4 border-[var(--text-primary)]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/avatar.svg" alt="Balinda Mubarak" className="w-full h-full" />
             </div>
-            <div className="flex-1 pt-4 flex flex-col justify-center items-start space-y-1">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight text-[var(--text-primary)]">
-                Balinda Mubarak
-              </h1>
-              <p className="text-base sm:text-lg text-[var(--text-secondary)] font-light">
+            <div>
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight text-[var(--text-primary)]">
+                  Hey, I&apos;m Balinda Mubarak
+                </h1>
+                <div className="flex flex-wrap items-center gap-3">
+                  {/* <SocialIcons /> */}
+                  <GetInTouchButton />
+                </div>
+              </div>
+              {/* <p className="text-base sm:text-lg text-[var(--text-secondary)] font-light mt-1">
                 Product Engineer
+              </p> */}
+              <p className="mt-8 max-w-2xl text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+                I am a{" "}
+                <span className="inline-block rounded-md bg-blue-500/10 px-2 py-0.5 text-blue-600">
+                  software developer
+                </span>{" "}
+                from Uganda, aspiring founder, and professional overthinker of ideas that probably should&apos;ve stayed in my
+                notes app.
+              </p>
+              <p className="mt-2 max-w-2xl text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+                I write code, dream up products, explore rabbit holes, and occasionally convince myself that
+                I&apos;ve found the next big thing.
               </p>
             </div>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-4 text-sm text-[var(--text-muted)]">
+          <motion.div variants={itemVariants} className="mt-8 flex flex-wrap gap-4 text-sm text-[var(--text-muted)]">
             <span className="flex items-center gap-1.5">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
@@ -130,40 +163,57 @@ export function HeroSection() {
             <EatClock />
           </motion.div>
 
-          <motion.p variants={itemVariants} className="text-base sm:text-lg text-[var(--text-secondary)] font-light leading-relaxed">
-            Hi, I&apos;m a developer from Uganda focused on building elegant web applications. Yep, that&apos;s about it. 
-          </motion.p>
-
-          <motion.div variants={itemVariants}>
-            <SpotifyCard />
-          </motion.div>
-
-          <motion.div variants={itemVariants}>
-            <SocialIcons />
-          </motion.div>
-
-          <motion.div variants={itemVariants}>
-            <GitHubHeatmap />
-          </motion.div>
-
-          <motion.div variants={itemVariants} className="space-y-4">
-            <p className="text-xs font-semibold text-[var(--text-primary)] uppercase tracking-wider">Tech Stack</p>
-            <div className="flex flex-wrap items-center gap-3">
-              {techStack.map((tech) => (
-                <motion.div
-                  key={tech.name}
-                  className="relative group w-10 h-10 rounded-full border border-[var(--border)] bg-[var(--bg-secondary)] flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-strong)] transition-colors cursor-default"
-                  whileHover={{ y: -3, scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+          <div className="mt-16 lg:mt-24">
+            <hr className="mb-16 lg:mb-24 border-[var(--border)]" />
+            <motion.div variants={itemVariants} className="space-y-4">
+              <p className="text-2xl font-medium tracking-tight capitalize text-[var(--text-primary)] sm:text-3xl">About me</p>
+              <p className="text-base text-[var(--text-secondary)] font-light leading-relaxed">
+                My journey into software started with a{" "}
+                <span className="inline-block rounded-md bg-blue-500/10 px-1.5 py-0.5 text-blue-600">
+                  Computer Science
+                </span>{" "}
+                degree and grew into something bigger. Working with web frameworks taught me how the pieces of a
+                product fit together.
+              </p>
+              <p className="text-base text-[var(--text-secondary)] font-light leading-relaxed">
+                But code was never the whole story. I became more interested in the ideas behind it: the problems
+                worth solving, the people who use it, and what turns a technical solution into a useful product.
+              </p>
+              <p className="text-base text-[var(--text-secondary)] font-light leading-relaxed">
+                Out of curiosity, I built{" "}
+                <a
+                  href="https://edgekeeper.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block rounded-md bg-blue-500/10 px-1.5 py-0.5 text-blue-600 hover:bg-blue-500/20 transition-colors"
                 >
-                  <Icon icon={tech.icon} className="w-5 h-5" />
-                  <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 rounded-md bg-[var(--text-primary)] text-[var(--bg)] text-[10px] font-medium whitespace-nowrap opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200">
-                    {tech.name}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+                  EdgeKeeper
+                </a>{" "}
+                to bring my idea to reality: a visual, n8n-style experience for building and backtesting trading
+                algos. That path later led me to{" "}
+                <a
+                  href="https://salastores.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block rounded-md bg-blue-500/10 px-1.5 py-0.5 text-blue-600 hover:bg-blue-500/20 transition-colors"
+                >
+                  SalaStores
+                </a>
+                , simplifying workflows for Ugandan merchants. Both pushed me beyond implementation, into
+                understanding the people and decisions behind a product.
+              </p>
+              <p className="text-base text-[var(--text-secondary)] font-light leading-relaxed">
+                Outside the code, I&apos;m the kind of person who starts with one technical problem and ends up three
+                hours into a different business idea. My notes app has seen more startup pitches than most investors.
+              </p>
+              <p className="text-base text-[var(--text-secondary)] font-light leading-relaxed">
+                I&apos;m still early in the journey, and the exciting part isn&apos;t just knowing how to build
+                software. It&apos;s discovering what can be built with it. Enough about me, go look at what I&apos;ve
+                been building.
+              </p>
+            </motion.div>
+            <AboutCards />
+          </div>
         </motion.div>
       </div>
     </section>

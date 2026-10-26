@@ -55,28 +55,6 @@ function ArticleBody({ slug }: { slug: string }) {
         </>
       );
 
-    case "llm-systems-that-dont-feel-stitched-on":
-      return (
-        <>
-          <p className="mt-6 text-[var(--text-secondary)] leading-relaxed">
-            The difference between a &quot;demo&quot; LLM feature and a real product is reliability. Users should not feel
-            like they are talking to a random model bolted on at the last minute.
-          </p>
-          <h2 className="mt-10 text-xl font-light tracking-tight text-[var(--text-primary)]">Define where AI is allowed to fail</h2>
-          <p className="mt-3 text-[var(--text-secondary)] leading-relaxed">
-            I draw a clear line between flows that can tolerate creative failure (brainstorming, drafting) and
-            flows that cannot (payments, permissions, critical data). For the latter, LLMs act as assistants to
-            deterministic systems, not decision makers.
-          </p>
-          <h2 className="mt-8 text-xl font-light tracking-tight text-[var(--text-primary)]">Measure instead of guessing</h2>
-          <p className="mt-3 text-[var(--text-secondary)] leading-relaxed">
-            I log model inputs, outputs, and tool calls (with redaction) to build feedback loops. This makes it
-            possible to debug bad answers and iterate on prompts, retrieval strategies, and guardrails with real
-            data instead of intuition.
-          </p>
-        </>
-      );
-
     case "designing-resilient-frontends-for-fast-backends":
       return (
         <>
@@ -152,7 +130,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <main className="min-h-screen pt-28 pb-16 px-6 lg:px-24">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-[52rem] mx-auto">
         <Link
           href="/#articles"
           className="inline-flex items-center gap-2 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-8 group"
