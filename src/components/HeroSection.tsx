@@ -219,7 +219,7 @@ export function HeroSection() {
                 >
                   SalaStores
                 </a>
-                , which I built after finding it hard to manage inventory from my after-high-school vacation holiday job. That struggle inspired me to take on the venture, which I had originally named{" "}
+                , which I built after finding it hard to manage inventory for a small canteen shop I started after high school during the vacation holiday. That struggle inspired me to take on the venture, which I had originally named{" "}
                 <span className="inline-block rounded-md bg-blue-500/10 px-1.5 py-0.5 text-blue-600">
                   Taviflow
                 </span>
