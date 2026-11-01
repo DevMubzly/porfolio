@@ -4,6 +4,14 @@ import { motion } from "motion/react";
 
 const experience = [
   {
+    title: "Graduate Trainee - Backend Engineer",
+    company: "Smart Applications Group",
+    period: "October 2026 - Present",
+    technologies: ["SQL", "Oracle", "Spring Boot", "Postman", "Angular", "Networking"],
+    description:
+      "Maintaining legacy backend logic for company applications, working on integrations across systems, SQL and Oracle databases, Spring Boot services, API testing with Postman, Angular frontends, and networking.",
+  },
+  {
     title: "Software Engineer",
     company: "Tricsoft Technologies Ltd",
     period: "June 2026 - September 2026",

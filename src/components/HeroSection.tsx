@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { SocialIcons } from "./SocialIcons";
 import { EatClock } from "./EatClock";
@@ -70,6 +71,7 @@ function GetInTouchButton() {
 }
 
 function AboutCards() {
+  const [active, setActive] = useState<number | null>(null);
   const card =
     "absolute inset-0 m-auto h-[250px] w-[180px] rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] p-1.5 sm:h-[320px] sm:w-[230px]";
 
@@ -83,20 +85,38 @@ function AboutCards() {
   return (
     <div className="mt-16 flex justify-center">
       <div className="relative h-[300px] w-full max-w-[52rem] sm:h-[390px]">
-        {cards.map((item) => (
-          <motion.div
-            key={item.src}
-            initial={{ rotate: 0, y: 0 }}
-            whileInView={{ rotate: item.rotate, y: item.y }}
-            whileHover={{ rotate: 0, y: -14, scale: 1.04, zIndex: 30 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className={`${card} ${item.offset}`}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={item.src} alt={item.alt} className="h-full w-full rounded-xl object-cover" />
-          </motion.div>
-        ))}
+        {cards.map((item, index) => {
+          const isActive = active === index;
+          return (
+            <motion.div
+              key={item.src}
+              initial={{ rotate: 0, y: 0 }}
+              whileInView={{ rotate: isActive ? 0 : item.rotate, y: isActive ? -14 : item.y, scale: isActive ? 1.08 : 1 }}
+              whileHover={{ rotate: 0, y: -14, scale: 1.04, zIndex: 30 }}
+              whileTap={{ scale: 1.04 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              onClick={() => setActive(isActive ? null : index)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setActive(isActive ? null : index);
+                }
+              }}
+              tabIndex={0}
+              role="button"
+              aria-pressed={isActive}
+              aria-label={`Enlarge photo: ${item.alt}`}
+              style={{ zIndex: isActive ? 30 : undefined }}
+              className={`${card} ${item.offset} cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--text-primary)] ${
+                isActive ? "border-[var(--text-primary)] ring-2 ring-[var(--text-primary)]" : ""
+              }`}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={item.src} alt={item.alt} className="h-full w-full rounded-xl object-cover" />
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );
@@ -199,7 +219,7 @@ export function HeroSection() {
                 >
                   SalaStores
                 </a>
-                , simplifying workflows for Ugandan merchants. Both pushed me beyond implementation, into
+                , which I built after finding it hard to manage inventory from my after-high-school vacation holiday job. That struggle inspired me to take on the venture, which I had originally named Taviflow, simplifying workflows for Ugandan merchants. Both pushed me beyond implementation, into
                 understanding the people and decisions behind a product.
               </p>
               <p className="text-base text-[var(--text-secondary)] font-light leading-relaxed">

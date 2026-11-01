@@ -4,6 +4,17 @@ import { Printer } from "lucide-react";
 
 const experience: { title: string; company: string; period: string; desc: string; points?: string[] }[] = [
   {
+    title: "Graduate Trainee - Backend Engineer",
+    company: "Smart Applications Group",
+    period: "October 2026 - Present",
+    desc: "Maintaining legacy backend logic for company applications, working on integrations across systems with SQL, Oracle, Spring Boot, Postman, Angular, and networking.",
+    points: [
+      "Maintain and debug legacy backend logic powering company applications.",
+      "Build and support integrations between internal systems and third-party services.",
+      "Work with SQL and Oracle databases, Spring Boot services, Postman-tested APIs, Angular frontends, and networking.",
+    ],
+  },
+  {
     title: "Software Engineer",
     company: "Tricsoft Technologies Ltd",
     period: "June 2026 - September 2026",
@@ -111,7 +122,7 @@ export default function CVPage() {
         {/* Header */}
         <header>
           <h1 className="text-3xl font-bold uppercase tracking-wide">Balinda Mubarak</h1>
-          <p className="text-[15px] font-semibold uppercase tracking-wide mt-1">Developer</p>
+          <p className="text-[15px] font-semibold uppercase tracking-wide mt-1">Software Engineer</p>
           <div className="border-b-[3px] border-neutral-900 mt-2 pt-1">
             <p className="text-[13px] pb-2">
               +256771050357 | bmubs15@gmail.com | https://bmubarak.xyz

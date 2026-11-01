@@ -41,7 +41,17 @@ export function Header() {
         {navItem.label}
       </a>
     ) : (
-      <Link key={navItem.href} href={navItem.href} className={classes}>
+      <Link
+        key={navItem.href}
+        href={navItem.href}
+        scroll={true}
+        onClick={() => {
+          if (pathname === navItem.href) {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }
+        }}
+        className={classes}
+      >
         {navItem.label}
       </Link>
     );
