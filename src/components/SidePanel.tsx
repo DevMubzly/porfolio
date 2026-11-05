@@ -14,7 +14,8 @@ export function SidePanel() {
     if (pathname !== "/") return;
 
     const handleScroll = () => {
-      const sections = ["home", "work", "about", "projects", "articles", "contact"];
+      // const sections = ["home", "work", "about", "projects", "articles", "contact"];
+      const sections = ["home", "contact"];
       const scrollPosition = window.scrollY + 120;
 
       for (const section of sections) {
@@ -43,7 +44,7 @@ export function SidePanel() {
   return (
     <>
       <div className="fixed left-0 top-1/2 z-40 hidden w-[max(6rem,calc((100%_-_928px)/2))] -translate-y-1/2 justify-center min-[1400px]:flex print:hidden">
-        <div className="flex flex-col items-start gap-10">
+        <div className="flex flex-col items-start gap-4">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -64,10 +65,11 @@ export function SidePanel() {
           </p>
         </motion.div>
 
-        <div className="w-px h-8 bg-[var(--border)]" />
+        <div className="w-px h-4 bg-[var(--border)]" />
 
-        <nav className="flex flex-col gap-3">
-          {["home", "work", "projects", "articles", "contact"].map((section) => {
+        <nav className="flex flex-col gap-2">
+          {/* ["home", "work", "projects", "articles", "contact"].map((section) => { */}
+          {["home", "contact"].map((section) => {
             const isActive = activeSection === section && pathname === "/";
             return (
               <button

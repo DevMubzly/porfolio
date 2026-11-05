@@ -8,9 +8,9 @@ import { scrollToId } from "@/lib/scroll";
 
 const navItems = [
   { label: "Home", href: "#home" },
-  { label: "Work", href: "#work" },
-  { label: "Projects", href: "#projects" },
-  { label: "Articles", href: "#articles" },
+  // { label: "Work", href: "#work" },
+  // { label: "Projects", href: "#projects" },
+  // { label: "Articles", href: "#articles" },
   { label: "Contact", href: "#contact" },
   { label: "CV", href: "/cv" },
 ];
@@ -57,11 +57,12 @@ export function Header() {
     );
 
   return (
+    <div className="fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 min-[1400px]:left-auto min-[1400px]:right-0 min-[1400px]:w-[max(6rem,calc((100%_-_928px)/2))] min-[1400px]:translate-x-0 min-[1400px]:flex min-[1400px]:justify-center z-50 max-w-[calc(100vw-2rem)] print:hidden">
     <motion.nav
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
-      className="fixed top-4 left-1/2 -translate-x-1/2 sm:top-6 lg:left-auto lg:right-6 lg:translate-x-0 z-50 flex items-center p-1 rounded-full border border-[var(--border)] bg-[var(--bg-secondary)]/80 backdrop-blur-xl max-w-[calc(100vw-2rem)] overflow-x-auto print:hidden"
+      className="flex items-center p-1 rounded-full border border-[var(--border)] bg-[var(--bg-secondary)]/80 backdrop-blur-xl max-w-full overflow-x-auto"
     >
       {navItems.map((navItem) => renderItem(navItem, pillLink))}
       <div className="w-px h-5 bg-[var(--border)] mx-1 flex-shrink-0" />
@@ -69,5 +70,6 @@ export function Header() {
         <ThemeSwitcher />
       </div>
     </motion.nav>
+    </div>
   );
 }

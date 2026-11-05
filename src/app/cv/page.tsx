@@ -98,7 +98,7 @@ const referees = [
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="text-[13px] font-bold uppercase tracking-wider text-neutral-900 border-b border-neutral-400 pb-1 mb-3">
+    <h2 className="text-[13px] font-bold uppercase tracking-wider text-[var(--text-primary)] border-b border-[var(--border-strong)] pb-1 mb-3 print:text-neutral-900 print:border-neutral-400">
       {children}
     </h2>
   );
@@ -106,13 +106,13 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 
 export default function CVPage() {
   return (
-    <main className="min-h-screen bg-white text-neutral-900 pt-28 pb-16 px-6 print:pt-0 print:pb-0 print:px-0">
+    <main className="min-h-screen bg-[var(--bg)] text-[var(--text-primary)] pt-28 pb-16 px-6 print:bg-white print:text-neutral-900 print:pt-0 print:pb-0 print:px-0">
       <div className="max-w-3xl mx-auto">
         {/* Download PDF Button */}
         <div className="flex justify-end mb-8 print:hidden">
           <button
             onClick={() => window.print()}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-neutral-300 bg-neutral-100 text-xs font-medium text-neutral-600 hover:text-neutral-900 hover:border-neutral-400 transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--border)] bg-[var(--bg-tertiary)] text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-strong)] transition-colors"
           >
             <Printer className="w-3.5 h-3.5" />
             Download PDF
@@ -123,7 +123,7 @@ export default function CVPage() {
         <header>
           <h1 className="text-3xl font-bold uppercase tracking-wide">Balinda Mubarak</h1>
           <p className="text-[15px] font-semibold uppercase tracking-wide mt-1">Software Engineer</p>
-          <div className="border-b-[3px] border-neutral-900 mt-2 pt-1">
+          <div className="border-b-[3px] border-[var(--text-primary)] print:border-neutral-900 mt-2 pt-1">
             <p className="text-[13px] pb-2">
               +256771050357 | bmubs15@gmail.com | https://bmubarak.xyz
             </p>

@@ -5,9 +5,9 @@ import { useEffect } from "react";
 import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 import { HeroSection } from "@/components/HeroSection";
-import { AboutSection } from "@/components/AboutSection";
-import { ProjectsSection } from "@/components/ProjectsSection";
-import { ArticlesSection } from "@/components/ArticlesSection";
+// import { AboutSection } from "@/components/AboutSection";
+// import { ProjectsSection } from "@/components/ProjectsSection";
+// import { ArticlesSection } from "@/components/ArticlesSection";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 import { registerLocomotive } from "@/lib/scroll";
@@ -35,9 +35,9 @@ export default function Home() {
         transition={{ duration: 0.5 }}
       >
         <HeroSection />
-        <AboutSection />
-        <ProjectsSection />
-        <ArticlesSection />
+        {/* <AboutSection /> */}
+        {/* <ProjectsSection /> */}
+        {/* <ArticlesSection /> */}
         <ContactSection />
         <div className="max-w-[52rem] mx-auto px-6 lg:px-24 py-12">
           <motion.div
