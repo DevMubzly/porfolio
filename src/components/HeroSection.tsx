@@ -232,8 +232,7 @@ export function HeroSection() {
               </p>
               <p className="text-base text-[var(--text-secondary)] font-light leading-relaxed">
                 I&apos;m still early in the journey, and the exciting part isn&apos;t just knowing how to build
-                software. It&apos;s discovering what can be built with it. Enough about me, go look at what I&apos;ve
-                been building.
+                software. It&apos;s discovering what can be built with it.
               </p>
             </motion.div>
             <AboutCards />
