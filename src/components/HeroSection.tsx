@@ -150,7 +150,7 @@ export function HeroSection() {
               {/* <p className="text-base sm:text-lg text-[var(--text-secondary)] font-light mt-1">
                 Product Engineer
               </p> */}
-              <p className="mt-8 max-w-2xl text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+              <p className="mt-8 text-base text-[var(--text-secondary)] font-light leading-relaxed">
                 I am a{" "}
                 <span className="inline-block rounded-md bg-blue-500/10 px-2 py-0.5 text-blue-600">
                   software developer
@@ -158,7 +158,7 @@ export function HeroSection() {
                 from Uganda, aspiring founder, and professional overthinker of ideas that probably should&apos;ve stayed in my
                 notes app.
               </p>
-              <p className="mt-2 max-w-2xl text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+              <p className="mt-2 text-base text-[var(--text-secondary)] font-light leading-relaxed">
                 I write code, dream up products, explore rabbit holes, and occasionally convince myself that
                 I&apos;ve found the next big thing.
               </p>
